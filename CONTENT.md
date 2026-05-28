@@ -18,7 +18,7 @@
 Morphic Studio — Sites web, apps mobiles et outils métiers pour PME
 
 **Meta description**
-Studio web indépendant : sites, applications mobiles et outils internes livrés vite, à forfait clair, en relation directe avec l'équipe qui construit votre projet.
+Studio web indépendant à Angers : sites, apps mobiles et outils internes livrés vite, à forfait clair, en relation directe avec l'équipe.
 
 ---
 
@@ -28,7 +28,7 @@ Studio web indépendant : sites, applications mobiles et outils internes livrés
 Sites web, apps mobiles et outils métiers pour PME — soignés, livrés vite, à prix clair.
 
 **Sous-titre**
-Morphic Studio conçoit des produits web et mobiles pour les entrepreneurs et PME qui veulent lancer rapidement, sans devis flou ni budget qui dérape. Bases techniques fiables, périmètre annoncé à l'avance, équipe joignable.
+Morphic Studio conçoit des produits web et mobiles pour les entrepreneurs et PME qui veulent lancer rapidement, avec un périmètre, un délai et un prix annoncés avant le démarrage. Bases techniques fiables, équipe joignable.
 
 **Bouton principal**
 Parlons de votre projet
@@ -59,7 +59,7 @@ Vous venez nous voir pour…
 - Lancer un site professionnel rapidement
 - Refaire un site devenu lent ou dépassé
 - Transformer une idée en MVP, pour valider votre marché
-- Industrialiser une app déjà validée, pour vos clients ou vos équipes
+- Faire passer à l'échelle une app déjà validée, pour vos clients ou vos équipes
 - Mettre en ligne une boutique e-commerce
 - Construire une plateforme sur mesure ou un outil interne
 
@@ -94,7 +94,20 @@ Nous développons vos applications mobiles à partir d'une base technique unique
 **Points clés**
 - Une seule base de code, iOS + Android
 - Expérience fluide, pensée pour chaque plateforme
-- Délais et coûts réduits
+- Coûts et délais significativement inférieurs à un double développement iOS + Android natif
+
+### Bloc C — Plateformes & outils métiers
+
+**Titre**
+Des plateformes et outils internes qui font gagner du temps à vos équipes
+
+**Texte**
+Quand un tableur, un CRM générique ou un assemblage d'outils ne suffit plus, nous construisons la plateforme ou l'outil interne qui correspond à votre métier : portails clients, back-offices, automatisations, MVP de produit SaaS. Pensés pour vos équipes, intégrés à ce qui existe déjà, livrés par étapes pour valider au fur et à mesure.
+
+**Points clés**
+- Conçus à partir de votre processus réel, pas d'un modèle générique
+- S'intègrent à vos outils existants (CRM, ERP, comptabilité, etc.)
+- Livrés par incréments, pour des résultats utilisables vite
 
 ---
 
@@ -104,7 +117,7 @@ Nous développons vos applications mobiles à partir d'une base technique unique
 Notre méthode : rapide, claire, sans mauvaises surprises
 
 **Intro**
-Si nous livrons plus vite et à des tarifs plus accessibles que la moyenne, ce n'est pas un hasard. Nous nous appuyons sur des workflows structurés, des composants réutilisables et des outils de production modernes pour éviter de repartir de zéro à chaque projet. Nous éliminons les semaines perdues pour ne garder que ce qui compte — votre projet, qui avance.
+Nos délais courts et nos tarifs accessibles ne sont pas un hasard. Nous nous appuyons sur des workflows structurés, des composants réutilisables et des outils modernes de développement pour éviter de repartir de zéro à chaque projet. Nous éliminons les semaines perdues pour ne garder que ce qui compte — votre projet, qui avance.
 
 ### Étape 1 — Cadrage
 Nous commençons par comprendre votre besoin, vos objectifs et vos contraintes. À la fin de cette étape, vous savez exactement ce qui sera livré, quand, et pour quel prix. Pas de zone grise.
@@ -126,9 +139,9 @@ Nous mettons en ligne, nous vous formons à l'essentiel, et nous restons joignab
 Derrière Morphic Studio
 
 **Texte**
-Nous sommes un studio indépendant basé à Angers, et nous travaillons avec des clients partout en France et à l'international : moins d'intermédiaires, plus de réactivité, et une relation directe avec les personnes qui conçoivent et développent votre projet.
+Nous sommes un studio indépendant basé à Angers, et nous travaillons avec des clients partout en France et à l'international : pas de chef de projet entre vous et l'équipe technique, et une relation directe avec les personnes qui conçoivent et développent votre projet.
 
-Notre conviction : avec les bonnes méthodes et les bons outils, on peut livrer un travail de qualité, rapidement et à un prix juste. C'est tout ce que fait Morphic Studio — et nous restons joignables, vraiment, quand vous en avez besoin.
+Notre conviction : avec les bonnes méthodes et les bons outils, on peut livrer un travail de qualité, rapidement et à un prix juste. C'est tout ce que fait Morphic Studio — et nous restons joignables quand vous en avez besoin.
 
 > À enrichir : prénoms, rôles, parcours en une ligne, photo ou illustration de l'équipe.
 
@@ -177,20 +190,18 @@ Chaque projet démarre par un cadrage simple, puis un forfait fixe selon le pér
 
 ---
 
-## 9. Offre de lancement — accompagnement prioritaire
+## 9. Programme de lancement — accompagnement prioritaire
 
 > Section à remplacer par de vraies études de cas dès que les premiers projets sont livrés.
 
 **Titre**
-Offre de lancement — accompagnement prioritaire
+Programme de lancement — accompagnement prioritaire
 
 **Sous-titre**
 [3] places ouvertes ce trimestre, jusqu'au [date].
 
 **Texte**
-Pour nos premiers projets, nous réservons un nombre limité de places à un accompagnement prioritaire : disponibilité maximale de l'équipe, et un suivi renforcé pendant les semaines qui suivent la mise en ligne.
-
-En contrepartie, vous acceptez d'apparaître comme étude de cas publique — texte et visuels validés ensemble.
+Nous sélectionnons nos premiers projets pour documenter notre méthode de bout en bout. En échange de votre accord pour une étude de cas publique (texte et visuels validés ensemble), vous bénéficiez d'une disponibilité maximale de l'équipe et d'un suivi renforcé pendant les semaines qui suivent la mise en ligne.
 
 **Bouton**
 Parlons de votre projet
@@ -214,7 +225,7 @@ Le forfait initial couvre le périmètre validé au cadrage. Si une demande sort
 Un site vitrine se livre généralement en [X semaines], une application en [X semaines à X mois] selon sa complexité. Nous vous donnons un délai ferme dès le cadrage.
 
 **Sur quelles technologies travaillez-vous ?**
-Nous privilégions des technologies modernes et largement adoptées, choisies pour leur fiabilité et la facilité à trouver d'autres développeurs après nous : [Next.js / React / TypeScript pour le web, React Native pour le mobile, à confirmer selon votre stack réelle]. Le choix précis est arrêté au cadrage en fonction de votre projet.
+Nous privilégions des technologies modernes et largement adoptées, choisies pour leur fiabilité et la facilité à trouver d'autres développeurs après nous : Next.js, React et TypeScript pour le web, React Native pour le mobile. Le choix précis est arrêté au cadrage en fonction de votre projet.
 
 **Est-ce que je suis propriétaire du site ou de l'application ?**
 Oui. À la livraison, vous récupérez les accès, le code source et les fichiers prévus au devis. Notre objectif : que vous ne soyez jamais dépendant de nous par défaut — vous restez libre de poursuivre avec une autre équipe si vous le souhaitez.
