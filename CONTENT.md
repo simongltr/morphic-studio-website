@@ -6,17 +6,29 @@
 >
 > Quatre piliers répétés tout au long du site : **lancement rapide**, **qualité soignée**, **prix clair**, **relation directe**.
 >
-> À personnaliser : chiffres, délais et fourchettes de prix entre crochets.
+> À personnaliser avant publication : chiffres, délais, fourchettes de prix et nombre de places entre crochets.
+>
+> **Décision à confirmer** : l'offre §9 « Offre de lancement » a été pivotée vers un *accompagnement prioritaire non-tarifaire* (suivi renforcé contre étude de cas), pour ne pas trahir la promesse « prix clair » de §8. Si l'intention initiale était une remise tarifaire, le bloc §9 doit être réécrit.
+
+---
+
+## SEO — meta
+
+**Meta title**
+Morphic Studio — Sites web, apps mobiles et outils métiers pour PME
+
+**Meta description**
+Studio web indépendant : sites, applications mobiles et outils internes livrés vite, à forfait clair, en relation directe avec l'équipe qui construit votre projet.
 
 ---
 
 ## 1. Hero — l'accroche
 
 **Titre (H1)**
-Des sites et applications modernes, livrés vite, avec un prix clair.
+Sites web, apps mobiles et outils métiers pour PME — soignés, livrés vite, à prix clair.
 
 **Sous-titre**
-Morphic Studio conçoit des sites web et apps mobiles pour les entrepreneurs et PME qui veulent lancer rapidement un produit propre, performant et facile à faire évoluer — sans devis flou ni budget qui dérape.
+Morphic Studio conçoit des produits web et mobiles pour les entrepreneurs et PME qui veulent lancer rapidement, sans devis flou ni budget qui dérape. Bases techniques fiables, périmètre annoncé à l'avance, équipe joignable.
 
 **Bouton principal**
 Parlons de votre projet
@@ -32,7 +44,7 @@ Voir notre méthode →
 Faire développer un projet web, ça ne devrait pas être un parcours du combattant.
 
 **Texte**
-Devis flous, délais qui s'éternisent, allers-retours sans fin, et au bout du compte un résultat qui ne ressemble pas à ce que vous aviez en tête. Trop souvent, un projet web commence avec de l'enthousiasme et finit avec des délais flous, des coûts qui bougent, et un résultat difficile à faire évoluer.
+Devis flous, délais qui s'éternisent, allers-retours sans fin, coûts qui bougent — et au bout du compte un résultat qui ne ressemble pas à ce que vous aviez en tête, et difficile à maintenir.
 
 Nous avons fondé Morphic Studio avec une conviction simple : un produit web de qualité peut être livré vite, à un prix clair, par des gens qui répondent au téléphone.
 
@@ -46,10 +58,10 @@ Vous venez nous voir pour…
 **Liste**
 - Lancer un site professionnel rapidement
 - Refaire un site devenu lent ou dépassé
-- Transformer une idée d'application en première version utilisable
-- Créer un outil interne pour gagner du temps
-- Mettre en ligne une boutique ou une plateforme sur mesure
-- Lancer une app pour vos clients, vos équipes ou vos utilisateurs
+- Transformer une idée en MVP, pour valider votre marché
+- Industrialiser une app déjà validée, pour vos clients ou vos équipes
+- Mettre en ligne une boutique e-commerce
+- Construire une plateforme sur mesure ou un outil interne
 
 ---
 
@@ -64,12 +76,12 @@ Ce que nous construisons pour vous
 Des sites web qui travaillent pour vous
 
 **Texte**
-Sites vitrines, sites e-commerce, plateformes sur mesure : nous concevons des sites rapides, soignés et pensés pour convertir vos visiteurs en clients. Performants sur mobile comme sur ordinateur, faciles à faire évoluer, et construits sur des bases techniques fiables, rapides et faciles à faire évoluer.
+Sites vitrines, sites e-commerce, plateformes sur mesure : nous concevons des sites rapides, soignés et pensés pour convertir vos visiteurs en clients. Performants sur mobile comme sur ordinateur, construits sur des bases techniques fiables — et conçus pour évoluer avec vous au fil du temps.
 
 **Points clés**
 - Design sur mesure, à votre image
 - Optimisés pour la vitesse et le référencement
-- Faciles à mettre à jour vous-même
+- Faciles à mettre à jour en autonomie
 
 ### Bloc B — Applications mobiles
 
@@ -77,7 +89,7 @@ Sites vitrines, sites e-commerce, plateformes sur mesure : nous concevons des si
 Des applications iOS et Android sans doubler le budget
 
 **Texte**
-Nous développons vos applications mobiles à partir d'une base technique unique, déployée sur iPhone et Android en même temps. Résultat : un seul développement, deux plateformes, et une facture qui reste raisonnable. Sans compromis sur la fluidité ni l'expérience utilisateur.
+Nous développons vos applications mobiles à partir d'une base technique unique, déployée sur iOS et Android en même temps. Résultat : un seul développement, deux plateformes, et une facture qui reste raisonnable. Une expérience fluide, pensée pour chaque plateforme — sans rebâtir l'app deux fois.
 
 **Points clés**
 - Une seule base de code, iOS + Android
@@ -92,7 +104,7 @@ Nous développons vos applications mobiles à partir d'une base technique unique
 Notre méthode : rapide, claire, sans mauvaises surprises
 
 **Intro**
-Si nous livrons plus vite et à des tarifs plus accessibles que la moyenne, ce n'est pas un hasard. Nous utilisons des workflows structurés, des composants réutilisables et des outils de production modernes pour éviter de repartir de zéro à chaque projet. On élimine les semaines perdues pour ne garder que ce qui compte — votre projet, qui avance.
+Si nous livrons plus vite et à des tarifs plus accessibles que la moyenne, ce n'est pas un hasard. Nous nous appuyons sur des workflows structurés, des composants réutilisables et des outils de production modernes pour éviter de repartir de zéro à chaque projet. Nous éliminons les semaines perdues pour ne garder que ce qui compte — votre projet, qui avance.
 
 ### Étape 1 — Cadrage
 Nous commençons par comprendre votre besoin, vos objectifs et vos contraintes. À la fin de cette étape, vous savez exactement ce qui sera livré, quand, et pour quel prix. Pas de zone grise.
@@ -108,37 +120,36 @@ Nous mettons en ligne, nous vous formons à l'essentiel, et nous restons joignab
 
 ---
 
-## 6. La preuve — clients fondateurs
-
-> Section délicate au lancement (peu ou pas encore de références). À remplacer par de vraies études de cas dès que possible.
-
-**Titre**
-Devenez l'un de nos clients fondateurs
-
-**Sous-titre**
-Bénéficiez d'un accompagnement prioritaire à des conditions de lancement.
-
-**Texte**
-Pour nos premiers projets, nous sélectionnons un nombre limité de clients fondateurs. L'objectif : construire des références solides, avec une implication maximale de notre côté et des conditions privilégiées pour vous.
-
-Envie d'en faire partie ?
-
-**Bouton**
-Devenir client fondateur
-
----
-
-## 7. Qui nous sommes — la story
+## 6. Qui nous sommes
 
 **Titre**
 Derrière Morphic Studio
 
 **Texte**
-Morphic Studio est né d'un constat simple : trop d'entreprises renoncent à un bon site ou à une application parce qu'on leur a fait croire que ça coûterait une fortune et prendrait six mois.
-
-Morphic Studio est un studio indépendant : moins d'intermédiaires, plus de réactivité, et une relation directe avec les personnes qui conçoivent et développent votre projet.
+Nous sommes un studio indépendant basé à Angers, et nous travaillons avec des clients partout en France et à l'international : moins d'intermédiaires, plus de réactivité, et une relation directe avec les personnes qui conçoivent et développent votre projet.
 
 Notre conviction : avec les bonnes méthodes et les bons outils, on peut livrer un travail de qualité, rapidement et à un prix juste. C'est tout ce que fait Morphic Studio — et nous restons joignables, vraiment, quand vous en avez besoin.
+
+> À enrichir : prénoms, rôles, parcours en une ligne, photo ou illustration de l'équipe.
+
+---
+
+## 7. Ce qui est inclus — lever les doutes avant le prix
+
+**Titre**
+Ce qui est inclus dans chaque projet
+
+**Inclus dans le forfait**
+- Cadrage du besoin et périmètre détaillé
+- Structure des pages et parcours utilisateur
+- Design responsive (mobile + desktop)
+- Développement et mise en ligne
+- Configuration de l'hébergement et du nom de domaine (abonnement à votre charge ou ajouté au devis)
+- Formation à la prise en main du site
+- Accès, code source et fichiers du projet
+- Suivi post-livraison sur la période convenue
+
+_Contenus, photos, SEO de fond et traductions peuvent être ajoutés au devis sur demande._
 
 ---
 
@@ -152,51 +163,77 @@ Pas de devis à tiroirs ni de surprise en fin de projet. Avant de démarrer, vou
 
 **Nos formats de projet**
 - Site vitrine — à partir de [X €]
-- Site e-commerce — sur devis après cadrage
+- Site e-commerce — forfait après cadrage
 - Application mobile — à partir de [X €]
 - MVP / plateforme sur mesure — sur devis après cadrage
 - Maintenance et évolutions — forfait mensuel ou à la demande
 
-Chaque projet démarre par un cadrage simple, puis un forfait clair selon le périmètre.
+Chaque projet démarre par un cadrage simple, puis un forfait fixe selon le périmètre.
 
 **Points**
 - Devis détaillé et fixe avant le lancement
 - Forfaits adaptés à la taille de votre projet
 - Aucun coût caché
 
+---
+
+## 9. Offre de lancement — accompagnement prioritaire
+
+> Section à remplacer par de vraies études de cas dès que les premiers projets sont livrés.
+
+**Titre**
+Offre de lancement — accompagnement prioritaire
+
+**Sous-titre**
+[3] places ouvertes ce trimestre, jusqu'au [date].
+
+**Texte**
+Pour nos premiers projets, nous réservons un nombre limité de places à un accompagnement prioritaire : disponibilité maximale de l'équipe, et un suivi renforcé pendant les semaines qui suivent la mise en ligne.
+
+En contrepartie, vous acceptez d'apparaître comme étude de cas publique — texte et visuels validés ensemble.
+
 **Bouton**
-Demander un devis gratuit
+Parlons de votre projet
 
 ---
 
-## 9. FAQ — où vit la réponse honnête
+## 10. FAQ — où vit la réponse honnête
 
 > C'est ici, et seulement ici, qu'on aborde frontalement le « comment » — de façon honnête mais sans en faire un argument de façade.
 
 **Comment proposez-vous des prix aussi compétitifs ?**
 En travaillant intelligemment. Nous combinons une vraie expertise humaine et des outils modernes qui automatisent les tâches répétitives et nous font gagner un temps considérable. Ce temps gagné, on vous le rend — en délais plus courts et en tarifs plus justes. Les outils accélèrent l'exécution. La stratégie, le design, l'architecture et les arbitrages restent pilotés par des humains expérimentés.
 
+**Qu'est-ce qui est inclus dans le prix ?**
+La liste complète figure en §7. En résumé : cadrage, design responsive, développement, mise en ligne, formation, accès et fichiers. Ce qui n'est pas inclus par défaut (contenus, médias, SEO de fond, hébergement, traductions) y est aussi listé clairement.
+
+**Que se passe-t-il si le périmètre change en cours de projet ?**
+Le forfait initial couvre le périmètre validé au cadrage. Si une demande sort du cadre, nous vous proposons un avenant chiffré avant de l'engager — vous décidez. Pas de dérive silencieuse, pas de surprise sur la facture finale.
+
 **Combien de temps prend un projet ?**
 Un site vitrine se livre généralement en [X semaines], une application en [X semaines à X mois] selon sa complexité. Nous vous donnons un délai ferme dès le cadrage.
 
+**Sur quelles technologies travaillez-vous ?**
+Nous privilégions des technologies modernes et largement adoptées, choisies pour leur fiabilité et la facilité à trouver d'autres développeurs après nous : [Next.js / React / TypeScript pour le web, React Native pour le mobile, à confirmer selon votre stack réelle]. Le choix précis est arrêté au cadrage en fonction de votre projet.
+
 **Est-ce que je suis propriétaire du site ou de l'application ?**
-Oui. À la livraison, vous récupérez les accès, les fichiers nécessaires et les éléments prévus dans le devis. Notre objectif est que vous ne soyez jamais enfermé chez nous.
+Oui. À la livraison, vous récupérez les accès, le code source et les fichiers prévus au devis. Notre objectif : que vous ne soyez jamais dépendant de nous par défaut — vous restez libre de poursuivre avec une autre équipe si vous le souhaitez.
 
 **Pouvez-vous reprendre un projet existant ?**
 Oui, si la base technique le permet. Nous commençons par un audit rapide pour vérifier ce qui peut être conservé, amélioré ou doit être reconstruit.
 
-**Proposez-vous la maintenance ?**
-Oui. Nous pouvons assurer les mises à jour, corrections, petites évolutions et améliorations après la mise en ligne.
-
-**Travaillez-vous avec des entreprises hors de [ville/région] ?**
-Oui. La majorité de nos échanges se font à distance, simplement et efficacement.
-
 **Que se passe-t-il après la livraison ?**
-Nous restons disponibles pour les ajustements, les évolutions et la maintenance. Vous n'êtes jamais laissé seul.
+Nous restons disponibles pour les ajustements, les évolutions et la maintenance — soit en forfait mensuel, soit à la demande. Pour les incidents bloquants, nous répondons sous [délai à préciser].
+
+**Travaillez-vous avec des entreprises hors d'Angers ?**
+Oui, sans aucun problème. Nous sommes basés à Angers mais nous travaillons avec des clients partout en France et à l'international. La majorité de nos échanges se font à distance, simplement et efficacement — et nous nous déplaçons quand c'est utile.
+
+**Comment gérez-vous les données personnelles et le RGPD ?**
+Les données collectées via vos formulaires sont hébergées en Europe et ne sont jamais revendues. Nous mettons en place la base RGPD (mentions, politique de confidentialité, gestion du consentement) sur tous les sites livrés, et nous adaptons selon votre activité si elle implique des données sensibles.
 
 ---
 
-## 10. Appel à l'action final
+## 11. Appel à l'action final
 
 **Titre**
 Un projet en tête ? Parlons-en.
@@ -205,14 +242,29 @@ Un projet en tête ? Parlons-en.
 Décrivez-nous votre besoin en quelques mots. On vous répond sous [24/48 h] avec une première idée de ce qu'on peut faire ensemble — sans engagement.
 
 **Bouton**
-Démarrer la conversation
+Parlons de votre projet
+
+---
+
+## 12. Pied de page — confiance et conformité
+
+À prévoir avant mise en ligne, accessibles depuis le footer :
+
+- **Mentions légales** : raison sociale, forme juridique, capital, SIREN/SIRET, siège, directeur de publication.
+- **Politique de confidentialité** : nature des données collectées (formulaire de contact), base légale, durée de conservation, droits d'accès / rectification / effacement, contact DPO ou référent.
+- **Politique de cookies** : liste des cookies, finalités, durée, gestion du consentement.
+- **Hébergeur** : nom, adresse, téléphone.
+- **Contact** : adresse email, formulaire, [téléphone si pertinent].
+- **Réseaux sociaux** : liens si présents.
 
 ---
 
 ## Notes pour l'itération
 
-- **Section 6** : à basculer vers de vraies études de cas dès vos premiers projets livrés.
+- **Section 9 (offre de lancement)** : à basculer vers de vraies études de cas dès vos premiers projets livrés. Voir la décision en tête de fichier sur le cadrage tarifaire vs accompagnement.
 - **Voix** : « nous » dans les titres et promesses, « on » uniquement dans les phrases conversationnelles (ex : « on vous répond sous 24/48 h »).
-- **Posture B respectée** : aucune occurrence de « IA » / « agents IA ». La modernité passe par « workflows structurés », « composants réutilisables », « outils de production modernes ». La FAQ §9 contient la seule réponse directe au « comment », formulée honnêtement.
+- **Posture B respectée** : aucune occurrence de « IA » / « agents IA ». La modernité passe par « workflows structurés », « composants réutilisables », « outils de production modernes ». La FAQ §10 contient la seule réponse directe au « comment », formulée honnêtement.
 - **Promesses techniques** : on évite « native » et « sans payer deux fois » au profit de « pensée pour chaque plateforme » et « sans doubler le budget » — plus défendables commercialement.
+- **CTAs** : deux formulations seulement — « Parlons de votre projet » (principal, hero + offre + final) et « Voir notre méthode » (secondaire, hero). Le bouton tarif a été supprimé pour éviter la prolifération ; le CTA tarifaire est porté par le bouton principal en bas de page.
 - **Quatre piliers** à renforcer visuellement dans la mise en page : lancement rapide, qualité soignée, prix clair, relation directe.
+- **Preuves à ajouter dès que possible** : mini planning type par format de projet, screenshots de process / maquettes, présentation nominative de l'équipe, premières études de cas.
