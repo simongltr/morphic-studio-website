@@ -172,16 +172,17 @@ _Contenus, photos, SEO de fond et traductions peuvent être ajoutés au devis su
 Des prix clairs, annoncés à l'avance
 
 **Texte**
-Pas de devis à tiroirs ni de surprise en fin de projet. Avant de démarrer, vous savez précisément ce que vous payez et ce que vous recevez. Nos méthodes nous permettent de proposer des tarifs accessibles — et de tenir nos délais.
+Pas de devis à tiroirs ni de surprise en fin de projet. Avant de démarrer, vous savez précisément ce que vous payez et ce que vous recevez.
 
 **Nos formats de projet**
-- Site vitrine — à partir de [X €]
-- Site e-commerce — forfait après cadrage
-- Application mobile — à partir de [X €]
-- MVP / plateforme sur mesure — sur devis après cadrage
-- Maintenance et évolutions — forfait mensuel ou à la demande
+- Site one-page — à partir de **1 200 € HT**
+- Site vitrine — à partir de **2 900 € HT**
+- Site e-commerce — à partir de **6 500 € HT**
+- Application mobile — à partir de **8 000 € HT**
+- Plateforme sur mesure / MVP — à partir de **9 000 € HT**
+- Maintenance (optionnelle) — à partir de **50 € HT/mois**
 
-Chaque projet démarre par un cadrage simple, puis un forfait fixe selon le périmètre.
+_Budget plus serré ? Nous ajustons le périmètre — jamais la qualité — pour rester dans vos coûts._
 
 **Points**
 - Devis détaillé et fixe avant le lancement
