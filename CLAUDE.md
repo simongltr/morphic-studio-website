@@ -36,5 +36,6 @@ Rules:
 Small, single-purpose scripts at the repo root. If a script's behavior changes or a new one is added/removed, **update this list in the same commit**.
 
 - `screenshot.ts` — renders an HTML file at desktop (1440×900) and mobile (390×844), saves full-page PNGs to `<iteration>/screenshots/`. Usage: `bun run screenshot.ts iterations/vN/index.html`.
+- `screenshot-sections.ts` — viewport-only (1440×900) screenshots scrolled to each major section anchor. Use when full-page captures are too compressed to evaluate detail. Usage: `bun run screenshot-sections.ts iterations/vN/index.html`.
 
 If you need to inspect something the current scripts can't show — a scrolled section, a hover/focus state, an open menu, a specific viewport, an interaction flow, an animation frame, console errors, computed styles — write a new script (e.g. `screenshot-hover.ts`, `inspect-console.ts`) or extend an existing one. Keep helpers small and single-purpose; commit them alongside the iteration that needed them and add a line to the list above.
