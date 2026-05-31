@@ -34,6 +34,7 @@ const ctx = await browser.newContext({ viewport });
 const page = await ctx.newPage();
 await page.goto(fileUrl);
 await page.waitForLoadState("networkidle");
+await page.evaluate(() => (document as any).fonts.ready);
 await page.waitForTimeout(500);
 
 for (const s of sections) {

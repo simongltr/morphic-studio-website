@@ -37,5 +37,6 @@ Small, single-purpose scripts at the repo root. If a script's behavior changes o
 
 - `screenshot.ts` — renders an HTML file at desktop (1440×900) and mobile (390×844), saves full-page PNGs to `<iteration>/screenshots/`. Usage: `bun run screenshot.ts iterations/vN/index.html`.
 - `screenshot-sections.ts` — viewport-only (1440×900) screenshots scrolled to each major section anchor. Use when full-page captures are too compressed to evaluate detail. Usage: `bun run screenshot-sections.ts iterations/vN/index.html`.
+- `screenshot-services-scroll.ts` — captures three viewport-only frames at progress 0/0.5/1 through the services pinned horizontal-scroll section, named `04a/b/c-services-cardN.png`. Use when an iteration has the pinned scroll services pattern. Usage: `bun run screenshot-services-scroll.ts iterations/vN/index.html`.
 
 If you need to inspect something the current scripts can't show — a scrolled section, a hover/focus state, an open menu, a specific viewport, an interaction flow, an animation frame, console errors, computed styles — write a new script (e.g. `screenshot-hover.ts`, `inspect-console.ts`) or extend an existing one. Keep helpers small and single-purpose; commit them alongside the iteration that needed them and add a line to the list above.
