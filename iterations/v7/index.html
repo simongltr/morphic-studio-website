@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Morphic Studio — Sites web, apps mobiles et outils métiers pour PME</title>
+<meta name="description" content="Studio web indépendant à Angers : sites, apps mobiles et outils internes livrés vite, à forfait clair, en relation directe avec l'équipe.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="output.css">
+<script src="https://code.iconify.design/iconify-icon/3.0.1/iconify-icon.min.js"></script>
+</head>
+<body class="bg-paper text-ink">
+
+<!-- HEADER -->
+<header class="sticky top-0 z-30 border-b border-rule header-glass">
+  <div class="shell flex items-center justify-between py-[18px]">
+    <a href="#" class="flex items-center gap-[14px]">
+      <svg viewBox="0 0 80 110" class="w-[30px] h-auto" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g transform="translate(0,110) scale(1,-1)">
+          <path d="M0 0 L0 90 L25 90 L40 60 L55 90 L80 90 L80 0 L60 0 L60 60 L40 22 L20 60 L20 0 Z" fill="#132e54"/>
+          <rect x="20" y="0" width="20" height="20" fill="#fa5c47"/>
+          <rect x="40" y="0" width="20" height="20" fill="#e49c25"/>
+          <rect x="60" y="0" width="20" height="20" fill="#869e8b"/>
+        </g>
+      </svg>
+      <span class="font-display text-[1.35rem] font-semibold tracking-tight">Morphic Studio</span>
+    </a>
+    <nav class="hidden md:flex gap-8 text-sm font-medium">
+      <a href="#services" class="opacity-75 hover:opacity-100 hover:text-coral transition-opacity">Services</a>
+      <a href="#methode" class="opacity-75 hover:opacity-100 hover:text-coral transition-opacity">Méthode</a>
+      <a href="#tarifs" class="opacity-75 hover:opacity-100 hover:text-coral transition-opacity">Tarifs</a>
+      <a href="#faq" class="opacity-75 hover:opacity-100 hover:text-coral transition-opacity">FAQ</a>
+    </nav>
+    <a href="#contact" class="cta">Parlons-en <span class="arrow">→</span></a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="relative overflow-hidden pt-[clamp(48px,6vw,80px)] pb-[clamp(64px,9vw,120px)]">
+  <div class="shell">
+    <p class="font-mono text-[12px] tracking-[0.18em] uppercase font-medium inline-flex items-center gap-3 mb-6 opacity-80 fade-up">
+      <span class="w-1.5 h-1.5 bg-coral rounded-full"></span>
+      Studio web indépendant — Angers
+    </p>
+    <h1 class="display h1 max-w-[19ch] mb-6 fade-up d1">
+      Sites web, apps mobiles et outils métiers pour PME — <span class="hl-coral">soignés</span>, livrés vite, à prix clair.
+    </h1>
+    <p class="text-[clamp(1.0625rem,1.5vw,1.3125rem)] leading-[1.55] max-w-[58ch] mb-8 opacity-[0.78] fade-up d2">
+      Morphic Studio conçoit des produits web et mobiles pour les entrepreneurs et PME qui veulent lancer rapidement, avec un périmètre, un délai et un prix annoncés avant le démarrage. Bases techniques fiables, équipe joignable.
+    </p>
+    <div class="flex gap-7 items-center flex-wrap fade-up d3">
+      <a href="#contact" class="cta">Parlons de votre projet <span class="arrow">→</span></a>
+      <a href="#methode" class="cta-ghost">Voir notre méthode <span>→</span></a>
+    </div>
+
+    <dl class="mt-[clamp(48px,6vw,80px)] grid grid-cols-1 gap-3 sm:grid-cols-4 sm:gap-4 fade-up d4">
+      <div class="card px-5 py-[18px] flex flex-col gap-2">
+        <dt class="font-mono text-[11px] tracking-[0.16em] uppercase opacity-55">Lancement</dt>
+        <dd class="font-display text-[clamp(1.25rem,1.6vw,1.5rem)] font-semibold leading-tight tracking-tight">Rapide</dd>
+      </div>
+      <div class="card px-5 py-[18px] flex flex-col gap-2">
+        <dt class="font-mono text-[11px] tracking-[0.16em] uppercase opacity-55">Qualité</dt>
+        <dd class="font-display text-[clamp(1.25rem,1.6vw,1.5rem)] font-semibold leading-tight tracking-tight">Soignée</dd>
+      </div>
+      <div class="card px-5 py-[18px] flex flex-col gap-2">
+        <dt class="font-mono text-[11px] tracking-[0.16em] uppercase opacity-55">Prix</dt>
+        <dd class="font-display text-[clamp(1.25rem,1.6vw,1.5rem)] font-semibold leading-tight tracking-tight">Annoncé</dd>
+      </div>
+      <div class="card px-5 py-[18px] flex flex-col gap-2">
+        <dt class="font-mono text-[11px] tracking-[0.16em] uppercase opacity-55">Relation</dt>
+        <dd class="font-display text-[clamp(1.25rem,1.6vw,1.5rem)] font-semibold leading-tight tracking-tight">Directe</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section class="manifesto border-t border-rule py-[clamp(64px,8vw,104px)]">
+  <div class="shell">
+    <header class="mb-[clamp(28px,3.5vw,48px)]">
+      <p class="marker mb-[14px]"><span class="num">01</span><span class="dash">—</span><span class="label">Le constat</span></p>
+      <h2 class="display h2 max-w-[22ch]">Faire développer un projet web, ça ne devrait pas être un parcours du combattant.</h2>
+    </header>
+    <div class="grid grid-cols-1 gap-4 max-w-[64ch]">
+      <p class="text-[clamp(1rem,1.25vw,1.15rem)] leading-[1.55]">Devis flous, délais qui s'éternisent, allers-retours sans fin, coûts qui bougent — et au bout du compte un résultat qui ne ressemble pas à ce que vous aviez en tête, et difficile à maintenir.</p>
+      <p class="text-[clamp(1rem,1.25vw,1.15rem)] leading-[1.55] opacity-85">Nous avons fondé Morphic Studio avec une conviction simple&nbsp;: un produit web de qualité peut être livré vite, à un prix clair, par des gens qui répondent au téléphone.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CAS D'USAGE -->
+<section class="bullet-list border-t border-rule py-[clamp(64px,8vw,104px)]">
+  <div class="shell">
+    <header class="mb-[clamp(28px,3.5vw,48px)]">
+      <p class="marker mb-[14px]"><span class="num">02</span><span class="dash">—</span><span class="label">Cas d'usage</span></p>
+      <h2 class="display h2 max-w-[22ch]">Vous venez nous voir pour…</h2>
+    </header>
+    <ul class="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
+      <li class="card p-6 flex flex-col gap-4 min-h-[132px] transition hover:-translate-y-0.5 hover:border-rule-strong hover:shadow-[0_1px_0_rgba(19,46,84,0.04),0_18px_36px_-28px_rgba(19,46,84,0.16)]">
+        <span class="font-mono text-[11px] tracking-[0.14em] uppercase font-medium text-coral">01 — Site</span>
+        <p class="font-display text-[clamp(1rem,1.2vw,1.15rem)] font-semibold tracking-tight leading-[1.35] mt-auto">Lancer un site professionnel rapidement</p>
+      </li>
+      <li class="card p-6 flex flex-col gap-4 min-h-[132px] transition hover:-translate-y-0.5 hover:border-rule-strong hover:shadow-[0_1px_0_rgba(19,46,84,0.04),0_18px_36px_-28px_rgba(19,46,84,0.16)]">
+        <span class="font-mono text-[11px] tracking-[0.14em] uppercase font-medium text-ochre">02 — Refonte</span>
+        <p class="font-display text-[clamp(1rem,1.2vw,1.15rem)] font-semibold tracking-tight leading-[1.35] mt-auto">Refaire un site devenu lent ou dépassé</p>
+      </li>
+      <li class="card p-6 flex flex-col gap-4 min-h-[132px] transition hover:-translate-y-0.5 hover:border-rule-strong hover:shadow-[0_1px_0_rgba(19,46,84,0.04),0_18px_36px_-28px_rgba(19,46,84,0.16)]">
+        <span class="font-mono text-[11px] tracking-[0.14em] uppercase font-medium text-sage">03 — MVP</span>
+        <p class="font-display text-[clamp(1rem,1.2vw,1.15rem)] font-semibold tracking-tight leading-[1.35] mt-auto">Transformer une idée en MVP, pour valider votre marché</p>
+      </li>
+      <li class="card p-6 flex flex-col gap-4 min-h-[132px] transition hover:-translate-y-0.5 hover:border-rule-strong hover:shadow-[0_1px_0_rgba(19,46,84,0.04),0_18px_36px_-28px_rgba(19,46,84,0.16)]">
+        <span class="font-mono text-[11px] tracking-[0.14em] uppercase font-medium text-coral">04 — Scale</span>
+        <p class="font-display text-[clamp(1rem,1.2vw,1.15rem)] font-semibold tracking-tight leading-[1.35] mt-auto">Faire passer à l'échelle une app déjà validée</p>
+      </li>
+      <li class="card p-6 flex flex-col gap-4 min-h-[132px] transition hover:-translate-y-0.5 hover:border-rule-strong hover:shadow-[0_1px_0_rgba(19,46,84,0.04),0_18px_36px_-28px_rgba(19,46,84,0.16)]">
+        <span class="font-mono text-[11px] tracking-[0.14em] uppercase font-medium text-ochre">05 — Commerce</span>
+        <p class="font-display text-[clamp(1rem,1.2vw,1.15rem)] font-semibold tracking-tight leading-[1.35] mt-auto">Mettre en ligne une boutique e-commerce</p>
+      </li>
+      <li class="card p-6 flex flex-col gap-4 min-h-[132px] transition hover:-translate-y-0.5 hover:border-rule-strong hover:shadow-[0_1px_0_rgba(19,46,84,0.04),0_18px_36px_-28px_rgba(19,46,84,0.16)]">
+        <span class="font-mono text-[11px] tracking-[0.14em] uppercase font-medium text-sage">06 — Plateforme</span>
+        <p class="font-display text-[clamp(1rem,1.2vw,1.15rem)] font-semibold tracking-tight leading-[1.35] mt-auto">Construire une plateforme sur mesure ou un outil interne</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- SERVICES — pinned horizontal scroll -->
+<section class="border-t border-rule" id="services">
+  <div class="services-pin-wrap">
+    <div class="services-pin">
+      <div class="services-pin-head">
+        <div class="shell">
+          <p class="marker mb-[14px]"><span class="num">03</span><span class="dash">—</span><span class="label">Services</span></p>
+          <h2 class="display h2 max-w-[22ch]">Ce que nous construisons <span class="hl-ochre">pour vous</span>.</h2>
+        </div>
+      </div>
+      <div class="services-strip">
+        <article class="service-card">
+          <div class="flex items-baseline justify-between gap-6">
+            <div class="num">01</div>
+            <div class="tag">Web</div>
+          </div>
+          <h3 class="display h3 max-w-[18ch]">Des sites web qui travaillent pour vous</h3>
+          <p class="text-[clamp(0.9375rem,1.05vw,1.0625rem)] leading-[1.55] opacity-[0.78] max-w-[42ch]">Sites vitrines, sites e-commerce, plateformes sur mesure&nbsp;: nous concevons des sites rapides, soignés et pensés pour convertir vos visiteurs en clients. Performants sur mobile comme sur ordinateur, construits sur des bases techniques fiables — et conçus pour évoluer avec vous au fil du temps.</p>
+          <ul class="list-none mt-auto pt-[18px] border-t border-rule">
+            <li class="relative pl-[22px] py-[7px] text-sm leading-[1.5] opacity-[0.88]">Design sur mesure, à votre image</li>
+            <li class="relative pl-[22px] py-[7px] text-sm leading-[1.5] opacity-[0.88]">Optimisés pour la vitesse et le référencement</li>
+            <li class="relative pl-[22px] py-[7px] text-sm leading-[1.5] opacity-[0.88]">Faciles à mettre à jour en autonomie</li>
+          </ul>
+        </article>
+        <article class="service-card">
+          <div class="flex items-baseline justify-between gap-6">
+            <div class="num">02</div>
+            <div class="tag">Mobile</div>
+          </div>
+          <h3 class="display h3 max-w-[18ch]">Des applications iOS et Android sans doubler le budget</h3>
+          <p class="text-[clamp(0.9375rem,1.05vw,1.0625rem)] leading-[1.55] opacity-[0.78] max-w-[42ch]">Nous développons vos applications mobiles à partir d'une base technique unique, déployée sur iOS et Android en même temps. Résultat&nbsp;: un seul développement, deux plateformes, et une facture qui reste raisonnable. Une expérience fluide, pensée pour chaque plateforme — sans rebâtir l'app deux fois.</p>
+          <ul class="list-none mt-auto pt-[18px] border-t border-rule">
+            <li class="relative pl-[22px] py-[7px] text-sm leading-[1.5] opacity-[0.88]">Une seule base de code, iOS + Android</li>
+            <li class="relative pl-[22px] py-[7px] text-sm leading-[1.5] opacity-[0.88]">Expérience fluide, pensée pour chaque plateforme</li>
+            <li class="relative pl-[22px] py-[7px] text-sm leading-[1.5] opacity-[0.88]">Coûts et délais inférieurs à un double développement natif</li>
+          </ul>
+        </article>
+        <article class="service-card">
+          <div class="flex items-baseline justify-between gap-6">
+            <div class="num">03</div>
+            <div class="tag">Plateformes</div>
+          </div>
+          <h3 class="display h3 max-w-[18ch]">Des plateformes et outils internes qui font gagner du temps à vos équipes</h3>
+          <p class="text-[clamp(0.9375rem,1.05vw,1.0625rem)] leading-[1.55] opacity-[0.78] max-w-[42ch]">Quand un tableur, un CRM générique ou un assemblage d'outils ne suffit plus, nous construisons la plateforme ou l'outil interne qui correspond à votre métier&nbsp;: portails clients, back-offices, automatisations, MVP de produit SaaS. Pensés pour vos équipes, intégrés à ce qui existe déjà.</p>
+          <ul class="list-none mt-auto pt-[18px] border-t border-rule">
+            <li class="relative pl-[22px] py-[7px] text-sm leading-[1.5] opacity-[0.88]">Conçus à partir de votre processus réel, pas d'un modèle générique</li>
+            <li class="relative pl-[22px] py-[7px] text-sm leading-[1.5] opacity-[0.88]">S'intègrent à vos outils existants (CRM, ERP, comptabilité…)</li>
+            <li class="relative pl-[22px] py-[7px] text-sm leading-[1.5] opacity-[0.88]">Livrés par incréments, pour des résultats utilisables vite</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MÉTHODE -->
+<section class="border-t border-rule py-[clamp(64px,8vw,104px)]" id="methode">
+  <div class="shell">
+    <header class="mb-[clamp(28px,3.5vw,48px)]">
+      <p class="marker mb-[14px]"><span class="num">04</span><span class="dash">—</span><span class="label">Méthode</span></p>
+      <h2 class="display h2 max-w-[22ch]">Notre méthode&nbsp;: rapide, claire, <span class="hl-sage">sans mauvaises surprises</span>.</h2>
+      <p class="text-[clamp(1.0625rem,1.4vw,1.25rem)] leading-[1.55] max-w-[62ch] mt-5 opacity-[0.78]">Nos délais courts et nos tarifs accessibles ne sont pas un hasard. Nous nous appuyons sur des workflows structurés, des composants réutilisables et des outils modernes de développement pour éviter de repartir de zéro à chaque projet.</p>
+    </header>
+    <div class="grid grid-cols-1 gap-3.5 max-w-[1080px]">
+      <div class="card p-6 sm:p-7 grid grid-cols-1 sm:grid-cols-[168px_1fr] gap-3.5 sm:gap-9 transition hover:border-rule-strong hover:shadow-[0_1px_0_rgba(19,46,84,0.04),0_18px_36px_-28px_rgba(19,46,84,0.16)]">
+        <div class="flex flex-col gap-2">
+          <span class="font-display font-bold text-[clamp(1.75rem,2.6vw,2.25rem)] tracking-[-0.04em] leading-none text-coral">01</span>
+          <span class="font-mono text-[11px] tracking-[0.16em] uppercase opacity-60">Cadrage</span>
+        </div>
+        <div>
+          <h3 class="h3 max-w-[44ch] mb-2">Nous comprenons votre besoin, vos objectifs et vos contraintes.</h3>
+          <p class="max-w-[62ch] opacity-[0.78] text-[0.9375rem] leading-[1.55]">À la fin de cette étape, vous savez exactement ce qui sera livré, quand, et pour quel prix. Pas de zone grise.</p>
+        </div>
+      </div>
+      <div class="card p-6 sm:p-7 grid grid-cols-1 sm:grid-cols-[168px_1fr] gap-3.5 sm:gap-9 transition hover:border-rule-strong hover:shadow-[0_1px_0_rgba(19,46,84,0.04),0_18px_36px_-28px_rgba(19,46,84,0.16)]">
+        <div class="flex flex-col gap-2">
+          <span class="font-display font-bold text-[clamp(1.75rem,2.6vw,2.25rem)] tracking-[-0.04em] leading-none text-ochre">02</span>
+          <span class="font-mono text-[11px] tracking-[0.16em] uppercase opacity-60">Design</span>
+        </div>
+        <div>
+          <h3 class="h3 max-w-[44ch] mb-2">Nous concevons l'interface et le parcours utilisateur, et nous vous les montrons tôt.</h3>
+          <p class="max-w-[62ch] opacity-[0.78] text-[0.9375rem] leading-[1.55]">Vous validez avant qu'une seule ligne de code ne soit écrite.</p>
+        </div>
+      </div>
+      <div class="card p-6 sm:p-7 grid grid-cols-1 sm:grid-cols-[168px_1fr] gap-3.5 sm:gap-9 transition hover:border-rule-strong hover:shadow-[0_1px_0_rgba(19,46,84,0.04),0_18px_36px_-28px_rgba(19,46,84,0.16)]">
+        <div class="flex flex-col gap-2">
+          <span class="font-display font-bold text-[clamp(1.75rem,2.6vw,2.25rem)] tracking-[-0.04em] leading-none text-sage">03</span>
+          <span class="font-mono text-[11px] tracking-[0.16em] uppercase opacity-60">Développement</span>
+        </div>
+        <div>
+          <h3 class="h3 max-w-[44ch] mb-2">Nous développons sur une base technique robuste, avec des outils qui accélèrent les tâches répétitives.</h3>
+          <p class="max-w-[62ch] opacity-[0.78] text-[0.9375rem] leading-[1.55]">Vous gagnez du temps, et nous gardons l'attention là où elle compte&nbsp;: l'expérience utilisateur, la performance et la fiabilité. Vous suivez l'avancement en continu.</p>
+        </div>
+      </div>
+      <div class="card p-6 sm:p-7 grid grid-cols-1 sm:grid-cols-[168px_1fr] gap-3.5 sm:gap-9 transition hover:border-rule-strong hover:shadow-[0_1px_0_rgba(19,46,84,0.04),0_18px_36px_-28px_rgba(19,46,84,0.16)]">
+        <div class="flex flex-col gap-2">
+          <span class="font-display font-bold text-[clamp(1.75rem,2.6vw,2.25rem)] tracking-[-0.04em] leading-none text-coral">04</span>
+          <span class="font-mono text-[11px] tracking-[0.16em] uppercase opacity-60">Livraison & suivi</span>
+        </div>
+        <div>
+          <h3 class="h3 max-w-[44ch] mb-2">Nous mettons en ligne, nous vous formons à l'essentiel, et nous restons joignables.</h3>
+          <p class="max-w-[62ch] opacity-[0.78] text-[0.9375rem] leading-[1.55]">Votre projet ne s'arrête pas le jour de la livraison.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUI NOUS SOMMES -->
+<section class="about border-t border-rule py-[clamp(64px,8vw,104px)]">
+  <div class="shell">
+    <header class="mb-[clamp(28px,3.5vw,48px)]">
+      <p class="marker mb-[14px]"><span class="num">05</span><span class="dash">—</span><span class="label">Studio</span></p>
+      <h2 class="display h2 max-w-[22ch]">Derrière Morphic Studio.</h2>
+    </header>
+    <div class="max-w-[64ch]">
+      <p class="text-[clamp(1rem,1.25vw,1.125rem)] leading-[1.6] mb-3.5">Nous sommes un studio indépendant basé à Angers, et nous travaillons avec des clients partout en France et à l'international&nbsp;: pas de chef de projet entre vous et l'équipe technique, et une relation directe avec les personnes qui conçoivent et développent votre projet.</p>
+      <p class="text-[clamp(1rem,1.25vw,1.125rem)] leading-[1.6] mb-3.5 opacity-85">Notre conviction&nbsp;: avec les bonnes méthodes et les bons outils, on peut livrer un travail de qualité, rapidement et à un prix juste. C'est tout ce que fait Morphic Studio — et nous restons joignables quand vous en avez besoin.</p>
+    </div>
+    <dl class="mt-[clamp(36px,4vw,56px)] grid grid-cols-1 gap-3 max-w-[920px] sm:grid-cols-3 sm:gap-4">
+      <div class="card px-5 py-[18px]">
+        <dt class="font-mono text-[11px] tracking-[0.16em] uppercase opacity-55 mb-2">Statut</dt>
+        <dd class="font-display text-[clamp(1.0625rem,1.4vw,1.25rem)] font-semibold tracking-tight leading-tight">Indépendant</dd>
+      </div>
+      <div class="card px-5 py-[18px]">
+        <dt class="font-mono text-[11px] tracking-[0.16em] uppercase opacity-55 mb-2">Base</dt>
+        <dd class="font-display text-[clamp(1.0625rem,1.4vw,1.25rem)] font-semibold tracking-tight leading-tight">À Angers</dd>
+      </div>
+      <div class="card px-5 py-[18px]">
+        <dt class="font-mono text-[11px] tracking-[0.16em] uppercase opacity-55 mb-2">Année</dt>
+        <dd class="font-display text-[clamp(1.0625rem,1.4vw,1.25rem)] font-semibold tracking-tight leading-tight">2026</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<!-- INCLUS -->
+<section class="included border-t border-rule py-[clamp(64px,8vw,104px)]">
+  <div class="shell">
+    <header class="mb-[clamp(28px,3.5vw,48px)]">
+      <p class="marker mb-[14px]"><span class="num">06</span><span class="dash">—</span><span class="label">Inclus</span></p>
+      <h2 class="display h2 max-w-[22ch]">Ce qui est inclus dans chaque projet.</h2>
+    </header>
+    <ul class="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4 max-w-[1180px]">
+      <li class="card p-5 flex flex-col gap-4">
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-coral/10 text-coral">
+          <iconify-icon icon="lucide:clipboard-list" class="text-[20px]"></iconify-icon>
+        </span>
+        <div>
+          <h3 class="font-display font-semibold text-[0.95rem] tracking-tight leading-tight mb-1">Cadrage</h3>
+          <p class="text-[0.875rem] leading-[1.5] opacity-[0.72]">Besoin et périmètre détaillés avant le démarrage.</p>
+        </div>
+      </li>
+      <li class="card p-5 flex flex-col gap-4">
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-ochre/10 text-ochre">
+          <iconify-icon icon="lucide:layout-template" class="text-[20px]"></iconify-icon>
+        </span>
+        <div>
+          <h3 class="font-display font-semibold text-[0.95rem] tracking-tight leading-tight mb-1">Structure</h3>
+          <p class="text-[0.875rem] leading-[1.5] opacity-[0.72]">Pages et parcours utilisateur cartographiés.</p>
+        </div>
+      </li>
+      <li class="card p-5 flex flex-col gap-4">
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-sage/10 text-sage">
+          <iconify-icon icon="lucide:smartphone" class="text-[20px]"></iconify-icon>
+        </span>
+        <div>
+          <h3 class="font-display font-semibold text-[0.95rem] tracking-tight leading-tight mb-1">Design responsive</h3>
+          <p class="text-[0.875rem] leading-[1.5] opacity-[0.72]">Mobile et desktop, pensés ensemble.</p>
+        </div>
+      </li>
+      <li class="card p-5 flex flex-col gap-4">
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-coral/10 text-coral">
+          <iconify-icon icon="lucide:code-2" class="text-[20px]"></iconify-icon>
+        </span>
+        <div>
+          <h3 class="font-display font-semibold text-[0.95rem] tracking-tight leading-tight mb-1">Développement</h3>
+          <p class="text-[0.875rem] leading-[1.5] opacity-[0.72]">Code propre, et mise en ligne sur des bases fiables.</p>
+        </div>
+      </li>
+      <li class="card p-5 flex flex-col gap-4">
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-ochre/10 text-ochre">
+          <iconify-icon icon="lucide:server" class="text-[20px]"></iconify-icon>
+        </span>
+        <div>
+          <h3 class="font-display font-semibold text-[0.95rem] tracking-tight leading-tight mb-1">Hébergement & domaine</h3>
+          <p class="text-[0.875rem] leading-[1.5] opacity-[0.72]">Configuration de bout en bout, à votre nom.</p>
+        </div>
+      </li>
+      <li class="card p-5 flex flex-col gap-4">
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-sage/10 text-sage">
+          <iconify-icon icon="lucide:graduation-cap" class="text-[20px]"></iconify-icon>
+        </span>
+        <div>
+          <h3 class="font-display font-semibold text-[0.95rem] tracking-tight leading-tight mb-1">Formation</h3>
+          <p class="text-[0.875rem] leading-[1.5] opacity-[0.72]">Prise en main de l'outil par votre équipe.</p>
+        </div>
+      </li>
+      <li class="card p-5 flex flex-col gap-4">
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-coral/10 text-coral">
+          <iconify-icon icon="lucide:key-round" class="text-[20px]"></iconify-icon>
+        </span>
+        <div>
+          <h3 class="font-display font-semibold text-[0.95rem] tracking-tight leading-tight mb-1">Accès & code source</h3>
+          <p class="text-[0.875rem] leading-[1.5] opacity-[0.72]">Tout vous appartient, dès la livraison.</p>
+        </div>
+      </li>
+      <li class="card p-5 flex flex-col gap-4">
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-ochre/10 text-ochre">
+          <iconify-icon icon="lucide:life-buoy" class="text-[20px]"></iconify-icon>
+        </span>
+        <div>
+          <h3 class="font-display font-semibold text-[0.95rem] tracking-tight leading-tight mb-1">Suivi post-livraison</h3>
+          <p class="text-[0.875rem] leading-[1.5] opacity-[0.72]">Disponibles sur la période convenue.</p>
+        </div>
+      </li>
+    </ul>
+    <p class="mt-7 text-[0.9375rem] opacity-60 max-w-[56ch]">Contenus, photos, SEO de fond et traductions peuvent être ajoutés au devis sur demande.</p>
+  </div>
+</section>
+
+<!-- TARIFS -->
+<section class="border-t border-rule py-[clamp(64px,8vw,104px)]" id="tarifs">
+  <div class="shell">
+    <header class="mb-[clamp(28px,3.5vw,48px)]">
+      <p class="marker mb-[14px]"><span class="num">07</span><span class="dash">—</span><span class="label">Tarifs</span></p>
+      <h2 class="display h2 max-w-[22ch]">Des prix clairs, <span class="hl-coral">annoncés à l'avance</span>.</h2>
+      <p class="text-[clamp(1.0625rem,1.4vw,1.25rem)] leading-[1.55] max-w-[62ch] mt-5 opacity-[0.78]">Pas de devis à tiroirs ni de surprise en fin de projet. Avant de démarrer, vous savez précisément ce que vous payez et ce que vous recevez.</p>
+    </header>
+    <div class="card max-w-[1080px] mb-6 px-[clamp(20px,2.4vw,32px)] py-[clamp(4px,0.6vw,8px)]">
+      <div class="grid grid-cols-[1fr_auto] items-baseline gap-6 py-[18px]">
+        <div class="font-display text-[clamp(1.125rem,1.5vw,1.4rem)] font-semibold tracking-tight leading-tight">Site one-page</div>
+        <div class="font-mono text-[clamp(0.875rem,1.05vw,1rem)] whitespace-nowrap tracking-wider opacity-85">à partir de <strong class="text-coral font-medium text-[1.125em]">1 200 €</strong> HT</div>
+      </div>
+      <div class="grid grid-cols-[1fr_auto] items-baseline gap-6 py-[18px] border-t border-rule">
+        <div class="font-display text-[clamp(1.125rem,1.5vw,1.4rem)] font-semibold tracking-tight leading-tight">Site vitrine</div>
+        <div class="font-mono text-[clamp(0.875rem,1.05vw,1rem)] whitespace-nowrap tracking-wider opacity-85">à partir de <strong class="text-coral font-medium text-[1.125em]">2 900 €</strong> HT</div>
+      </div>
+      <div class="grid grid-cols-[1fr_auto] items-baseline gap-6 py-[18px] border-t border-rule">
+        <div class="font-display text-[clamp(1.125rem,1.5vw,1.4rem)] font-semibold tracking-tight leading-tight">Site e-commerce</div>
+        <div class="font-mono text-[clamp(0.875rem,1.05vw,1rem)] whitespace-nowrap tracking-wider opacity-85">à partir de <strong class="text-coral font-medium text-[1.125em]">6 500 €</strong> HT</div>
+      </div>
+      <div class="grid grid-cols-[1fr_auto] items-baseline gap-6 py-[18px] border-t border-rule">
+        <div class="font-display text-[clamp(1.125rem,1.5vw,1.4rem)] font-semibold tracking-tight leading-tight">Application mobile</div>
+        <div class="font-mono text-[clamp(0.875rem,1.05vw,1rem)] whitespace-nowrap tracking-wider opacity-85">à partir de <strong class="text-coral font-medium text-[1.125em]">8 000 €</strong> HT</div>
+      </div>
+      <div class="grid grid-cols-[1fr_auto] items-baseline gap-6 py-[18px] border-t border-rule">
+        <div class="font-display text-[clamp(1.125rem,1.5vw,1.4rem)] font-semibold tracking-tight leading-tight">Plateforme sur mesure / MVP</div>
+        <div class="font-mono text-[clamp(0.875rem,1.05vw,1rem)] whitespace-nowrap tracking-wider opacity-85">à partir de <strong class="text-coral font-medium text-[1.125em]">9 000 €</strong> HT</div>
+      </div>
+      <div class="grid grid-cols-[1fr_auto] items-baseline gap-6 py-[18px] border-t border-rule">
+        <div class="font-display text-[clamp(1.125rem,1.5vw,1.4rem)] font-semibold tracking-tight leading-tight">Maintenance (optionnelle)</div>
+        <div class="font-mono text-[clamp(0.875rem,1.05vw,1rem)] whitespace-nowrap tracking-wider opacity-85">à partir de <strong class="text-coral font-medium text-[1.125em]">50 €</strong> HT / mois</div>
+      </div>
+    </div>
+    <p class="text-[0.9375rem] opacity-60 max-w-[56ch] mb-9">Budget plus serré&nbsp;? Nous ajustons le périmètre — jamais la qualité — pour rester dans vos coûts.</p>
+    <dl class="grid grid-cols-1 gap-3 max-w-[1080px] sm:grid-cols-3 sm:gap-4 mt-2">
+      <div class="card px-5 py-[18px] flex flex-col gap-2">
+        <dt class="font-mono text-[11px] tracking-[0.16em] uppercase opacity-55">Devis</dt>
+        <dd class="font-display text-[clamp(1.0625rem,1.4vw,1.25rem)] font-semibold tracking-tight leading-tight">Détaillé et fixe avant le lancement</dd>
+      </div>
+      <div class="card px-5 py-[18px] flex flex-col gap-2">
+        <dt class="font-mono text-[11px] tracking-[0.16em] uppercase opacity-55">Forfaits</dt>
+        <dd class="font-display text-[clamp(1.0625rem,1.4vw,1.25rem)] font-semibold tracking-tight leading-tight">Adaptés à la taille du projet</dd>
+      </div>
+      <div class="card px-5 py-[18px] flex flex-col gap-2">
+        <dt class="font-mono text-[11px] tracking-[0.16em] uppercase opacity-55">Coûts cachés</dt>
+        <dd class="font-display text-[clamp(1.0625rem,1.4vw,1.25rem)] font-semibold tracking-tight leading-tight">Aucun</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<!-- LAUNCH PROGRAMME -->
+<section class="launch bg-ink text-paper py-[clamp(72px,9vw,120px)]">
+  <div class="shell">
+    <header class="mb-[clamp(28px,3.5vw,48px)]">
+      <p class="font-mono text-[12px] tracking-[0.16em] uppercase font-medium inline-flex items-center gap-3 mb-[14px]">
+        <span class="text-ochre">08</span><span class="opacity-50">—</span><span class="text-paper opacity-70">Programme de lancement</span>
+      </p>
+      <h2 class="display h2 max-w-[22ch] text-paper">Accompagnement prioritaire pour nos premiers projets.</h2>
+    </header>
+    <div class="max-w-[64ch]">
+      <span class="font-mono text-[12px] tracking-[0.16em] uppercase text-ochre mb-4 block">3 places ouvertes ce trimestre</span>
+      <p class="text-[clamp(1.0625rem,1.4vw,1.1875rem)] leading-[1.55] opacity-[0.82] mb-7">Nous sélectionnons nos premiers projets pour documenter notre méthode de bout en bout. En échange de votre accord pour une étude de cas publique (texte et visuels validés ensemble), vous bénéficiez d'une disponibilité maximale de l'équipe et d'un suivi renforcé pendant les semaines qui suivent la mise en ligne.</p>
+      <a href="#contact" class="cta bg-coral hover:bg-paper hover:text-ink">Parlons de votre projet <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="border-t border-rule py-[clamp(64px,8vw,104px)]" id="faq">
+  <div class="shell">
+    <header class="mb-[clamp(28px,3.5vw,48px)]">
+      <p class="marker mb-[14px]"><span class="num">09</span><span class="dash">—</span><span class="label">FAQ</span></p>
+      <h2 class="display h2 max-w-[22ch]">Questions fréquentes.</h2>
+    </header>
+    <div class="card max-w-[980px] px-[clamp(20px,2.4vw,32px)] py-0">
+      <details class="faq-item">
+        <summary class="cursor-pointer flex justify-between items-baseline gap-6 py-[18px] font-display font-semibold text-[clamp(1rem,1.25vw,1.2rem)] tracking-tight leading-[1.3] hover:text-coral transition-colors">Comment proposez-vous des prix aussi compétitifs&nbsp;?</summary>
+        <div class="pb-5 max-w-[64ch] opacity-[0.82] leading-[1.6] text-base">En travaillant intelligemment. Nous combinons une vraie expertise humaine et des outils modernes qui automatisent les tâches répétitives et nous font gagner un temps considérable. Ce temps gagné, on vous le rend — en délais plus courts et en tarifs plus justes. Les outils accélèrent l'exécution. La stratégie, le design, l'architecture et les arbitrages restent pilotés par des humains expérimentés.</div>
+      </details>
+      <details class="faq-item border-t border-rule">
+        <summary class="cursor-pointer flex justify-between items-baseline gap-6 py-[18px] font-display font-semibold text-[clamp(1rem,1.25vw,1.2rem)] tracking-tight leading-[1.3] hover:text-coral transition-colors">Qu'est-ce qui est inclus dans le prix&nbsp;?</summary>
+        <div class="pb-5 max-w-[64ch] opacity-[0.82] leading-[1.6] text-base">La liste complète figure plus haut. En résumé&nbsp;: cadrage, design responsive, développement, mise en ligne, formation, accès et fichiers. Ce qui n'est pas inclus par défaut (contenus, médias, SEO de fond, hébergement, traductions) y est aussi listé clairement.</div>
+      </details>
+      <details class="faq-item border-t border-rule">
+        <summary class="cursor-pointer flex justify-between items-baseline gap-6 py-[18px] font-display font-semibold text-[clamp(1rem,1.25vw,1.2rem)] tracking-tight leading-[1.3] hover:text-coral transition-colors">Que se passe-t-il si le périmètre change en cours de projet&nbsp;?</summary>
+        <div class="pb-5 max-w-[64ch] opacity-[0.82] leading-[1.6] text-base">Le forfait initial couvre le périmètre validé au cadrage. Si une demande sort du cadre, nous vous proposons un avenant chiffré avant de l'engager — vous décidez. Pas de dérive silencieuse, pas de surprise sur la facture finale.</div>
+      </details>
+      <details class="faq-item border-t border-rule">
+        <summary class="cursor-pointer flex justify-between items-baseline gap-6 py-[18px] font-display font-semibold text-[clamp(1rem,1.25vw,1.2rem)] tracking-tight leading-[1.3] hover:text-coral transition-colors">Combien de temps prend un projet&nbsp;?</summary>
+        <div class="pb-5 max-w-[64ch] opacity-[0.82] leading-[1.6] text-base">Un site vitrine se livre généralement en quelques semaines, une application en quelques semaines à quelques mois selon sa complexité. Nous vous donnons un délai ferme dès le cadrage.</div>
+      </details>
+      <details class="faq-item border-t border-rule">
+        <summary class="cursor-pointer flex justify-between items-baseline gap-6 py-[18px] font-display font-semibold text-[clamp(1rem,1.25vw,1.2rem)] tracking-tight leading-[1.3] hover:text-coral transition-colors">Sur quelles technologies travaillez-vous&nbsp;?</summary>
+        <div class="pb-5 max-w-[64ch] opacity-[0.82] leading-[1.6] text-base">Stack web&nbsp;: TypeScript, React/Next.js, Tailwind, Node, Postgres. Mobile&nbsp;: React Native (Expo) pour un code partagé iOS/Android. Nous choisissons l'outil en fonction de votre projet — pas l'inverse.</div>
+      </details>
+      <details class="faq-item border-t border-rule">
+        <summary class="cursor-pointer flex justify-between items-baseline gap-6 py-[18px] font-display font-semibold text-[clamp(1rem,1.25vw,1.2rem)] tracking-tight leading-[1.3] hover:text-coral transition-colors">Est-ce que je suis propriétaire du site ou de l'application&nbsp;?</summary>
+        <div class="pb-5 max-w-[64ch] opacity-[0.82] leading-[1.6] text-base">Oui, à 100&nbsp;%. Le code source, les comptes, l'hébergement et le nom de domaine vous appartiennent dès la livraison. Vous pouvez les reprendre en main quand vous le souhaitez.</div>
+      </details>
+      <details class="faq-item border-t border-rule">
+        <summary class="cursor-pointer flex justify-between items-baseline gap-6 py-[18px] font-display font-semibold text-[clamp(1rem,1.25vw,1.2rem)] tracking-tight leading-[1.3] hover:text-coral transition-colors">Pouvez-vous reprendre un projet existant&nbsp;?</summary>
+        <div class="pb-5 max-w-[64ch] opacity-[0.82] leading-[1.6] text-base">Oui, nous reprenons régulièrement des projets démarrés ailleurs. Nous commençons par un audit court (technique et fonctionnel) pour vous dire honnêtement&nbsp;: reprendre, refaire en partie, ou refaire à neuf.</div>
+      </details>
+      <details class="faq-item border-t border-rule">
+        <summary class="cursor-pointer flex justify-between items-baseline gap-6 py-[18px] font-display font-semibold text-[clamp(1rem,1.25vw,1.2rem)] tracking-tight leading-[1.3] hover:text-coral transition-colors">Que se passe-t-il après la livraison&nbsp;?</summary>
+        <div class="pb-5 max-w-[64ch] opacity-[0.82] leading-[1.6] text-base">Nous restons joignables. Le forfait inclut une période de suivi post-livraison pour les ajustements et bugs éventuels. Au-delà, une maintenance mensuelle optionnelle est disponible pour les évolutions, mises à jour et surveillance.</div>
+      </details>
+      <details class="faq-item border-t border-rule">
+        <summary class="cursor-pointer flex justify-between items-baseline gap-6 py-[18px] font-display font-semibold text-[clamp(1rem,1.25vw,1.2rem)] tracking-tight leading-[1.3] hover:text-coral transition-colors">Travaillez-vous avec des entreprises hors d'Angers&nbsp;?</summary>
+        <div class="pb-5 max-w-[64ch] opacity-[0.82] leading-[1.6] text-base">Bien sûr. Nous accompagnons des clients partout en France et à l'international. Visio, échanges écrits réguliers et déplacements quand le projet le justifie.</div>
+      </details>
+      <details class="faq-item border-t border-rule">
+        <summary class="cursor-pointer flex justify-between items-baseline gap-6 py-[18px] font-display font-semibold text-[clamp(1rem,1.25vw,1.2rem)] tracking-tight leading-[1.3] hover:text-coral transition-colors">Comment gérez-vous les données personnelles et le RGPD&nbsp;?</summary>
+        <div class="pb-5 max-w-[64ch] opacity-[0.82] leading-[1.6] text-base">Hébergement en Europe par défaut, mentions légales et politique de confidentialité préparées avec vous, gestion des cookies conforme. Nous documentons les flux de données dès la phase de cadrage.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta border-t border-rule py-[clamp(72px,10vw,130px)]" id="contact">
+  <div class="shell">
+    <header class="mb-[clamp(28px,3.5vw,48px)]">
+      <p class="marker mb-[14px]"><span class="num">10</span><span class="dash">—</span><span class="label">Contact</span></p>
+      <h2 class="display h2 max-w-[22ch]">Un projet en tête&nbsp;? <span class="hl-ochre">Parlons&#8209;en.</span></h2>
+    </header>
+    <div class="max-w-[56ch] mt-6">
+      <p class="text-[clamp(1.0625rem,1.4vw,1.25rem)] leading-[1.55] mb-7 opacity-[0.78]">Décrivez-nous votre projet en quelques lignes&nbsp;: nous revenons vers vous sous 24h ouvrées avec un premier retour, et nous fixons un rendez-vous pour cadrer le périmètre, le délai et le tarif.</p>
+      <a href="mailto:hello@morphic.studio" class="cta">Écrivez-nous <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer bg-ink text-paper-2 pt-[clamp(56px,7vw,80px)] pb-7">
+  <div class="shell">
+    <div class="grid grid-cols-1 gap-10 pb-12 border-b border-[rgba(244,237,224,0.18)] md:grid-cols-[1.6fr_1fr_1fr_1fr]">
+      <div class="flex flex-col gap-4">
+        <div class="flex items-center gap-3.5">
+          <svg viewBox="0 0 80 110" class="w-8 h-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(0,110) scale(1,-1)">
+              <path d="M0 0 L0 90 L25 90 L40 60 L55 90 L80 90 L80 0 L60 0 L60 60 L40 22 L20 60 L20 0 Z" fill="#fafaf8"/>
+              <rect x="20" y="0" width="20" height="20" fill="#fa5c47"/>
+              <rect x="40" y="0" width="20" height="20" fill="#e49c25"/>
+              <rect x="60" y="0" width="20" height="20" fill="#869e8b"/>
+            </g>
+          </svg>
+          <span class="font-display font-semibold text-2xl text-paper">Morphic Studio</span>
+        </div>
+        <p class="text-[0.9375rem] max-w-[38ch] opacity-70 leading-[1.5]">Studio web indépendant — Angers. Sites, apps mobiles et outils métiers pour PME.</p>
+      </div>
+      <div>
+        <h4 class="font-mono text-[11px] tracking-[0.18em] uppercase font-medium opacity-55 mb-3.5">Services</h4>
+        <ul class="list-none">
+          <li class="py-1 text-[0.9375rem] opacity-85"><a href="#services" class="hover:text-coral transition-colors">Sites web</a></li>
+          <li class="py-1 text-[0.9375rem] opacity-85"><a href="#services" class="hover:text-coral transition-colors">Apps mobiles</a></li>
+          <li class="py-1 text-[0.9375rem] opacity-85"><a href="#services" class="hover:text-coral transition-colors">Plateformes & outils</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-mono text-[11px] tracking-[0.18em] uppercase font-medium opacity-55 mb-3.5">Studio</h4>
+        <ul class="list-none">
+          <li class="py-1 text-[0.9375rem] opacity-85"><a href="#methode" class="hover:text-coral transition-colors">Méthode</a></li>
+          <li class="py-1 text-[0.9375rem] opacity-85"><a href="#tarifs" class="hover:text-coral transition-colors">Tarifs</a></li>
+          <li class="py-1 text-[0.9375rem] opacity-85"><a href="#faq" class="hover:text-coral transition-colors">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-mono text-[11px] tracking-[0.18em] uppercase font-medium opacity-55 mb-3.5">Contact</h4>
+        <ul class="list-none">
+          <li class="py-1 text-[0.9375rem] opacity-85"><a href="mailto:hello@morphic.studio" class="hover:text-coral transition-colors">hello@morphic.studio</a></li>
+          <li class="py-1 text-[0.9375rem] opacity-85">Angers, France</li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-6 flex justify-between items-center flex-wrap gap-4 font-mono text-[11px] tracking-[0.14em] uppercase opacity-55">
+      <span>© 2026 Morphic Studio</span>
+      <span>Made in Angers</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  const wrap = document.querySelector('.services-pin-wrap');
+  if (!wrap) return;
+  const pin = wrap.querySelector('.services-pin');
+  const strip = wrap.querySelector('.services-strip');
+  const cards = strip.querySelectorAll('.service-card');
+  let raf = 0;
+  let enabled = window.innerWidth >= 900 && !matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let maxTranslate = 0;
+
+  function compute() {
+    const lastCard = cards[cards.length - 1];
+    const stripStyle = getComputedStyle(strip);
+    const padRight = parseFloat(stripStyle.paddingRight) || 0;
+    const lastRight = lastCard.offsetLeft + lastCard.offsetWidth;
+    maxTranslate = Math.max(0, lastRight - (pin.offsetWidth - padRight));
+  }
+
+  function tick() {
+    raf = 0;
+    if (!enabled) { strip.style.transform = ''; return; }
+    const rect = wrap.getBoundingClientRect();
+    const total = wrap.offsetHeight - window.innerHeight;
+    const progress = Math.min(Math.max(-rect.top / total, 0), 1);
+    strip.style.transform = `translate3d(${-progress * maxTranslate}px, 0, 0)`;
+  }
+  function onScroll() { if (!raf) raf = requestAnimationFrame(tick); }
+  function onResize() {
+    enabled = window.innerWidth >= 900 && !matchMedia('(prefers-reduced-motion: reduce)').matches;
+    compute();
+    onScroll();
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onResize);
+  compute();
+  tick();
+})();
+</script>
+
+</body>
+</html>
