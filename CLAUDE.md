@@ -22,7 +22,7 @@ Repo for designing the Morphic Studio web agency site.
    ```
    bun run screenshot.ts iterations/v4/index.html
    ```
-   Open the PNGs in `iterations/v4/screenshots/` (desktop + mobile), compare to intent, fix issues, re-render. Iterate until the screenshots look right.
+   Open the PNGs in `iterations/v4/screenshots/` (desktop + mobile), compare to intent, fix issues, re-render. Iterate until the screenshots look right. Screenshots are gitignored (`iterations/*/screenshots/`) — they're local-only artifacts, re-rendered on demand. Do not commit them.
 5. Add a one-line entry at the top of `iterations/LOG.md`: `v4 — <date> — <what changed and why>`.
 6. Commit the new version on its own: `git add iterations/v4 iterations/LOG.md && git commit -m "iteration v4: <summary>"`. One commit per iteration.
 
