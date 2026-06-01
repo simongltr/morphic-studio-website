@@ -28,7 +28,7 @@ Repo for designing the Morphic Studio web agency site.
 
 Rules:
 - Previous iterations are immutable history — do not touch them.
-- Always screenshot and look at the result before declaring an iteration done.
+- Always screenshot the changes and look at the result before declaring an iteration done.
 - Always log and commit.
 
 ## Playwright tooling
