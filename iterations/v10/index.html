@@ -31,38 +31,36 @@
     .hero__title {
       position: absolute;
       left: 50%;
-      top: 22%;
+      top: 45%;
       transform: translate(-50%, -50%);
       margin: 0;
       width: min(1100px, 92vw);
       text-align: center;
       font-family: "Libre Baskerville", Georgia, serif;
-      font-weight: 400;
+      font-weight: 700;
       font-size: clamp(2rem, 4.6vw, 4.25rem);
       line-height: 1.18;
       letter-spacing: -0.01em;
-      color: #fff;
-      text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
+      color: rgba(0, 0, 0, 0.8);
     }
 
     .hero__couple {
       position: absolute;
       left: 50%;
-      bottom: 0;
+      bottom: -8%;
       transform: translateX(-50%);
       height: 55%;
       width: auto;
       max-width: 90vw;
       object-fit: contain;
       object-position: bottom center;
-      mix-blend-mode: multiply;
       pointer-events: none;
       user-select: none;
     }
 
     @media (max-width: 640px) {
-      .hero__title { top: 22%; }
-      .hero__couple { height: 50%; }
+      .hero__title { top: 45%; }
+      .hero__couple { height: 50%; bottom: -6%; }
     }
   </style>
 </head>
