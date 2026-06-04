@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Morphic Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: #fafaf8;
+      color: #132e54;
+      font-family: "Inter", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .hero-stage {
+      position: relative;
+      height: 280vh;
+      background: #000;
+    }
+
+    .hero {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      height: 100vh;
+      min-height: 640px;
+      overflow: hidden;
+      --bg-scale: 1;
+      --couple-scale: 1;
+      --couple-blur: 0px;
+      --couple-opacity: 1;
+      --couple-x: 0px;
+      --couple-y: 0px;
+      --title-opacity: 1;
+      --wash: 0;
+    }
+
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      background-image: url("hero-background.webp");
+      background-size: cover;
+      background-position: center;
+      transform: scale(var(--bg-scale));
+      transform-origin: 50% 45%;
+      will-change: transform;
+    }
+
+    .hero__title {
+      position: absolute;
+      left: 50%;
+      top: 45%;
+      transform: translate(-50%, -50%);
+      margin: 0;
+      width: min(1100px, 92vw);
+      text-align: center;
+      font-family: "Libre Baskerville", Georgia, serif;
+      font-weight: 700;
+      font-size: clamp(2rem, 4.6vw, 4.25rem);
+      line-height: 1.18;
+      letter-spacing: -0.01em;
+      color: rgba(0, 0, 0, 0.8);
+      opacity: var(--title-opacity);
+      z-index: 2;
+    }
+
+    .hero__couple {
+      position: absolute;
+      left: 50%;
+      bottom: -8%;
+      transform: translate(calc(-50% + var(--couple-x)), var(--couple-y)) scale(var(--couple-scale));
+      transform-origin: 50% 65%;
+      height: 55%;
+      width: auto;
+      max-width: 90vw;
+      object-fit: contain;
+      object-position: bottom center;
+      pointer-events: none;
+      user-select: none;
+      filter: blur(var(--couple-blur));
+      opacity: var(--couple-opacity);
+      will-change: transform, filter, opacity;
+      z-index: 1;
+    }
+
+    .hero__wash {
+      position: absolute;
+      inset: 0;
+      background: #fafaf8;
+      opacity: var(--wash);
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .site {
+      position: relative;
+      background: #fafaf8;
+      color: #132e54;
+    }
+
+    .section {
+      padding: clamp(4rem, 10vh, 8rem) clamp(1.5rem, 6vw, 6rem);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section__eyebrow {
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: rgba(19, 46, 84, 0.55);
+      margin: 0 0 1.25rem;
+    }
+
+    .section__title {
+      font-family: "Space Grotesk", "Inter", sans-serif;
+      font-weight: 500;
+      font-size: clamp(1.75rem, 3.6vw, 2.75rem);
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+      margin: 0 0 2rem;
+      max-width: 28ch;
+    }
+
+    .section__body {
+      font-family: "Inter", system-ui, sans-serif;
+      font-size: clamp(1rem, 1.2vw, 1.125rem);
+      line-height: 1.65;
+      max-width: 62ch;
+      color: rgba(19, 46, 84, 0.85);
+    }
+
+    .section__body p + p { margin-top: 1.25rem; }
+
+    @media (max-width: 640px) {
+      .hero-stage { height: 220vh; }
+      .hero__couple { height: 50%; bottom: -6%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-stage { height: 100vh; }
+      .hero { position: relative; }
+      .hero__bg { transform: none; }
+      .hero__couple { filter: none; opacity: 1; }
+      .hero__title { opacity: 1; }
+      .hero__wash { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="hero-stage" id="hero-stage">
+    <section class="hero" id="hero">
+      <div class="hero__bg"></div>
+      <img class="hero__couple" src="hero-couple.webp" alt="">
+      <h1 class="hero__title">We craft digital<br>experiences that last</h1>
+      <div class="hero__wash"></div>
+    </section>
+  </div>
+
+  <main class="site">
+    <section class="section">
+      <p class="section__eyebrow">01 — Le constat</p>
+      <h2 class="section__title">Faire développer un projet web, ça ne devrait pas être un parcours du combattant.</h2>
+      <div class="section__body">
+        <p>Devis flous, délais qui s'éternisent, allers-retours sans fin, coûts qui bougent, et au bout du compte un résultat qui ne ressemble pas à ce que vous aviez en tête, et difficile à maintenir.</p>
+        <p>Nous avons fondé Morphic Studio avec une conviction simple : un produit web de qualité peut être livré vite, à un prix clair, par des gens qui répondent au téléphone.</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      const stage = document.getElementById("hero-stage");
+      const hero = document.getElementById("hero");
+      if (!stage || !hero) return;
+
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const isMobile = window.matchMedia("(hover: none), (max-width: 640px)").matches;
+      const supportsHover = !window.matchMedia("(hover: none)").matches;
+
+      const COUPLE_BLUR_MAX = isMobile ? 14 : 24;
+      const COUPLE_SCALE_MAX = isMobile ? 3.5 : 4.5;
+      const BG_SCALE_MAX = 3.0;
+      const PARALLAX_MAX_X = 6;
+      const PARALLAX_MAX_Y = 3;
+
+      let scrollProgress = 0;
+      let mouseTargetX = 0;
+      let mouseTargetY = 0;
+      let mouseCurrentX = 0;
+      let mouseCurrentY = 0;
+      let raf = null;
+      let needsRender = false;
+
+      function clamp(v, lo, hi) { return v < lo ? lo : v > hi ? hi : v; }
+      function remap(v, inA, inB, outA, outB) {
+        const t = clamp((v - inA) / (inB - inA), 0, 1);
+        return outA + (outB - outA) * t;
+      }
+
+      function readScroll() {
+        if (reducedMotion) { scrollProgress = 0; return; }
+        const rect = stage.getBoundingClientRect();
+        const total = stage.offsetHeight - window.innerHeight;
+        if (total <= 0) { scrollProgress = 0; return; }
+        scrollProgress = clamp(-rect.top / total, 0, 1);
+      }
+
+      function tick() {
+        raf = null;
+        if (supportsHover && !reducedMotion) {
+          mouseCurrentX += (mouseTargetX - mouseCurrentX) * 0.08;
+          mouseCurrentY += (mouseTargetY - mouseCurrentY) * 0.08;
+        }
+
+        const p = scrollProgress;
+        const parallaxFade = clamp(1 - p * 2, 0, 1);
+        const coupleX = mouseCurrentX * PARALLAX_MAX_X * parallaxFade;
+        const coupleY = mouseCurrentY * PARALLAX_MAX_Y * parallaxFade;
+        const bgScale = remap(p, 0, 1, 1, BG_SCALE_MAX);
+        const coupleScale = remap(p, 0, 0.7, 1, COUPLE_SCALE_MAX);
+        const coupleBlur = remap(p, 0.0, 0.5, 0, COUPLE_BLUR_MAX);
+        const coupleOpacity = remap(p, 0.35, 0.7, 1, 0);
+        const titleOpacity = remap(p, 0.65, 0.95, 1, 0);
+        const wash = remap(p, 0.7, 1.0, 0, 1);
+
+        hero.style.setProperty("--bg-scale", bgScale.toFixed(4));
+        hero.style.setProperty("--couple-scale", coupleScale.toFixed(4));
+        hero.style.setProperty("--couple-blur", coupleBlur.toFixed(2) + "px");
+        hero.style.setProperty("--couple-opacity", coupleOpacity.toFixed(3));
+        hero.style.setProperty("--couple-x", coupleX.toFixed(2) + "px");
+        hero.style.setProperty("--couple-y", coupleY.toFixed(2) + "px");
+        hero.style.setProperty("--title-opacity", titleOpacity.toFixed(3));
+        hero.style.setProperty("--wash", wash.toFixed(3));
+
+        const mouseSettling = supportsHover && (Math.abs(mouseTargetX - mouseCurrentX) > 0.001 || Math.abs(mouseTargetY - mouseCurrentY) > 0.001);
+        if (mouseSettling || needsRender) {
+          needsRender = false;
+          schedule();
+        }
+      }
+
+      function schedule() {
+        if (raf == null) raf = requestAnimationFrame(tick);
+      }
+
+      function onScroll() {
+        readScroll();
+        needsRender = true;
+        schedule();
+      }
+
+      function onResize() {
+        readScroll();
+        needsRender = true;
+        schedule();
+      }
+
+      function onMove(e) {
+        if (!supportsHover || reducedMotion) return;
+        const rect = hero.getBoundingClientRect();
+        mouseTargetX = clamp(((e.clientX - rect.left) / rect.width) * 2 - 1, -1, 1);
+        mouseTargetY = clamp(((e.clientY - rect.top) / rect.height) * 2 - 1, -1, 1);
+        schedule();
+      }
+
+      function onLeave() {
+        mouseTargetX = 0;
+        mouseTargetY = 0;
+        schedule();
+      }
+
+      readScroll();
+      needsRender = true;
+      schedule();
+
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("resize", onResize);
+      if (supportsHover && !reducedMotion) {
+        hero.addEventListener("mousemove", onMove);
+        hero.addEventListener("mouseleave", onLeave);
+      }
+    })();
+  </script>
+</body>
+</html>
