@@ -36,7 +36,6 @@
       --couple-opacity: 1;
       --couple-x: 0px;
       --couple-y: 0px;
-      --title-opacity: 1;
       --wash: 0;
     }
 
@@ -49,6 +48,7 @@
       transform: scale(var(--bg-scale));
       transform-origin: 50% 45%;
       will-change: transform;
+      z-index: 0;
     }
 
     .hero__title {
@@ -65,8 +65,7 @@
       line-height: 1.18;
       letter-spacing: -0.01em;
       color: rgba(0, 0, 0, 0.8);
-      opacity: var(--title-opacity);
-      z-index: 1;
+      z-index: 2;
     }
 
     .hero__couple {
@@ -85,7 +84,7 @@
       filter: blur(var(--couple-blur));
       opacity: var(--couple-opacity);
       will-change: transform, filter, opacity;
-      z-index: 2;
+      z-index: 3;
     }
 
     .hero__wash {
@@ -94,7 +93,7 @@
       background: #fafaf8;
       opacity: var(--wash);
       pointer-events: none;
-      z-index: 3;
+      z-index: 1;
     }
 
     .site {
@@ -148,7 +147,6 @@
       .hero { position: relative; }
       .hero__bg { transform: none; }
       .hero__couple { filter: none; opacity: 1; }
-      .hero__title { opacity: 1; }
       .hero__wash { opacity: 0; }
     }
   </style>
@@ -227,7 +225,6 @@
         const coupleScale = remap(p, 0, 0.7, 1, COUPLE_SCALE_MAX);
         const coupleBlur = remap(p, 0.0, 0.5, 0, COUPLE_BLUR_MAX);
         const coupleOpacity = remap(p, 0.35, 0.7, 1, 0);
-        const titleOpacity = remap(p, 0.65, 0.95, 1, 0);
         const wash = remap(p, 0.7, 1.0, 0, 1);
 
         hero.style.setProperty("--bg-scale", bgScale.toFixed(4));
@@ -236,7 +233,6 @@
         hero.style.setProperty("--couple-opacity", coupleOpacity.toFixed(3));
         hero.style.setProperty("--couple-x", coupleX.toFixed(2) + "px");
         hero.style.setProperty("--couple-y", coupleY.toFixed(2) + "px");
-        hero.style.setProperty("--title-opacity", titleOpacity.toFixed(3));
         hero.style.setProperty("--wash", wash.toFixed(3));
 
         const mouseSettling = supportsHover && (Math.abs(mouseTargetX - mouseCurrentX) > 0.001 || Math.abs(mouseTargetY - mouseCurrentY) > 0.001);
