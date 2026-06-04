@@ -26,8 +26,6 @@
       background-image: url("hero-background.webp");
       background-size: cover;
       background-position: center;
-      --title-x: 0px;
-      --title-y: 0px;
       --couple-x: 0px;
       --couple-y: 0px;
     }
@@ -36,7 +34,7 @@
       position: absolute;
       left: 50%;
       top: 45%;
-      transform: translate(calc(-50% + var(--title-x)), calc(-50% + var(--title-y)));
+      transform: translate(-50%, -50%);
       margin: 0;
       width: min(1100px, 92vw);
       text-align: center;
@@ -46,7 +44,6 @@
       line-height: 1.18;
       letter-spacing: -0.01em;
       color: rgba(0, 0, 0, 0.8);
-      will-change: transform;
     }
 
     .hero__couple {
@@ -65,10 +62,8 @@
     }
 
     @media (max-width: 640px) {
-      .hero__title { top: 45%; }
       .hero__couple { height: 50%; bottom: -6%; }
     }
-
   </style>
 </head>
 <body>
@@ -84,11 +79,8 @@
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
       if (window.matchMedia("(hover: none)").matches) return;
 
-      // Subtle parallax: couple moves more than the title to suggest depth.
-      const TITLE_MAX_X = 6;
-      const TITLE_MAX_Y = 4;
-      const COUPLE_MAX_X = 14;
-      const COUPLE_MAX_Y = 8;
+      const MAX_X = 6;
+      const MAX_Y = 3;
 
       let targetX = 0;
       let targetY = 0;
@@ -99,10 +91,8 @@
       function tick() {
         currentX += (targetX - currentX) * 0.08;
         currentY += (targetY - currentY) * 0.08;
-        hero.style.setProperty("--title-x", (currentX * TITLE_MAX_X).toFixed(2) + "px");
-        hero.style.setProperty("--title-y", (currentY * TITLE_MAX_Y).toFixed(2) + "px");
-        hero.style.setProperty("--couple-x", (currentX * COUPLE_MAX_X).toFixed(2) + "px");
-        hero.style.setProperty("--couple-y", (currentY * COUPLE_MAX_Y).toFixed(2) + "px");
+        hero.style.setProperty("--couple-x", (currentX * MAX_X).toFixed(2) + "px");
+        hero.style.setProperty("--couple-y", (currentY * MAX_Y).toFixed(2) + "px");
         if (Math.abs(targetX - currentX) > 0.001 || Math.abs(targetY - currentY) > 0.001) {
           raf = requestAnimationFrame(tick);
         } else {
@@ -112,10 +102,8 @@
 
       function onMove(e) {
         const rect = hero.getBoundingClientRect();
-        const nx = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-        const ny = ((e.clientY - rect.top) / rect.height) * 2 - 1;
-        targetX = Math.max(-1, Math.min(1, nx));
-        targetY = Math.max(-1, Math.min(1, ny));
+        targetX = Math.max(-1, Math.min(1, ((e.clientX - rect.left) / rect.width) * 2 - 1));
+        targetY = Math.max(-1, Math.min(1, ((e.clientY - rect.top) / rect.height) * 2 - 1));
         if (!raf) raf = requestAnimationFrame(tick);
       }
 
