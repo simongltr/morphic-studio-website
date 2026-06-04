@@ -17,6 +17,71 @@
       -webkit-font-smoothing: antialiased;
     }
 
+    /* ---------- Site header ---------- */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 64px;
+      background: #000;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      padding: 0 clamp(1rem, 3vw, 2rem);
+      z-index: 50;
+      font-family: "Inter", system-ui, sans-serif;
+      font-size: 0.875rem;
+    }
+    .site-header__logo {
+      display: inline-flex;
+      align-items: center;
+      height: 26px;
+      color: #fff;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+    .site-header__logo svg { height: 100%; width: auto; display: block; }
+    .site-header__logo svg path { fill: currentColor; }
+    .site-header__nav {
+      display: flex;
+      gap: clamp(1rem, 2.4vw, 1.75rem);
+    }
+    .site-header__nav a {
+      color: rgba(255,255,255,0.72);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 200ms;
+    }
+    .site-header__nav a:hover { color: #fff; }
+    .site-header__right {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      flex-shrink: 0;
+    }
+    .site-header__brand {
+      font-family: "Space Grotesk", "Inter", sans-serif;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.88);
+    }
+    .site-header__cta {
+      background: #fff;
+      color: #000;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: opacity 200ms;
+    }
+    .site-header__cta:hover { opacity: 0.85; }
+
+    @media (max-width: 720px) {
+      .site-header__nav, .site-header__brand { display: none; }
+    }
+
+    /* ---------- Hero stage ---------- */
     .hero-stage {
       position: relative;
       height: 280vh;
@@ -37,6 +102,10 @@
       --couple-x: 0px;
       --couple-y: 0px;
       --wash: 0;
+      --logo-opacity: 0;
+      --brand-opacity: 0;
+      --align-progress: 0;
+      --line1-shift: 0px;
     }
 
     .hero__bg {
@@ -51,13 +120,45 @@
       z-index: 0;
     }
 
-    .hero__title {
+    .hero__masthead {
       position: absolute;
       left: 50%;
       top: 45%;
       transform: translate(-50%, -50%);
+      width: fit-content;
+      z-index: 2;
+    }
+
+    .hero__logo {
+      position: absolute;
+      right: calc(100% + 2rem);
+      top: 50%;
+      transform: translateY(-50%);
+      height: clamp(72px, 8.5vw, 112px);
+      width: auto;
+      color: rgba(0, 0, 0, 0.85);
+      opacity: var(--logo-opacity);
+      pointer-events: none;
+    }
+    .hero__logo path { fill: currentColor; }
+
+    .hero__brand {
+      position: absolute;
+      bottom: calc(100% + 0.5rem);
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: "Space Grotesk", "Inter", sans-serif;
+      font-weight: 500;
+      font-size: 0.875rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(0, 0, 0, 0.7);
+      white-space: nowrap;
+      opacity: var(--brand-opacity);
+    }
+
+    .hero__title {
       margin: 0;
-      width: min(1100px, 92vw);
       text-align: center;
       font-family: "Libre Baskerville", Georgia, serif;
       font-weight: 700;
@@ -65,7 +166,13 @@
       line-height: 1.18;
       letter-spacing: -0.01em;
       color: rgba(0, 0, 0, 0.8);
-      z-index: 2;
+    }
+    .hero__title-line {
+      display: block;
+    }
+    .hero__title-line--short {
+      transform: translateX(calc(var(--line1-shift) * var(--align-progress)));
+      will-change: transform;
     }
 
     .hero__couple {
@@ -96,6 +203,7 @@
       z-index: 1;
     }
 
+    /* ---------- Site body ---------- */
     .site {
       position: relative;
       background: #fafaf8;
@@ -140,6 +248,7 @@
     @media (max-width: 640px) {
       .hero-stage { height: 220vh; }
       .hero__couple { height: 50%; bottom: -6%; }
+      .hero__logo { display: none; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -148,16 +257,61 @@
       .hero__bg { transform: none; }
       .hero__couple { filter: none; opacity: 1; }
       .hero__wash { opacity: 0; }
+      .hero__logo, .hero__brand { opacity: 1; }
+      .hero__title-line--short { transform: translateX(var(--line1-shift)); }
     }
   </style>
 </head>
 <body>
+  <header class="site-header">
+    <a class="site-header__logo" href="#" aria-label="Morphic Studio">
+      <svg viewBox="0 0 55.139378 60.577862" aria-hidden="true">
+        <g transform="translate(-61.628656,-87.159944)">
+          <g transform="matrix(0.55139349,0,0,-0.55139349,61.628655,147.7378)">
+            <path d="m 54.456193,80.053008 c -1.311365,-1.048401 -1.924234,-2.373925 -1.956228,-3.966767 l 1.7e-5,-19.770276 c 0.08228,-4.190893 4.660656,-6.45651 8.043793,-3.966732 L 98.043789,81.12396 c 1.311397,1.048427 1.924246,2.374012 1.956241,3.966767 l -2e-5,19.770273 c -0.0822,4.18641 -4.654176,6.45832 -8.043796,3.96659 z" />
+            <path d="m 47.5,76.086241 c -0.03237,1.611343 -0.658915,2.929495 -1.95621,3.966767 L 8.0438071,108.82777 c -2.7651664,2.0358 -7.6715903,0.99864 -8.03985997,-3.76813 L 0,85.090727 C 0.03278342,83.445156 0.6860305,82.139419 1.9561929,81.12396 L 39.456193,52.349198 c 3.380894,-2.489106 7.961477,-0.225833 8.043779,3.966731 z" />
+            <path d="m 53.043807,41.594246 c -1.884708,-1.387677 -4.202823,-1.387738 -6.087614,0 L 8.0438071,71.45277 C 4.6644698,73.940724 0.08336455,71.681233 0,67.486003 V 47.715727 C 0.03278342,46.070156 0.6860305,44.764419 1.9561929,43.74896 L 46.956193,9.219246 c 1.884737,-1.3877044 4.202825,-1.3877428 6.087614,0 l 45,34.529714 c 1.311397,1.048427 1.924246,2.374012 1.956243,3.966767 l -3e-5,19.770276 c -0.08228,4.190921 -4.660693,6.4565 -8.043788,3.966731 z" />
+            <path d="M 76.956193,22.567865 C 75.696759,21.560981 75.032946,20.260009 75,18.601098 V 5 c 0.05639,-2.8381818 2.17028,-4.94443139 5,-5 h 15 c 2.833155,0.05563606 4.944285,2.1659054 5,5 v 25.111003 c -0.08228,4.190921 -4.660698,6.4565 -8.043793,3.966731 z" />
+            <path d="M 8.0438071,34.07777 C 4.6644698,36.565724 0.08336455,34.306233 0,30.111003 V 5 C 0.05564821,2.1662249 2.1666028,0.05564079 5,0 h 15 c 2.83438,0.05566012 4.944458,2.167333 5,5 v 13.601098 c -0.03236,1.611281 -0.658889,2.929442 -1.956216,3.966767 z" />
+          </g>
+        </g>
+      </svg>
+    </a>
+    <nav class="site-header__nav">
+      <a href="#services">Services</a>
+      <a href="#methode">Méthode</a>
+      <a href="#tarifs">Tarifs</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="site-header__right">
+      <span class="site-header__brand">Morphic Studio</span>
+      <a class="site-header__cta" href="#contact">Parlons-en</a>
+    </div>
+  </header>
+
   <div class="hero-stage" id="hero-stage">
     <section class="hero" id="hero">
       <div class="hero__bg"></div>
       <img class="hero__couple" src="hero-couple.webp" alt="">
-      <h1 class="hero__title">We craft digital<br>experiences that last</h1>
       <div class="hero__wash"></div>
+      <div class="hero__masthead">
+        <svg class="hero__logo" viewBox="0 0 55.139378 60.577862" aria-hidden="true">
+          <g transform="translate(-61.628656,-87.159944)">
+            <g transform="matrix(0.55139349,0,0,-0.55139349,61.628655,147.7378)">
+              <path d="m 54.456193,80.053008 c -1.311365,-1.048401 -1.924234,-2.373925 -1.956228,-3.966767 l 1.7e-5,-19.770276 c 0.08228,-4.190893 4.660656,-6.45651 8.043793,-3.966732 L 98.043789,81.12396 c 1.311397,1.048427 1.924246,2.374012 1.956241,3.966767 l -2e-5,19.770273 c -0.0822,4.18641 -4.654176,6.45832 -8.043796,3.96659 z" />
+              <path d="m 47.5,76.086241 c -0.03237,1.611343 -0.658915,2.929495 -1.95621,3.966767 L 8.0438071,108.82777 c -2.7651664,2.0358 -7.6715903,0.99864 -8.03985997,-3.76813 L 0,85.090727 C 0.03278342,83.445156 0.6860305,82.139419 1.9561929,81.12396 L 39.456193,52.349198 c 3.380894,-2.489106 7.961477,-0.225833 8.043779,3.966731 z" />
+              <path d="m 53.043807,41.594246 c -1.884708,-1.387677 -4.202823,-1.387738 -6.087614,0 L 8.0438071,71.45277 C 4.6644698,73.940724 0.08336455,71.681233 0,67.486003 V 47.715727 C 0.03278342,46.070156 0.6860305,44.764419 1.9561929,43.74896 L 46.956193,9.219246 c 1.884737,-1.3877044 4.202825,-1.3877428 6.087614,0 l 45,34.529714 c 1.311397,1.048427 1.924246,2.374012 1.956243,3.966767 l -3e-5,19.770276 c -0.08228,4.190921 -4.660693,6.4565 -8.043788,3.966731 z" />
+              <path d="M 76.956193,22.567865 C 75.696759,21.560981 75.032946,20.260009 75,18.601098 V 5 c 0.05639,-2.8381818 2.17028,-4.94443139 5,-5 h 15 c 2.833155,0.05563606 4.944285,2.1659054 5,5 v 25.111003 c -0.08228,4.190921 -4.660698,6.4565 -8.043793,3.966731 z" />
+              <path d="M 8.0438071,34.07777 C 4.6644698,36.565724 0.08336455,34.306233 0,30.111003 V 5 C 0.05564821,2.1662249 2.1666028,0.05564079 5,0 h 15 c 2.83438,0.05566012 4.944458,2.167333 5,5 v 13.601098 c -0.03236,1.611281 -0.658889,2.929442 -1.956216,3.966767 z" />
+            </g>
+          </g>
+        </svg>
+        <span class="hero__brand">Morphic Studio</span>
+        <h1 class="hero__title" id="hero-title">
+          <span class="hero__title-line hero__title-line--short">We craft digital</span>
+          <span class="hero__title-line">experiences that last</span>
+        </h1>
+      </div>
     </section>
   </div>
 
@@ -176,11 +330,12 @@
     (function () {
       const stage = document.getElementById("hero-stage");
       const hero = document.getElementById("hero");
+      const titleEl = document.getElementById("hero-title");
       if (!stage || !hero) return;
 
       const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      const isMobile = window.matchMedia("(hover: none), (max-width: 640px)").matches;
       const supportsHover = !window.matchMedia("(hover: none)").matches;
+      const isMobile = window.matchMedia("(hover: none), (max-width: 640px)").matches;
 
       const COUPLE_BLUR_MAX = isMobile ? 14 : 24;
       const COUPLE_SCALE_MAX = isMobile ? 3.5 : 4.5;
@@ -200,6 +355,22 @@
       function remap(v, inA, inB, outA, outB) {
         const t = clamp((v - inA) / (inB - inA), 0, 1);
         return outA + (outB - outA) * t;
+      }
+
+      function measureLineShift() {
+        if (!titleEl) return;
+        const lines = titleEl.querySelectorAll(".hero__title-line");
+        if (lines.length < 2) return;
+        // Temporarily neutralize any active transform on the short line.
+        const short = titleEl.querySelector(".hero__title-line--short");
+        const prev = short ? short.style.transform : null;
+        if (short) short.style.transform = "none";
+        const widths = Array.from(lines).map((el) => el.getBoundingClientRect().width);
+        if (short && prev !== null) short.style.transform = prev;
+        const longest = Math.max(...widths);
+        const shortWidth = widths[0];
+        const shift = (longest - shortWidth) / 2;
+        hero.style.setProperty("--line1-shift", `-${shift.toFixed(2)}px`);
       }
 
       function readScroll() {
@@ -226,6 +397,9 @@
         const coupleBlur = remap(p, 0.0, 0.5, 0, COUPLE_BLUR_MAX);
         const coupleOpacity = remap(p, 0.35, 0.7, 1, 0);
         const wash = remap(p, 0.7, 1.0, 0, 1);
+        const logoOpacity = remap(p, 0.82, 1.0, 0, 1);
+        const brandOpacity = remap(p, 0.82, 1.0, 0, 1);
+        const alignProgress = remap(p, 0.82, 1.0, 0, 1);
 
         hero.style.setProperty("--bg-scale", bgScale.toFixed(4));
         hero.style.setProperty("--couple-scale", coupleScale.toFixed(4));
@@ -234,6 +408,9 @@
         hero.style.setProperty("--couple-x", coupleX.toFixed(2) + "px");
         hero.style.setProperty("--couple-y", coupleY.toFixed(2) + "px");
         hero.style.setProperty("--wash", wash.toFixed(3));
+        hero.style.setProperty("--logo-opacity", logoOpacity.toFixed(3));
+        hero.style.setProperty("--brand-opacity", brandOpacity.toFixed(3));
+        hero.style.setProperty("--align-progress", alignProgress.toFixed(3));
 
         const mouseSettling = supportsHover && (Math.abs(mouseTargetX - mouseCurrentX) > 0.001 || Math.abs(mouseTargetY - mouseCurrentY) > 0.001);
         if (mouseSettling || needsRender) {
@@ -253,6 +430,7 @@
       }
 
       function onResize() {
+        measureLineShift();
         readScroll();
         needsRender = true;
         schedule();
@@ -272,6 +450,13 @@
         schedule();
       }
 
+      // Measure once fonts are ready so the shift uses real glyph widths.
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(measureLineShift);
+      } else {
+        measureLineShift();
+      }
+      measureLineShift();
       readScroll();
       needsRender = true;
       schedule();
