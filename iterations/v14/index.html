@@ -20,48 +20,82 @@
     /* ---------- Site header ---------- */
     .site-header {
       position: fixed;
-      top: 0; left: 0; right: 0;
-      height: 64px;
-      background: transparent;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 2rem;
-      padding: 0 clamp(1.25rem, 3vw, 2.5rem);
+      top: clamp(0.875rem, 1.6vw, 1.25rem);
+      left: 50%;
+      transform: translateX(-50%);
       z-index: 50;
       font-family: "Quicksand", system-ui, sans-serif;
       font-size: 0.8125rem;
       font-weight: 500;
       letter-spacing: 0.18em;
     }
-    .site-header__left {
+    .site-header__pill {
+      position: relative;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(14px) saturate(140%);
+      -webkit-backdrop-filter: blur(14px) saturate(140%);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+      border-radius: 999px;
       display: inline-flex;
       align-items: center;
-      gap: 0.75rem;
-      color: #fff;
+      padding: 0.4rem 0.5rem;
+      gap: clamp(2.25rem, 4vw, 3.25rem);
+    }
+    .site-header__highlight {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      height: var(--hl-h, 0px);
+      width: var(--hl-w, 0px);
+      transform: translate(var(--hl-x, 0px), -50%);
+      background: rgba(0, 0, 0, 0.07);
+      border-radius: 999px;
+      pointer-events: none;
+      opacity: var(--hl-o, 0);
+      transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+                  width 320ms cubic-bezier(0.22, 1, 0.36, 1),
+                  height 320ms cubic-bezier(0.22, 1, 0.36, 1),
+                  opacity 180ms ease;
+      z-index: 0;
+    }
+    .site-header__highlight--instant {
+      transition: opacity 180ms ease;
+    }
+    .site-header__left {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.625rem;
+      padding: 0.35rem 0.85rem 0.35rem 0.55rem;
+      border-radius: 999px;
+      color: #000;
       text-decoration: none;
     }
     .site-header__logo {
       display: inline-flex;
       align-items: center;
-      height: 26px;
+      height: 22px;
     }
     .site-header__logo svg { height: 100%; width: auto; display: block; }
-    .site-header__logo svg path { fill: #fff; }
-    .site-header__name {
-      color: #fff;
-    }
+    .site-header__logo svg path { fill: #000; }
+    .site-header__name { color: #000; }
     .site-header__nav {
-      display: flex;
-      gap: clamp(1rem, 2.4vw, 2rem);
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
     }
     .site-header__nav a {
-      color: rgba(255,255,255,0.85);
+      color: rgba(0, 0, 0, 0.78);
       text-decoration: none;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
       transition: color 200ms;
     }
-    .site-header__nav a:hover { color: #fff; }
+    .site-header__nav a:hover { color: #000; }
 
     @media (max-width: 640px) {
       .site-header__name { display: none; }
@@ -106,7 +140,7 @@
     .hero__masthead {
       position: absolute;
       left: 50%;
-      top: 40%;
+      top: 41%;
       transform: translate(-50%, -50%);
       width: min(1100px, 92vw);
       text-align: center;
@@ -139,7 +173,7 @@
     .hero__couple {
       position: absolute;
       left: 50%;
-      bottom: -8%;
+      bottom: -9%;
       transform: translate(calc(-50% + var(--couple-x)), var(--couple-y)) scale(var(--couple-scale));
       transform-origin: 50% 65%;
       height: 58%;
@@ -222,6 +256,8 @@
 </head>
 <body>
   <header class="site-header">
+    <div class="site-header__pill" id="header-pill">
+    <span class="site-header__highlight" id="header-highlight"></span>
     <a class="site-header__left" href="#" aria-label="Morphic Studio">
       <span class="site-header__logo">
         <svg viewBox="0 0 55.139378 60.577862" aria-hidden="true">
@@ -244,6 +280,7 @@
       <a href="#services">SERVICES</a>
       <a href="#contact">CONTACT</a>
     </nav>
+    </div>
   </header>
 
   <div class="hero-stage" id="hero-stage">
@@ -379,6 +416,47 @@
         hero.addEventListener("mousemove", onMove);
         hero.addEventListener("mouseleave", onLeave);
       }
+    })();
+
+    // Sliding white highlight inside the header pill.
+    (function () {
+      const pill = document.getElementById("header-pill");
+      const highlight = document.getElementById("header-highlight");
+      if (!pill || !highlight) return;
+      const targets = pill.querySelectorAll(".site-header__left, .site-header__nav a");
+      if (!targets.length) return;
+
+      let visible = false;
+
+      function place(target, instant) {
+        const pillRect = pill.getBoundingClientRect();
+        const r = target.getBoundingClientRect();
+        const x = r.left - pillRect.left;
+        if (instant) highlight.classList.add("site-header__highlight--instant");
+        else highlight.classList.remove("site-header__highlight--instant");
+        pill.style.setProperty("--hl-x", x.toFixed(2) + "px");
+        pill.style.setProperty("--hl-w", r.width.toFixed(2) + "px");
+        pill.style.setProperty("--hl-h", r.height.toFixed(2) + "px");
+        if (instant) {
+          // Force a frame so the position lands before opacity fades in.
+          highlight.getBoundingClientRect();
+          highlight.classList.remove("site-header__highlight--instant");
+        }
+        pill.style.setProperty("--hl-o", "1");
+      }
+
+      function hide() {
+        pill.style.setProperty("--hl-o", "0");
+        visible = false;
+      }
+
+      targets.forEach((t) => {
+        t.addEventListener("mouseenter", () => {
+          place(t, !visible);
+          visible = true;
+        });
+      });
+      pill.addEventListener("mouseleave", hide);
     })();
   </script>
 </body>
