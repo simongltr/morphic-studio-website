@@ -40,3 +40,6 @@ src/screenshots/
 dist/
 .astro/
 
+# Plan files (kept local, never committed)
+PLAN-*.md
+
