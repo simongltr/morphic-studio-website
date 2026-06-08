@@ -1,15 +1,16 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
 ---
 
 <BaseLayout title="Morphic Studio">
+  <Header />
   <main class="site">
     <section class="section">
       <p class="section__eyebrow">Migration en cours</p>
-      <h1 class="section__title">Astro scaffold OK.</h1>
+      <h1 class="section__title">Header migré.</h1>
       <p class="section__body">
-        Les composants sont migrés un par un depuis l'ancien
-        <code>src/index.html</code>.
+        Prochain : Hero (scroll + parallax), puis la pile de cartes.
       </p>
     </section>
   </main>
