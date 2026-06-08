@@ -18,7 +18,7 @@ Repo for designing the Morphic Studio web agency site. Built with **Astro** as a
 
 ## Workflow
 
-Edit components directly under `src/`. Astro reloads in dev, no manual rebuild needed during iteration. Git history is the change record — no per-version folders.
+Edit components directly under `src/`. Astro reloads in dev, no manual rebuild needed during iteration.
 
 Common commands (Bun runs the Astro CLI natively):
 
@@ -33,7 +33,9 @@ When the user asks for a change:
 1. Edit the relevant components / styles / data under `src/`.
 2. If the change spans multiple components or affects layout, run `bun run build` once to confirm the static build still succeeds.
 3. **Do not** automatically run screenshot scripts — those tools exist for when the user wants visual feedback, not as a default self-check.
-4. Commit only when the user asks (or when it clearly closes a change they requested).
+4. Commit only when the user asks.
+
+Plans are written to markdown files at the root of the repo, never commit them. Names are folowing "PLAN-*.md"
 
 ### Component conventions
 
