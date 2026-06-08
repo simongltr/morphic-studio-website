@@ -1,0 +1,57 @@
+---
+import StackCard from "./StackCard.astro";
+import { stackCards } from "../data/stack-cards";
+---
+
+<section class="section section--first stack-section">
+  <div class="stack-intro">
+    <p class="section__eyebrow">01 — Ce que nous livrons</p>
+    <h2 class="section__title">Du site vitrine au produit sur-mesure.</h2>
+    <p class="stack-intro__body">
+      Quel que soit le format, nous livrons des produits web finis, rapides,
+      durables — et que vous comprenez. Les cartes s'empilent au fil du
+      scroll : vous gardez en vue la carte courante et le titre de chaque
+      proposition précédente.
+    </p>
+  </div>
+  <div class="stack-region" id="stack-region">
+    {
+      stackCards.map((card, idx) => (
+        <StackCard
+          title={card.title}
+          body={card.body}
+          imgColor={card.imgColor}
+          idx={idx}
+        />
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .stack-intro {
+    max-width: 720px;
+    margin: 0 0 clamp(2.5rem, 5vw, 4rem);
+  }
+  .stack-intro__body {
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: clamp(1rem, 1.15vw, 1.125rem);
+    line-height: 1.65;
+    color: rgba(0, 0, 0, 0.7);
+    margin: 0;
+    max-width: 56ch;
+  }
+  .stack-region {
+    position: relative;
+    --stack-gap: 56px;
+    --card-h: clamp(320px, 48vh, 440px);
+    padding-bottom: 30vh;
+  }
+
+  @media (max-width: 720px) {
+    .stack-region {
+      --stack-gap: 48px;
+      --card-h: 360px;
+    }
+  }
+</style>

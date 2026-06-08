@@ -2,18 +2,13 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
+import StackSection from "../components/StackSection.astro";
 ---
 
 <BaseLayout title="Morphic Studio">
   <Header />
   <Hero />
   <main class="site">
-    <section class="section">
-      <p class="section__eyebrow">Migration en cours</p>
-      <h1 class="section__title">Hero migré.</h1>
-      <p class="section__body">
-        Prochain : la pile de cartes en sticky scroll.
-      </p>
-    </section>
+    <StackSection />
   </main>
 </BaseLayout>

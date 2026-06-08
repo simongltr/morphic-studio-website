@@ -1,0 +1,105 @@
+---
+interface Props {
+  title: string;
+  body: string;
+  imgColor: string;
+  idx: number;
+}
+
+const { title, body, imgColor, idx } = Astro.props;
+---
+
+<article
+  class="stack-card"
+  style={`--idx: ${idx}; --img-color: ${imgColor};`}
+>
+  <h3 class="stack-card__title">{title}</h3>
+  <div class="stack-card__body">
+    <div class="stack-card__text">
+      <p>{body}</p>
+    </div>
+    <div class="stack-card__image"></div>
+  </div>
+</article>
+
+<style>
+  .stack-card {
+    position: sticky;
+    top: 96px;
+    height: var(--card-h);
+    margin-bottom: 50vh;
+    transform: translateY(calc(var(--idx, 0) * var(--stack-gap)));
+    border: 1.5px solid #000;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #fafaf8;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+  }
+  .stack-card:last-child {
+    margin-bottom: 0;
+  }
+  .stack-card__title {
+    background: #000;
+    color: #fff;
+    margin: 0;
+    padding: 0 1.5rem;
+    font-family: "Quicksand", system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    height: 56px;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+  }
+  .stack-card__body {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    align-items: stretch;
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+  .stack-card__text {
+    background: #fafaf8;
+    padding: clamp(1.25rem, 2vw, 2rem);
+    display: flex;
+    align-items: center;
+  }
+  .stack-card__text p {
+    margin: 0;
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: clamp(0.875rem, 1vw, 1rem);
+    line-height: 1.55;
+    color: rgba(0, 0, 0, 0.72);
+    max-width: 30ch;
+  }
+  .stack-card__image {
+    background: var(--img-color, linear-gradient(135deg, #d4bf95, #a88860));
+  }
+
+  @media (max-width: 720px) {
+    .stack-card {
+      top: 80px;
+      margin-bottom: 40vh;
+      border-radius: 12px;
+    }
+    .stack-card__title {
+      height: 48px;
+      font-size: 0.85rem;
+      padding: 0 1rem;
+      letter-spacing: 0.04em;
+    }
+    .stack-card__body {
+      grid-template-columns: 1fr;
+    }
+    .stack-card__text {
+      padding: 1rem 1.25rem;
+    }
+    .stack-card__image {
+      min-height: 180px;
+    }
+  }
+</style>
