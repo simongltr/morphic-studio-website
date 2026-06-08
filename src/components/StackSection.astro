@@ -43,14 +43,17 @@ import { stackCards } from "../data/stack-cards";
   }
   .stack-region {
     position: relative;
-    --stack-gap: 56px;
+    /* Title height (56px) + 4px breathing — small visible gap between
+       stacked titles instead of the seam that exposed corner holes. */
+    --stack-gap: 60px;
     --card-h: clamp(320px, 48vh, 440px);
     padding-bottom: 50vh;
   }
 
   @media (max-width: 720px) {
     .stack-region {
-      --stack-gap: 48px;
+      /* Mobile title height is 48px, keep the same 4px breathing. */
+      --stack-gap: 52px;
       --card-h: 360px;
     }
   }
