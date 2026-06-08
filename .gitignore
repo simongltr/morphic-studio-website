@@ -35,3 +35,8 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 
 # Generated screenshots (re-rendered on demand via tools/screenshot*.ts)
 src/screenshots/
+
+# Astro
+dist/
+.astro/
+
