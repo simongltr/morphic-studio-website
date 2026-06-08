@@ -27,7 +27,6 @@ const { title, body, imgColor, idx } = Astro.props;
     position: sticky;
     top: 96px;
     height: var(--card-h);
-    margin-bottom: 50vh;
     transform: translateY(calc(var(--idx, 0) * var(--stack-gap)));
     border: 1.5px solid #000;
     border-radius: 16px;
@@ -36,9 +35,6 @@ const { title, body, imgColor, idx } = Astro.props;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-  }
-  .stack-card:last-child {
-    margin-bottom: 0;
   }
   .stack-card__title {
     background: #000;
@@ -83,7 +79,6 @@ const { title, body, imgColor, idx } = Astro.props;
   @media (max-width: 720px) {
     .stack-card {
       top: 80px;
-      margin-bottom: 40vh;
       border-radius: 12px;
     }
     .stack-card__title {
