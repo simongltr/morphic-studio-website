@@ -1,0 +1,148 @@
+---
+const items = [
+  {
+    q: "Comment proposez-vous des prix aussi compétitifs ?",
+    a: "En travaillant intelligemment. Nous combinons une vraie expertise humaine et des outils modernes qui automatisent les tâches répétitives et nous font gagner un temps considérable. Ce temps gagné, on vous le rend, en délais plus courts et en tarifs plus justes. Les outils accélèrent l'exécution. La stratégie, le design, l'architecture et les arbitrages restent pilotés par des humains expérimentés.",
+  },
+  {
+    q: "Qu'est-ce qui est inclus dans le prix ?",
+    a: "La liste complète figure en §7. En résumé : cadrage, design responsive, développement, mise en ligne, formation, accès et fichiers. Ce qui n'est pas inclus par défaut (contenus, médias, SEO de fond, hébergement, traductions) y est aussi listé clairement.",
+  },
+  {
+    q: "Que se passe-t-il si le périmètre change en cours de projet ?",
+    a: "Le forfait initial couvre le périmètre validé au cadrage. Si une demande sort du cadre, nous vous proposons un avenant chiffré avant de l'engager. Vous décidez. Pas de dérive silencieuse, pas de surprise sur la facture finale.",
+  },
+  {
+    q: "Combien de temps prend un projet ?",
+    a: "Un site vitrine se livre généralement en [X semaines], une application en [X semaines à X mois] selon sa complexité. Nous vous donnons un délai ferme dès le cadrage.",
+  },
+  {
+    q: "Sur quelles technologies travaillez-vous ?",
+    a: "Nous privilégions des technologies modernes et largement adoptées, choisies pour leur fiabilité et la facilité à trouver d'autres développeurs après nous : Next.js, React et TypeScript pour le web, React Native pour le mobile. Le choix précis est arrêté au cadrage en fonction de votre projet.",
+  },
+  {
+    q: "Est-ce que je suis propriétaire du site ou de l'application ?",
+    a: "Oui. À la livraison, vous récupérez les accès, le code source et les fichiers prévus au devis. Notre objectif : que vous ne soyez jamais dépendant de nous par défaut. Vous restez libre de poursuivre avec une autre équipe si vous le souhaitez.",
+  },
+  {
+    q: "Pouvez-vous reprendre un projet existant ?",
+    a: "Oui, si la base technique le permet. Nous commençons par un audit rapide pour vérifier ce qui peut être conservé, amélioré ou doit être reconstruit.",
+  },
+  {
+    q: "Que se passe-t-il après la livraison ?",
+    a: "Nous restons disponibles pour les ajustements, les évolutions et la maintenance, soit en forfait mensuel, soit à la demande. Pour les incidents bloquants, nous répondons sous [délai à préciser].",
+  },
+  {
+    q: "Travaillez-vous avec des entreprises hors d'Angers ?",
+    a: "Oui, sans aucun problème. Nous sommes basés à Angers mais nous travaillons avec des clients partout en France et à l'international. La majorité de nos échanges se font à distance, simplement et efficacement, et nous nous déplaçons quand c'est utile.",
+  },
+  {
+    q: "Comment gérez-vous les données personnelles et le RGPD ?",
+    a: "Les données collectées via vos formulaires sont hébergées en Europe et ne sont jamais revendues. Nous mettons en place la base RGPD (mentions, politique de confidentialité, gestion du consentement) sur tous les sites livrés, et nous adaptons selon votre activité si elle implique des données sensibles.",
+  },
+];
+---
+
+<section class="section faq">
+  <p class="section__eyebrow">FAQ</p>
+  <h2 class="section__title">Questions fréquentes.</h2>
+  <ul class="faq__list">
+    {
+      items.map((item) => (
+        <li class="faq__item">
+          <details>
+            <summary>
+              <span class="faq__q">{item.q}</span>
+              <span class="faq__icon" aria-hidden="true" />
+            </summary>
+            <div class="faq__a">
+              <p>{item.a}</p>
+            </div>
+          </details>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  .faq__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  .faq__item {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  .faq__item details {
+    padding: 0;
+  }
+  .faq__item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.25rem 0;
+    cursor: pointer;
+    list-style: none;
+  }
+  .faq__item summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq__q {
+    font-family: "Space Grotesk", "Inter", sans-serif;
+    font-weight: 500;
+    font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+    line-height: 1.4;
+    color: rgba(0, 0, 0, 0.88);
+  }
+  .faq__icon {
+    flex: 0 0 auto;
+    width: 14px;
+    height: 14px;
+    position: relative;
+    transition: transform 200ms ease;
+  }
+  .faq__icon::before,
+  .faq__icon::after {
+    content: "";
+    position: absolute;
+    background: rgba(0, 0, 0, 0.55);
+  }
+  .faq__icon::before {
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 1.5px;
+    transform: translateY(-50%);
+  }
+  .faq__icon::after {
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1.5px;
+    transform: translateX(-50%);
+    transition: transform 200ms ease;
+  }
+  .faq__item details[open] .faq__icon::after {
+    transform: translateX(-50%) scaleY(0);
+  }
+  .faq__a {
+    padding: 0 0 1.5rem;
+    max-width: 64ch;
+  }
+  .faq__a p {
+    margin: 0;
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: clamp(1rem, 1.1vw, 1.0625rem);
+    line-height: 1.65;
+    color: rgba(0, 0, 0, 0.7);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .faq__icon::after {
+      transition: none;
+    }
+  }
+</style>
