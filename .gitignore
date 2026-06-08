@@ -33,5 +33,5 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 # Finder (MacOS) folder config
 .DS_Store
 
-# Per-iteration generated screenshots (re-rendered on demand via screenshot.ts)
-iterations/*/screenshots/
+# Generated screenshots (re-rendered on demand via tools/screenshot*.ts)
+src/screenshots/
