@@ -1,17 +1,16 @@
 ---
-// Stub page — will be replaced as components are migrated.
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
-<!doctype html>
-<html lang="fr">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Morphic Studio</title>
-  </head>
-  <body>
-    <main>
-      <h1>Astro scaffold OK</h1>
-      <p>Migration in progress.</p>
-    </main>
-  </body>
-</html>
+
+<BaseLayout title="Morphic Studio">
+  <main class="site">
+    <section class="section">
+      <p class="section__eyebrow">Migration en cours</p>
+      <h1 class="section__title">Astro scaffold OK.</h1>
+      <p class="section__body">
+        Les composants sont migrés un par un depuis l'ancien
+        <code>src/index.html</code>.
+      </p>
+    </section>
+  </main>
+</BaseLayout>
