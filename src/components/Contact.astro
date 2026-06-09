@@ -1,0 +1,129 @@
+---
+import { Icon } from "astro-icon/components";
+
+const channels = [
+  {
+    icon: "lucide:mail",
+    label: "Écrivez-nous",
+    value: "hello@morphic.studio",
+    href: "mailto:hello@morphic.studio",
+    hint: "Réponse sous 24h ouvrées.",
+  },
+  {
+    icon: "lucide:calendar",
+    label: "Réservez un créneau",
+    value: "30 min, en visio",
+    href: "https://cal.com/morphic-studio",
+    hint: "Pour un premier échange sans engagement.",
+  },
+  {
+    icon: "lucide:phone",
+    label: "Appelez-nous",
+    value: "+33 1 23 45 67 89",
+    href: "tel:+33123456789",
+    hint: "Du lundi au vendredi, 9h–18h.",
+  },
+];
+---
+
+<section id="contact" class="section contact">
+  <p class="section__eyebrow">Contact</p>
+  <h2 class="section__title">Parlons de votre projet.</h2>
+  <p class="section__body">
+    Quelques lignes sur votre besoin suffisent. Écrivez-nous ou réservez un
+    créneau, nous revenons vers vous avec un premier retour clair.
+  </p>
+
+  <ul class="contact__channels">
+    {
+      channels.map((channel) => (
+        <li class="contact__channel">
+          <span class="contact__channel-icon" aria-hidden="true">
+            <Icon name={channel.icon} />
+          </span>
+          <p class="contact__channel-label">{channel.label}</p>
+          {channel.href ? (
+            <a class="contact__channel-value" href={channel.href}>
+              {channel.value}
+            </a>
+          ) : (
+            <p class="contact__channel-value">{channel.value}</p>
+          )}
+          <p class="contact__channel-hint">{channel.hint}</p>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  .contact {
+    padding-top: clamp(2rem, 4vh, 4rem);
+  }
+
+  .contact__channels {
+    list-style: none;
+    margin: clamp(2.5rem, 5vh, 4rem) 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+  }
+  .contact__channel {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .contact__channel-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 8px;
+    color: rgba(0, 0, 0, 0.75);
+    margin-bottom: 1.25rem;
+  }
+  .contact__channel-icon :global(svg) {
+    width: 20px;
+    height: 20px;
+    stroke-width: 1.5;
+  }
+  .contact__channel-label {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: lowercase;
+    color: rgba(0, 0, 0, 0.5);
+    margin: 0 0 0.5rem;
+  }
+  .contact__channel-value {
+    display: inline-block;
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.92);
+    margin: 0;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 200ms ease;
+  }
+  a.contact__channel-value:hover {
+    border-bottom-color: rgba(0, 0, 0, 0.6);
+  }
+  .contact__channel-hint {
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: rgba(0, 0, 0, 0.55);
+    margin: 0.5rem 0 0;
+  }
+
+  @media (max-width: 900px) {
+    .contact__channels {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
