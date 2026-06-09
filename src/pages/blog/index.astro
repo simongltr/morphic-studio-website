@@ -1,0 +1,138 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import { withBase } from "../../utils/url";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const dateFmt = new Intl.DateTimeFormat("fr-FR", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+});
+---
+
+<BaseLayout title="Blog — Morphic Studio">
+  <Header />
+  <main class="site">
+    <section class="section blog-index">
+      <p class="section__eyebrow">Blog</p>
+      <h1 class="section__title">Notes, retours et prises de position.</h1>
+      <p class="section__body">
+        Ce qu'on apprend en construisant des sites et des applications. Pas de
+        tutoriels génériques, pas de listicles — uniquement ce qu'on a vraiment
+        envie de partager.
+      </p>
+
+      <ul class="blog-index__list">
+        {
+          posts.map((post) => (
+            <li class="blog-index__item">
+              <a
+                class="blog-index__link"
+                href={withBase(`/blog/${post.id}/`)}
+              >
+                <div class="blog-index__media">
+                  <img
+                    src={withBase(post.data.heroImage)}
+                    alt={post.data.heroAlt}
+                    loading="lazy"
+                  />
+                </div>
+                <div class="blog-index__body">
+                  <p class="blog-index__meta">
+                    <time datetime={post.data.pubDate.toISOString()}>
+                      {dateFmt.format(post.data.pubDate)}
+                    </time>
+                  </p>
+                  <h2 class="blog-index__title">{post.data.title}</h2>
+                  <p class="blog-index__desc">{post.data.description}</p>
+                </div>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .blog-index {
+    padding-top: clamp(6rem, 14vh, 10rem);
+  }
+  .blog-index__list {
+    list-style: none;
+    margin: clamp(3rem, 6vh, 5rem) 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+  }
+  .blog-index__item {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
+  .blog-index__link {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    align-items: center;
+    padding: clamp(1.5rem, 3vw, 2.25rem) 0;
+    text-decoration: none;
+    color: inherit;
+  }
+  .blog-index__media {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: rgba(0, 0, 0, 0.03);
+  }
+  .blog-index__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 400ms ease;
+  }
+  .blog-index__link:hover .blog-index__media img {
+    transform: scale(1.03);
+  }
+  .blog-index__meta {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    color: rgba(0, 0, 0, 0.5);
+    margin: 0 0 0.5rem;
+    text-transform: lowercase;
+  }
+  .blog-index__title {
+    font-family: "Space Grotesk", "Inter", sans-serif;
+    font-weight: 500;
+    font-size: clamp(1.25rem, 1.8vw, 1.625rem);
+    line-height: 1.25;
+    letter-spacing: -0.015em;
+    margin: 0 0 0.5rem;
+    color: rgba(0, 0, 0, 0.92);
+  }
+  .blog-index__desc {
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: rgba(0, 0, 0, 0.62);
+    margin: 0;
+    max-width: 60ch;
+  }
+
+  @media (max-width: 700px) {
+    .blog-index__link {
+      grid-template-columns: 1fr;
+    }
+    .blog-index__media {
+      max-width: 100%;
+    }
+  }
+</style>
