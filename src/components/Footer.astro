@@ -1,0 +1,204 @@
+---
+import { Icon } from "astro-icon/components";
+import Logo from "./Logo.astro";
+import { withBase } from "../utils/url";
+
+const home = withBase("/");
+const year = new Date().getFullYear();
+
+const nav = [
+  { label: "Services", href: `${home}#services` },
+  { label: "Galerie", href: `${home}#galerie` },
+  { label: "Tarifs", href: `${home}#tarifs` },
+  { label: "Blog", href: withBase("/blog") },
+  { label: "Contact", href: `${home}#contact` },
+];
+
+const contact = [
+  { icon: "lucide:mail", label: "hello@morphic.studio", href: "mailto:hello@morphic.studio" },
+  { icon: "lucide:phone", label: "+33 1 23 45 67 89", href: "tel:+33123456789" },
+];
+
+const legal = [
+  { label: "Mentions légales", href: withBase("/mentions-legales") },
+  { label: "Confidentialité", href: withBase("/confidentialite") },
+];
+---
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__brand">
+      <a class="site-footer__logo" href={home} aria-label="Morphic Studio">
+        <Logo />
+        <span>MORPHIC STUDIO</span>
+      </a>
+      <p class="site-footer__tagline">
+        Studio web indépendant. Sites et applications faits avec soin, livrés à
+        prix ferme.
+      </p>
+    </div>
+
+    <div class="site-footer__col">
+      <p class="site-footer__heading">Navigation</p>
+      <ul>
+        {nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+      </ul>
+    </div>
+
+    <div class="site-footer__col">
+      <p class="site-footer__heading">Contact</p>
+      <ul>
+        {
+          contact.map((item) => (
+            <li>
+              <a href={item.href}>
+                <Icon name={item.icon} />
+                <span>{item.label}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+
+  <div class="site-footer__base">
+    <p class="site-footer__copy">© {year} Morphic Studio. Tous droits réservés.</p>
+    <ul class="site-footer__legal">
+      {legal.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+    </ul>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: #0e0e0d;
+    padding: clamp(3rem, 6vh, 5rem) clamp(1.5rem, 6vw, 6rem)
+      clamp(1.5rem, 3vh, 2rem);
+    color: rgba(250, 250, 248, 0.72);
+  }
+
+  .site-footer__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: clamp(2rem, 4vw, 3.5rem);
+    padding-bottom: clamp(2.5rem, 5vh, 4rem);
+  }
+
+  .site-footer__brand {
+    max-width: 32ch;
+  }
+  .site-footer__logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    text-decoration: none;
+    color: #fafaf8;
+    font-family: "Quicksand", system-ui, sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    margin-bottom: 1rem;
+  }
+  .site-footer__logo :global(svg) {
+    height: 22px;
+    width: auto;
+    display: block;
+  }
+  .site-footer__logo :global(svg path) {
+    fill: #fafaf8;
+  }
+  .site-footer__tagline {
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: rgba(250, 250, 248, 0.55);
+    margin: 0;
+  }
+
+  .site-footer__heading {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: lowercase;
+    color: rgba(250, 250, 248, 0.45);
+    margin: 0 0 1rem;
+  }
+  .site-footer__col ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+  .site-footer__col a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.9375rem;
+    color: rgba(250, 250, 248, 0.72);
+    text-decoration: none;
+    transition: color 200ms ease;
+  }
+  .site-footer__col a:hover {
+    color: #fafaf8;
+  }
+  .site-footer__col a :global(svg) {
+    width: 15px;
+    height: 15px;
+    stroke-width: 1.75;
+    color: rgba(250, 250, 248, 0.45);
+  }
+
+  .site-footer__base {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding-top: clamp(1.25rem, 2.5vh, 1.75rem);
+    border-top: 1px solid rgba(250, 250, 248, 0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .site-footer__copy {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+    color: rgba(250, 250, 248, 0.4);
+    margin: 0;
+  }
+  .site-footer__legal {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: inline-flex;
+    gap: 1.25rem;
+  }
+  .site-footer__legal a {
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.8125rem;
+    color: rgba(250, 250, 248, 0.45);
+    text-decoration: none;
+    transition: color 200ms ease;
+  }
+  .site-footer__legal a:hover {
+    color: rgba(250, 250, 248, 0.9);
+  }
+
+  @media (max-width: 720px) {
+    .site-footer__inner {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    .site-footer__base {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>
