@@ -1,64 +1,60 @@
 ---
+import { Icon } from "astro-icon/components";
+
 const items = [
   {
+    icon: "lucide:tag",
     q: "Comment proposez-vous des prix aussi compétitifs ?",
-    a: "En travaillant intelligemment. Nous combinons une vraie expertise humaine et des outils modernes qui automatisent les tâches répétitives et nous font gagner un temps considérable. Ce temps gagné, on vous le rend, en délais plus courts et en tarifs plus justes. Les outils accélèrent l'exécution. La stratégie, le design, l'architecture et les arbitrages restent pilotés par des humains expérimentés.",
+    a: "Nous combinons expertise humaine et outils modernes qui automatisent les tâches répétitives. Ce temps gagné, nous vous le rendons en délais plus courts et tarifs plus justes.",
   },
   {
+    icon: "lucide:file-text",
     q: "Qu'est-ce qui est inclus dans le prix ?",
-    a: "La liste complète figure en §7. En résumé : cadrage, design responsive, développement, mise en ligne, formation, accès et fichiers. Ce qui n'est pas inclus par défaut (contenus, médias, SEO de fond, hébergement, traductions) y est aussi listé clairement.",
+    a: "Cadrage, design responsive, développement, mise en ligne, formation, accès et fichiers. Ce qui n'est pas inclus par défaut est listé clairement au devis.",
   },
   {
-    q: "Que se passe-t-il si le périmètre change en cours de projet ?",
-    a: "Le forfait initial couvre le périmètre validé au cadrage. Si une demande sort du cadre, nous vous proposons un avenant chiffré avant de l'engager. Vous décidez. Pas de dérive silencieuse, pas de surprise sur la facture finale.",
+    icon: "lucide:arrow-left-right",
+    q: "Que se passe-t-il si le périmètre change ?",
+    a: "Si une demande sort du cadre validé, nous vous proposons un avenant chiffré avant de l'engager. Pas de dérive silencieuse, pas de surprise sur la facture finale.",
   },
   {
+    icon: "lucide:clock",
     q: "Combien de temps prend un projet ?",
-    a: "Un site vitrine se livre généralement en [X semaines], une application en [X semaines à X mois] selon sa complexité. Nous vous donnons un délai ferme dès le cadrage.",
+    a: "Un site vitrine se livre en quelques semaines, une application en quelques semaines à quelques mois selon sa complexité. Délai ferme dès le cadrage.",
   },
   {
+    icon: "lucide:code",
     q: "Sur quelles technologies travaillez-vous ?",
-    a: "Nous privilégions des technologies modernes et largement adoptées, choisies pour leur fiabilité et la facilité à trouver d'autres développeurs après nous : Astro, Next.js, React et TypeScript pour le web, React Native pour le mobile. Le choix précis est arrêté au cadrage en fonction de votre projet.",
+    a: "Astro, Next.js, React et TypeScript pour le web, React Native pour le mobile. Des technologies modernes et largement adoptées, faciles à reprendre par d'autres équipes.",
   },
   {
-    q: "Est-ce que je suis propriétaire du site ou de l'application ?",
-    a: "Oui. À la livraison, vous récupérez les accès, le code source et les fichiers prévus au devis. Notre objectif : que vous ne soyez jamais dépendant de nous par défaut. Vous restez libre de poursuivre avec une autre équipe si vous le souhaitez.",
-  },
-  {
-    q: "Pouvez-vous reprendre un projet existant ?",
-    a: "Oui, si la base technique le permet. Nous commençons par un audit rapide pour vérifier ce qui peut être conservé, amélioré ou doit être reconstruit.",
-  },
-  {
-    q: "Que se passe-t-il après la livraison ?",
-    a: "Nous restons disponibles pour les ajustements, les évolutions et la maintenance, soit en forfait mensuel, soit à la demande. Pour les incidents bloquants, nous répondons sous [délai à préciser].",
-  },
-  {
-    q: "Travaillez-vous avec des entreprises hors d'Angers ?",
-    a: "Oui, sans aucun problème. Nous sommes basés à Angers mais nous travaillons avec des clients partout en France et à l'international. La majorité de nos échanges se font à distance, simplement et efficacement, et nous nous déplaçons quand c'est utile.",
-  },
-  {
-    q: "Comment gérez-vous les données personnelles et le RGPD ?",
-    a: "Les données collectées via vos formulaires sont hébergées en Europe et ne sont jamais revendues. Nous mettons en place la base RGPD (mentions, politique de confidentialité, gestion du consentement) sur tous les sites livrés, et nous adaptons selon votre activité si elle implique des données sensibles.",
+    icon: "lucide:key",
+    q: "Suis-je propriétaire du site ou de l'application ?",
+    a: "Oui. À la livraison, vous récupérez les accès, le code source et les fichiers prévus. Vous n'êtes jamais dépendant de nous par défaut.",
   },
 ];
 ---
 
 <section class="section faq">
-  <p class="section__eyebrow">FAQ</p>
-  <h2 class="section__title">Questions fréquentes.</h2>
-  <ul class="faq__list">
+  <div class="faq__head">
+    <h2 class="faq__title">FAQs</h2>
+    <p class="faq__lede">
+      Tout ce qu'il faut savoir sur nos offres et la facturation. Vous ne
+      trouvez pas votre réponse ? <a href="#contact" class="faq__link"
+        >écrivez-nous</a
+      >.
+    </p>
+  </div>
+
+  <ul class="faq__grid">
     {
       items.map((item) => (
         <li class="faq__item">
-          <details>
-            <summary>
-              <span class="faq__q">{item.q}</span>
-              <span class="faq__icon" aria-hidden="true" />
-            </summary>
-            <div class="faq__a">
-              <p>{item.a}</p>
-            </div>
-          </details>
+          <span class="faq__icon" aria-hidden="true">
+            <Icon name={item.icon} />
+          </span>
+          <h3 class="faq__q">{item.q}</h3>
+          <p class="faq__a">{item.a}</p>
         </li>
       ))
     }
@@ -66,83 +62,92 @@ const items = [
 </section>
 
 <style>
-  .faq__list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  .faq {
+    padding-top: clamp(2rem, 4vh, 4rem);
   }
-  .faq__item {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  .faq__head {
+    max-width: 56ch;
+    margin-bottom: clamp(2.5rem, 5vh, 4rem);
   }
-  .faq__item details {
-    padding: 0;
-  }
-  .faq__item summary {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
-    padding: 1.25rem 0;
-    cursor: pointer;
-    list-style: none;
-  }
-  .faq__item summary::-webkit-details-marker {
-    display: none;
-  }
-  .faq__q {
+  .faq__title {
     font-family: "Space Grotesk", "Inter", sans-serif;
-    font-weight: 500;
-    font-size: clamp(1.05rem, 1.4vw, 1.25rem);
-    line-height: 1.4;
-    color: rgba(0, 0, 0, 0.88);
+    font-weight: 700;
+    font-size: clamp(1.75rem, 3.4vw, 2.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0 0 1rem;
+    color: rgba(0, 0, 0, 0.92);
   }
-  .faq__icon {
-    flex: 0 0 auto;
-    width: 14px;
-    height: 14px;
-    position: relative;
-    transition: transform 200ms ease;
-  }
-  .faq__icon::before,
-  .faq__icon::after {
-    content: "";
-    position: absolute;
-    background: rgba(0, 0, 0, 0.55);
-  }
-  .faq__icon::before {
-    left: 0;
-    right: 0;
-    top: 50%;
-    height: 1.5px;
-    transform: translateY(-50%);
-  }
-  .faq__icon::after {
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    width: 1.5px;
-    transform: translateX(-50%);
-    transition: transform 200ms ease;
-  }
-  .faq__item details[open] .faq__icon::after {
-    transform: translateX(-50%) scaleY(0);
-  }
-  .faq__a {
-    padding: 0 0 1.5rem;
-    max-width: 64ch;
-  }
-  .faq__a p {
-    margin: 0;
+  .faq__lede {
     font-family: "Inter", system-ui, sans-serif;
-    font-size: clamp(1rem, 1.1vw, 1.0625rem);
-    line-height: 1.65;
-    color: rgba(0, 0, 0, 0.7);
+    font-size: clamp(0.95rem, 1.05vw, 1.0625rem);
+    line-height: 1.6;
+    color: rgba(0, 0, 0, 0.6);
+    margin: 0;
+  }
+  .faq__link {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+  }
+  .faq__link:hover {
+    color: rgba(0, 0, 0, 0.9);
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .faq__icon::after {
-      transition: none;
+  .faq__grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2.5rem);
+  }
+  .faq__item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .faq__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 8px;
+    color: rgba(0, 0, 0, 0.75);
+    margin-bottom: 1.5rem;
+  }
+  .faq__icon :global(svg) {
+    width: 20px;
+    height: 20px;
+    stroke-width: 1.5;
+  }
+  .faq__q {
+    font-family: "Inter", system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.4;
+    margin: 0 0 0.5rem;
+    color: rgba(0, 0, 0, 0.92);
+  }
+  .faq__a {
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: rgba(0, 0, 0, 0.6);
+    margin: 0;
+  }
+
+  @media (max-width: 900px) {
+    .faq__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 560px) {
+    .faq__grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>
