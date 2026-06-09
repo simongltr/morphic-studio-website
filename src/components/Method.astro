@@ -1,0 +1,158 @@
+---
+import { Icon } from "astro-icon/components";
+
+const steps = [
+  {
+    icon: "lucide:message-circle",
+    title: "Cadrage",
+    body: "On comprend votre projet, on précise le périmètre, on chiffre. Vous repartez avec un devis ferme et un planning.",
+    duration: "≈ 1 semaine",
+  },
+  {
+    icon: "lucide:pen-tool",
+    title: "Design",
+    body: "On dessine l'architecture, les écrans, les interactions. Vous validez chaque étape avant qu'on touche au code.",
+    duration: "2 à 3 semaines",
+  },
+  {
+    icon: "lucide:code-2",
+    title: "Développement",
+    body: "On construit, on teste, on intègre vos contenus. Une démo accessible à tout moment, mise à jour en continu.",
+    duration: "3 à 6 semaines",
+  },
+  {
+    icon: "lucide:rocket",
+    title: "Mise en ligne",
+    body: "On déploie, on forme votre équipe, on vous remet les clés : code, accès, fichiers. 30 jours de suivi inclus.",
+    duration: "1 semaine + suivi",
+  },
+];
+---
+
+<section id="methode" class="section method">
+  <p class="section__eyebrow">Méthode</p>
+  <h2 class="section__title">Comment on travaille.</h2>
+  <p class="section__body">
+    Quatre étapes claires, des livrables à chaque palier, un délai ferme dès le
+    cadrage. Pas de dérive silencieuse, pas de surprise à la facture finale.
+  </p>
+
+  <ol class="method__steps">
+    {
+      steps.map((step, index) => (
+        <li class="method__step">
+          <span class="method__number">{String(index + 1).padStart(2, "0")}</span>
+          <span class="method__icon" aria-hidden="true">
+            <Icon name={step.icon} />
+          </span>
+          <h3 class="method__title">{step.title}</h3>
+          <p class="method__body">{step.body}</p>
+          <p class="method__duration">{step.duration}</p>
+        </li>
+      ))
+    }
+  </ol>
+</section>
+
+<style>
+  .method {
+    padding-top: clamp(2rem, 4vh, 4rem);
+  }
+
+  .method__steps {
+    list-style: none;
+    margin: clamp(2.5rem, 5vh, 4rem) 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    position: relative;
+  }
+
+  /* Thin connector line behind the numbered chips */
+  .method__steps::before {
+    content: "";
+    position: absolute;
+    top: 0.55rem;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.08);
+    z-index: 0;
+  }
+
+  .method__step {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    z-index: 1;
+  }
+  .method__number {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: rgba(0, 0, 0, 0.55);
+    background: #fafaf8;
+    padding: 0 0.5rem 0 0;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+  .method__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 8px;
+    color: rgba(0, 0, 0, 0.75);
+    margin-bottom: 1.25rem;
+  }
+  .method__icon :global(svg) {
+    width: 20px;
+    height: 20px;
+    stroke-width: 1.5;
+  }
+  .method__title {
+    font-family: "Space Grotesk", "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 1.0625rem;
+    line-height: 1.3;
+    margin: 0 0 0.5rem;
+    color: rgba(0, 0, 0, 0.92);
+  }
+  .method__body {
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: rgba(0, 0, 0, 0.6);
+    margin: 0 0 1rem;
+    flex-grow: 1;
+  }
+  .method__duration {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: lowercase;
+    color: rgba(0, 0, 0, 0.45);
+    margin: 0;
+  }
+
+  @media (max-width: 900px) {
+    .method__steps {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem 1.5rem;
+    }
+    .method__steps::before {
+      display: none;
+    }
+  }
+  @media (max-width: 560px) {
+    .method__steps {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
