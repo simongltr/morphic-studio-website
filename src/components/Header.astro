@@ -1,21 +1,25 @@
 ---
 import Logo from "./Logo.astro";
+import { withBase } from "../utils/url";
+
+const home = withBase("/");
 ---
 
 <header class="site-header">
   <div class="site-header__pill" id="header-pill">
     <span class="site-header__highlight" id="header-highlight"></span>
-    <a class="site-header__left" href="#" aria-label="Morphic Studio">
+    <a class="site-header__left" href={home} aria-label="Morphic Studio">
       <span class="site-header__logo">
         <Logo />
       </span>
       <span class="site-header__name">MORPHIC STUDIO</span>
     </a>
     <nav class="site-header__nav">
-      <a href="#work">WORK</a>
-      <a href="#about">ABOUT</a>
-      <a href="#services">SERVICES</a>
-      <a href="#contact">CONTACT</a>
+      <a href={`${home}#services`}>SERVICES</a>
+      <a href={`${home}#galerie`}>GALERIE</a>
+      <a href={`${home}#tarifs`}>TARIFS</a>
+      <a href={withBase("/blog")}>BLOG</a>
+      <a href={`${home}#contact`}>CONTACT</a>
     </nav>
   </div>
 </header>

@@ -70,4 +70,4 @@ C'est peut-être la donnée la plus honnête. Une agence dont le propre site est
 
 ---
 
-Si vous voulez nous poser ces cinq questions à nous, [écrivez-nous](#contact). On répond toujours par écrit, ce qui vous donne quelque chose à comparer avec les autres réponses que vous recevrez.
+Si vous voulez nous poser ces cinq questions à nous, [écrivez-nous](../../#contact). On répond toujours par écrit, ce qui vous donne quelque chose à comparer avec les autres réponses que vous recevrez.

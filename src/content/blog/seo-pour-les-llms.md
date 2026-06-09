@@ -77,4 +77,4 @@ Trois pièges qu'on voit revenir tout le temps :
 
 Le SEO pour les IA, ce n'est pas une révolution. C'est une évolution naturelle du référencement classique, avec quelques nouveaux outils (le fichier llms.txt, les données structurées étendues) et un changement d'état d'esprit : il faut écrire pour être **cité**, pas seulement pour être **lu**.
 
-Si vous voulez qu'on regarde votre cas, [écrivez-nous](#contact). On commence toujours par un audit gratuit pour voir où vous en êtes, ce qui se dit déjà de vous, et ce qu'il faut prioriser.
+Si vous voulez qu'on regarde votre cas, [écrivez-nous](../../#contact). On commence toujours par un audit gratuit pour voir où vous en êtes, ce qui se dit déjà de vous, et ce qu'il faut prioriser.
