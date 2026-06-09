@@ -1,12 +1,13 @@
 ---
 import Logo from "./Logo.astro";
+import { Icon } from "astro-icon/components";
 import { withBase } from "../utils/url";
 
 const home = withBase("/");
 ---
 
 <header class="site-header">
-  <div class="site-header__pill" id="header-pill">
+  <div class="site-header__pill" id="header-pill" data-menu-open="false">
     <span class="site-header__highlight" id="header-highlight"></span>
     <a class="site-header__left" href={home} aria-label="Morphic Studio">
       <span class="site-header__logo">
@@ -14,7 +15,7 @@ const home = withBase("/");
       </span>
       <span class="site-header__name">MORPHIC STUDIO</span>
     </a>
-    <nav class="site-header__nav">
+    <nav class="site-header__nav" id="header-menu">
       <a href={`${home}#services`}>SERVICES</a>
       <a href={`${home}#methode`}>MÉTHODE</a>
       <a href={`${home}#galerie`}>GALERIE</a>
@@ -22,6 +23,17 @@ const home = withBase("/");
       <a href={withBase("/blog")}>BLOG</a>
       <a href={`${home}#contact`}>CONTACT</a>
     </nav>
+    <button
+      type="button"
+      class="site-header__burger"
+      id="header-burger"
+      aria-label="Menu"
+      aria-expanded="false"
+      aria-controls="header-menu"
+    >
+      <Icon name="lucide:menu" class="site-header__burger-icon site-header__burger-icon--open" />
+      <Icon name="lucide:x" class="site-header__burger-icon site-header__burger-icon--close" />
+    </button>
   </div>
 </header>
 
@@ -49,8 +61,9 @@ const home = withBase("/");
     border-radius: 999px;
     display: inline-flex;
     align-items: center;
-    padding: 0.4rem 0.5rem;
-    gap: clamp(2.25rem, 4vw, 3.25rem);
+    padding: 0.45rem 0.6rem;
+    gap: clamp(2.5rem, 4vw, 3.5rem);
+    white-space: nowrap;
   }
   .site-header__highlight {
     position: absolute;
@@ -99,6 +112,7 @@ const home = withBase("/");
   }
   .site-header__name {
     color: #000;
+    white-space: nowrap;
   }
   .site-header__nav {
     position: relative;
@@ -118,13 +132,85 @@ const home = withBase("/");
     color: #000;
   }
 
-  @media (max-width: 640px) {
-    .site-header__name {
+  /* ---------- Burger (mobile only) ---------- */
+  .site-header__burger {
+    display: none;
+    position: relative;
+    z-index: 1;
+    width: 38px;
+    height: 38px;
+    margin-left: -0.25rem;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 999px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    color: rgba(0, 0, 0, 0.78);
+  }
+  .site-header__burger :global(.site-header__burger-icon) {
+    width: 20px;
+    height: 20px;
+    stroke-width: 1.75;
+    transition: opacity 180ms ease;
+  }
+  .site-header__burger :global(.site-header__burger-icon--close) {
+    position: absolute;
+    opacity: 0;
+  }
+  .site-header__pill[data-menu-open="true"]
+    .site-header__burger :global(.site-header__burger-icon--open) {
+    opacity: 0;
+  }
+  .site-header__pill[data-menu-open="true"]
+    .site-header__burger :global(.site-header__burger-icon--close) {
+    opacity: 1;
+  }
+
+  /* ---------- Mobile layout ---------- */
+  @media (max-width: 900px) {
+    .site-header__pill {
+      gap: 1rem;
+      padding: 0.4rem 0.75rem 0.4rem 0.6rem;
+    }
+    .site-header__highlight {
       display: none;
     }
+    .site-header__burger {
+      display: inline-flex;
+    }
     .site-header__nav {
-      gap: 0.75rem;
-      font-size: 0.7rem;
+      position: absolute;
+      top: calc(100% + 0.5rem);
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 220px;
+      max-width: calc(100vw - 2rem);
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.125rem;
+      padding: 0.6rem;
+      background: rgba(250, 250, 248, 0.97);
+      backdrop-filter: blur(18px) saturate(160%);
+      -webkit-backdrop-filter: blur(18px) saturate(160%);
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      border-radius: 18px;
+      box-shadow:
+        0 16px 40px rgba(0, 0, 0, 0.14),
+        0 2px 6px rgba(0, 0, 0, 0.06);
+      display: none;
+    }
+    .site-header__pill[data-menu-open="true"] .site-header__nav {
+      display: flex;
+    }
+    .site-header__nav a {
+      text-align: center;
+      padding: 0.65rem 0.9rem;
+      font-size: 0.75rem;
+    }
+    .site-header__nav a:hover {
+      background: rgba(0, 0, 0, 0.05);
     }
   }
 </style>
@@ -170,5 +256,41 @@ const home = withBase("/");
       });
       pill.addEventListener("mouseleave", hide);
     }
+  }
+
+  // Mobile menu toggle (burger inside the pill).
+  const burger = document.getElementById("header-burger");
+  const menu = document.getElementById("header-menu");
+  if (pill && burger && menu) {
+    const setOpen = (open: boolean) => {
+      pill.dataset.menuOpen = String(open);
+      burger.setAttribute("aria-expanded", String(open));
+    };
+
+    burger.addEventListener("click", (event) => {
+      event.stopPropagation();
+      const isOpen = pill.dataset.menuOpen === "true";
+      setOpen(!isOpen);
+    });
+
+    menu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => setOpen(false));
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && pill.dataset.menuOpen === "true") {
+        setOpen(false);
+        burger.focus();
+      }
+    });
+
+    document.addEventListener("click", (event) => {
+      if (
+        pill.dataset.menuOpen === "true" &&
+        !pill.contains(event.target as Node)
+      ) {
+        setOpen(false);
+      }
+    });
   }
 </script>
