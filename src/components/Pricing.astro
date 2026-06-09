@@ -1,0 +1,220 @@
+---
+import { Icon } from "astro-icon/components";
+import { pricingPlans } from "../data/pricing-plans";
+---
+
+<section class="section pricing">
+  <p class="section__eyebrow">Tarifs</p>
+  <h2 class="section__title">Forfaits transparents.</h2>
+  <p class="section__body">
+    Trois formules, prix ferme dès le cadrage. Ce qui est inclus est listé
+    précisément. Ce qui ne l'est pas est dit clairement.
+  </p>
+
+  <ul class="pricing__grid">
+    {
+      pricingPlans.map((plan) => (
+        <li
+          class:list={["pricing__card", { "pricing__card--popular": plan.popular }]}
+        >
+          {plan.popular && (
+            <span class="pricing__badge">
+              <Icon name="lucide:sparkles" />
+              <span>Le plus demandé</span>
+            </span>
+          )}
+
+          <header class="pricing__header">
+            <h3 class="pricing__name">{plan.name}</h3>
+            <p class="pricing__tagline">{plan.tagline}</p>
+          </header>
+
+          <p class="pricing__price">
+            <span class="pricing__amount">{plan.price}</span>
+            {plan.priceSuffix && (
+              <span class="pricing__suffix">{plan.priceSuffix}</span>
+            )}
+          </p>
+
+          <ul class="pricing__features">
+            {plan.features.map((feature) => (
+              <li class="pricing__feature">
+                <Icon name="lucide:check" />
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+
+          <a class="pricing__cta" href={plan.ctaHref}>
+            {plan.cta}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  .pricing__grid {
+    list-style: none;
+    margin: clamp(2.5rem, 5vh, 4rem) 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1.25rem, 2.5vw, 1.75rem);
+    align-items: stretch;
+  }
+
+  .pricing__card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 14px;
+    padding: clamp(1.75rem, 3vw, 2.25rem);
+    transition: border-color 200ms ease, transform 200ms ease;
+  }
+  .pricing__card:hover {
+    border-color: rgba(0, 0, 0, 0.18);
+  }
+
+  .pricing__card--popular {
+    border-color: rgba(0, 0, 0, 0.92);
+    border-width: 2px;
+    padding: calc(clamp(1.75rem, 3vw, 2.25rem) - 1px);
+  }
+  .pricing__card--popular:hover {
+    border-color: rgba(0, 0, 0, 0.92);
+  }
+
+  .pricing__badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    background: rgba(0, 0, 0, 0.92);
+    color: #fafaf8;
+    border-radius: 999px;
+    padding: 0.4rem 0.875rem;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: lowercase;
+    white-space: nowrap;
+  }
+  .pricing__badge :global(svg) {
+    width: 12px;
+    height: 12px;
+  }
+
+  .pricing__header {
+    margin-bottom: 1.5rem;
+  }
+  .pricing__name {
+    font-family: "Space Grotesk", "Inter", sans-serif;
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    margin: 0 0 0.5rem;
+    color: rgba(0, 0, 0, 0.92);
+  }
+  .pricing__tagline {
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    margin: 0;
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .pricing__price {
+    margin: 0 0 1.75rem;
+    padding-bottom: 1.75rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .pricing__amount {
+    font-family: "Space Grotesk", "Inter", sans-serif;
+    font-weight: 600;
+    font-size: clamp(1.75rem, 2.6vw, 2.25rem);
+    line-height: 1;
+    letter-spacing: -0.025em;
+    color: rgba(0, 0, 0, 0.92);
+  }
+  .pricing__suffix {
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.875rem;
+    color: rgba(0, 0, 0, 0.5);
+  }
+
+  .pricing__features {
+    list-style: none;
+    margin: 0 0 2rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex-grow: 1;
+  }
+  .pricing__feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: rgba(0, 0, 0, 0.7);
+  }
+  .pricing__feature :global(svg) {
+    flex: 0 0 auto;
+    width: 16px;
+    height: 16px;
+    margin-top: 2px;
+    stroke-width: 2;
+    color: rgba(0, 0, 0, 0.55);
+  }
+
+  .pricing__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.875rem 1.25rem;
+    border: 1px solid rgba(0, 0, 0, 0.18);
+    border-radius: 999px;
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.9);
+    background: transparent;
+    text-decoration: none;
+    transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
+  }
+  .pricing__cta:hover {
+    background: rgba(0, 0, 0, 0.92);
+    border-color: rgba(0, 0, 0, 0.92);
+    color: #fafaf8;
+  }
+  .pricing__card--popular .pricing__cta {
+    background: rgba(0, 0, 0, 0.92);
+    color: #fafaf8;
+    border-color: rgba(0, 0, 0, 0.92);
+  }
+  .pricing__card--popular .pricing__cta:hover {
+    background: #000;
+    border-color: #000;
+  }
+
+  @media (max-width: 900px) {
+    .pricing__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
