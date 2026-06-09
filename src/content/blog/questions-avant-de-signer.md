@@ -2,8 +2,8 @@
 title: "Les 5 questions à poser à une agence web avant de signer"
 description: "Choisir une agence pour son site, c'est souvent un acte de foi. Voici cinq questions concrètes qui vous éviteront de mauvaises surprises."
 pubDate: 2026-06-05
-heroImage: "/blog/questions-agence.svg"
-heroAlt: "Deux bulles de dialogue superposées avec des points d'interrogation"
+heroImage: "/blog/questions-agence.webp"
+heroAlt: "Cinq dalles verticales de schiste alignées, ombres rasantes parallèles"
 tags: ["méthode", "client"]
 ---
 

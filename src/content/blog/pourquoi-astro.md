@@ -2,8 +2,8 @@
 title: "Pourquoi on a choisi Astro pour ce site"
 description: "Sites vitrines, blogs, landing pages : pourquoi Astro nous semble être le meilleur choix par défaut en 2026."
 pubDate: 2026-06-08
-heroImage: "/blog/astro.svg"
-heroAlt: "Étoiles sur fond sombre évoquant une constellation"
+heroImage: "/blog/astro.webp"
+heroAlt: "Colonne monumentale de feuilles de papier empilées, traversée par un faisceau de lumière rasante"
 tags: ["technos", "astro"]
 ---
 

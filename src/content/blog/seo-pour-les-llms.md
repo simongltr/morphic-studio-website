@@ -2,8 +2,8 @@
 title: "SEO et IA : comment exister dans les réponses de ChatGPT"
 description: "Vos prospects posent désormais leurs questions à ChatGPT, Claude ou Perplexity. Voici comment vous donner une chance d'apparaître dans leurs réponses, sans perdre votre référencement Google."
 pubDate: 2026-06-09
-heroImage: "/blog/seo-llms.svg"
-heroAlt: "Graphe de noeuds connectés sur grille beige, évoquant un réseau d'entités"
+heroImage: "/blog/seo-llms.webp"
+heroAlt: "Grande dalle de verre dépoli traversée par un faisceau de lumière diffus"
 tags: ["seo", "ia", "stratégie"]
 ---
 

@@ -2,8 +2,8 @@
 title: "WordPress en 2026 : faut-il encore l'utiliser ?"
 description: "WordPress fait tourner 40 % du web. Ça ne veut pas dire que c'est le bon choix pour vous. Voici quand on le recommande, et quand on suggère autre chose."
 pubDate: 2026-06-02
-heroImage: "/blog/wordpress.svg"
-heroAlt: "Blocs empilés sur fond bleu nuit, évoquant l'accumulation de plugins"
+heroImage: "/blog/wordpress.webp"
+heroAlt: "Colonne de béton érodée et fissurée, fragments dispersés à sa base"
 tags: ["technos", "cms"]
 ---
 

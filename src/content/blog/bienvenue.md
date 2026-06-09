@@ -2,8 +2,8 @@
 title: "Bienvenue sur le blog Morphic"
 description: "On ouvre un espace pour partager ce qu'on apprend en construisant des sites et des applications, sans jargon et sans détour."
 pubDate: 2026-05-15
-heroImage: "/blog/bienvenue.svg"
-heroAlt: "Cercles concentriques sur fond bleu nuit"
+heroImage: "/blog/bienvenue.webp"
+heroAlt: "Embrasure entrouverte dans un mur de plâtre, faisceau de lumière chaude se découpant sur le sol"
 tags: ["studio", "édito"]
 ---
 

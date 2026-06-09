@@ -2,8 +2,8 @@
 title: "Pourquoi on travaille au forfait et jamais au TJM"
 description: "Le forfait fait peur à beaucoup d'agences parce qu'il les engage. C'est exactement pour ça qu'on l'a choisi."
 pubDate: 2026-05-22
-heroImage: "/blog/forfait.svg"
-heroAlt: "Deux blocs côte à côte représentant le forfait et la régie"
+heroImage: "/blog/forfait.webp"
+heroAlt: "Bloc de marbre clair posé sur un socle de béton brut, longue ombre rasante"
 tags: ["pricing", "méthode"]
 ---
 
