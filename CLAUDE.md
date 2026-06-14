@@ -35,7 +35,9 @@ When the user asks for a change:
 3. **Do not** automatically run screenshot scripts — those tools exist for when the user wants visual feedback, not as a default self-check.
 4. Commit only when the user asks.
 
-Plans are written to markdown files at the root of the repo, never commit them. Names are folowing "PLAN-*.md"
+Important rules:
+- Never run `rm` command when `git rm` can be used, clearly ask confirmation for non recoverable destructive actions
+- Plans are written to markdown files at the root of the repo, never commit them. Names are folowing "PLAN-*.md"
 
 ### Component conventions
 
