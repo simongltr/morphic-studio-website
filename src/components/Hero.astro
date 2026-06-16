@@ -15,10 +15,10 @@ const heroBgUrl = `url(${withBase("/hero-background.webp")})`;
     <div class="hero__wash"></div>
     <div class="hero__masthead">
       <h1 class="hero__title">
-        Votre partenaire digital,<br />de l'idée à la mise en ligne
+        Votre partenaire digital, <br />de l'idée à la mise en ligne
       </h1>
       <p class="hero__subtitle">
-        Branding, sites web, MVP et outils sur mesure<br />pour créer, lancer
+        Branding, sites web, MVP et outils sur mesure <br />pour créer, lancer
         et optimiser vos projets digitaux.
       </p>
     </div>
@@ -127,9 +127,33 @@ const heroBgUrl = `url(${withBase("/hero-background.webp")})`;
     .hero-stage {
       height: 220vh;
     }
+    .hero__masthead {
+      width: 97vw;
+    }
+    .hero__title {
+      font-size: clamp(2.15rem, 8.6vw, 2.55rem);
+      line-height: 1.18;
+      text-wrap: balance;
+    }
+    .hero__title br {
+      display: none;
+    }
+    .hero__subtitle {
+      font-size: clamp(0.9rem, 2.9vw, 1.05rem);
+      letter-spacing: 0.14em;
+      margin-top: 1rem;
+      text-wrap: balance;
+    }
+    .hero__subtitle br {
+      display: none;
+    }
     .hero__team {
-      height: 50%;
-      bottom: -8%;
+      width: 135vw;
+      max-width: none;
+      height: auto;
+      bottom: -6%;
+      object-fit: contain;
+      object-position: bottom center;
     }
   }
 
@@ -170,6 +194,8 @@ const heroBgUrl = `url(${withBase("/hero-background.webp")})`;
     const BG_SCALE_MAX = 3.0;
     const PARALLAX_MAX_X = 6;
     const PARALLAX_MAX_Y = 3;
+    const MASTHEAD_TOP_START = isMobile ? 44 : 41;
+    const MASTHEAD_TOP_END = isMobile ? 22 : 18;
 
     let scrollProgress = 0;
     let mouseTargetX = 0;
@@ -226,7 +252,13 @@ const heroBgUrl = `url(${withBase("/hero-background.webp")})`;
       const teamBlur = remap(p, 0.10, 0.6, 0, TEAM_BLUR_MAX);
       const teamOpacity = remap(p, 0.35, 0.7, 1, 0);
       const wash = remap(p, 0.7, 0.9, 0, 1);
-      const mastheadTop = remap(p, 0.85, 1.0, 41, 18);
+      const mastheadTop = remap(
+        p,
+        0.85,
+        1.0,
+        MASTHEAD_TOP_START,
+        MASTHEAD_TOP_END,
+      );
 
       hero!.style.setProperty(
         "--masthead-top",
