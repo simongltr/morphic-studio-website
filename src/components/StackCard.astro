@@ -2,11 +2,12 @@
 interface Props {
   title: string;
   body: string;
+  examples: string;
   imgColor: string;
   idx: number;
 }
 
-const { title, body, imgColor, idx } = Astro.props;
+const { title, body, examples, imgColor, idx } = Astro.props;
 ---
 
 <article
@@ -16,7 +17,10 @@ const { title, body, imgColor, idx } = Astro.props;
   <h3 class="stack-card__title">{title}</h3>
   <div class="stack-card__body">
     <div class="stack-card__text">
-      <p>{body}</p>
+      <div class="stack-card__text-inner">
+        <p class="stack-card__body-text">{body}</p>
+        <p class="stack-card__examples">{examples}</p>
+      </div>
     </div>
     <div class="stack-card__image"></div>
   </div>
@@ -66,14 +70,28 @@ const { title, body, imgColor, idx } = Astro.props;
     padding: clamp(1.25rem, 2vw, 2rem);
     display: flex;
     align-items: center;
+    min-height: 0;
   }
-  .stack-card__text p {
+  .stack-card__text-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    max-width: 36ch;
+  }
+  .stack-card__body-text {
     margin: 0;
     font-family: "Inter", system-ui, sans-serif;
     font-size: clamp(0.875rem, 1vw, 1rem);
     line-height: 1.55;
     color: rgba(0, 0, 0, 0.72);
-    max-width: 30ch;
+  }
+  .stack-card__examples {
+    margin: 0;
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: clamp(0.75rem, 0.85vw, 0.85rem);
+    line-height: 1.55;
+    color: rgba(0, 0, 0, 0.5);
+    font-style: italic;
   }
   .stack-card__image {
     background: var(--img-color, linear-gradient(135deg, #d4bf95, #a88860));
