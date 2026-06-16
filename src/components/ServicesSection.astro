@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components";
 import { services } from "../data/services";
 ---
 
@@ -18,7 +19,9 @@ import { services } from "../data/services";
             aria-selected={i === 0 ? "true" : "false"}
             tabindex={i === 0 ? "0" : "-1"}
           >
-            <span class="ss-thumb" style={`background: ${card.imgColor}`} />
+            <span class="ss-thumb">
+              <Icon name={card.icon} />
+            </span>
             <span class="ss-item-title">{card.title}</span>
           </button>
         ))
@@ -110,13 +113,25 @@ import { services } from "../data/services";
     background: #fff;
     border-color: rgba(0, 0, 0, 0.08);
     color: rgba(0, 0, 0, 0.92);
-    box-shadow: 0 6px 18px -10px rgba(0, 0, 0, 0.18);
   }
   .ss-thumb {
     flex: 0 0 auto;
     width: 44px;
     height: 44px;
     border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.04);
+    color: rgba(0, 0, 0, 0.7);
+  }
+  .ss-thumb [data-icon] {
+    width: 22px;
+    height: 22px;
+  }
+  .ss-item[aria-selected="true"] .ss-thumb {
+    background: rgba(0, 0, 0, 0.06);
+    color: rgba(0, 0, 0, 0.9);
   }
   .ss-item-title {
     font-weight: 500;
@@ -238,6 +253,10 @@ import { services } from "../data/services";
     .ss-thumb {
       width: 32px;
       height: 32px;
+    }
+    .ss-thumb [data-icon] {
+      width: 18px;
+      height: 18px;
     }
   }
 </style>
