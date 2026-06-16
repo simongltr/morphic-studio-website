@@ -15,11 +15,11 @@ const heroBgUrl = `url(${withBase("/hero-background.webp")})`;
     <div class="hero__wash"></div>
     <div class="hero__masthead">
       <h1 class="hero__title">
-        Votre partenaire digital, <br />de l'idée à la mise en ligne
+        Votre partenaire digital, de l'idée à la mise en ligne
       </h1>
       <p class="hero__subtitle">
-        Branding, sites web, MVP et outils sur mesure <br />pour créer, lancer
-        et optimiser vos projets digitaux.
+        Branding, sites web, MVP et outils sur mesure pour créer, lancer et
+        optimiser vos projets digitaux.
       </p>
     </div>
   </section>
@@ -28,7 +28,7 @@ const heroBgUrl = `url(${withBase("/hero-background.webp")})`;
 <style define:vars={{ heroBg: heroBgUrl }}>
   .hero-stage {
     position: relative;
-    height: 280vh;
+    height: 240vh;
     background: #fafaf8;
   }
 
@@ -46,7 +46,8 @@ const heroBgUrl = `url(${withBase("/hero-background.webp")})`;
     --team-x: 0px;
     --team-y: 0px;
     --wash: 0;
-    --masthead-top: 41%;
+    --masthead-top: 42%;
+    --team-bottom: -8%;
   }
 
   .hero__bg {
@@ -66,7 +67,7 @@ const heroBgUrl = `url(${withBase("/hero-background.webp")})`;
     left: 50%;
     top: var(--masthead-top);
     transform: translate(-50%, -50%);
-    width: min(1100px, 92vw);
+    width: min(1100px, 95vw);
     text-align: center;
     z-index: 2;
   }
@@ -76,34 +77,37 @@ const heroBgUrl = `url(${withBase("/hero-background.webp")})`;
     text-align: center;
     font-family: "Libre Baskerville", Georgia, serif;
     font-weight: 700;
-    font-size: clamp(2rem, 4.6vw, 4.25rem);
-    line-height: 1.18;
+    font-size: clamp(2.55rem, calc(2rem + 2.5vw), 4.25rem);
+    line-height: 1.2;
     letter-spacing: -0.01em;
     color: rgba(0, 0, 0, 0.8);
+    text-wrap: balance;
   }
 
   .hero__subtitle {
     margin: clamp(0.5rem, 0.9vw, 0.875rem) auto 0;
+    max-width: 40rem;
     text-align: center;
     font-family: "Quicksand", system-ui, sans-serif;
     font-weight: 500;
-    font-size: clamp(0.875rem, 1.1vw, 1.2rem);
-    letter-spacing: 0.22em;
+    font-size: 1rem;
+    letter-spacing: 0.18em;
     color: rgba(0, 0, 0, 0.75);
     text-transform: uppercase;
     line-height: 1.5;
+    text-wrap: balance;
   }
 
   .hero__team {
     position: absolute;
     left: 50%;
-    bottom: -9%;
+    bottom: var(--team-bottom);
     transform: translate(calc(-50% + var(--team-x)), var(--team-y))
       scale(var(--team-scale));
     transform-origin: 50% 65%;
-    height: 58%;
     width: auto;
-    max-width: 90vw;
+    height: auto;
+    max-width: clamp(520px, 133vw, 931px);
     object-fit: contain;
     object-position: bottom center;
     pointer-events: none;
@@ -121,40 +125,6 @@ const heroBgUrl = `url(${withBase("/hero-background.webp")})`;
     opacity: var(--wash);
     pointer-events: none;
     z-index: 1;
-  }
-
-  @media (max-width: 640px) {
-    .hero-stage {
-      height: 220vh;
-    }
-    .hero__masthead {
-      width: 97vw;
-    }
-    .hero__title {
-      font-size: clamp(2.15rem, 8.6vw, 2.55rem);
-      line-height: 1.18;
-      text-wrap: balance;
-    }
-    .hero__title br {
-      display: none;
-    }
-    .hero__subtitle {
-      font-size: clamp(0.9rem, 2.9vw, 1.05rem);
-      letter-spacing: 0.14em;
-      margin-top: 1rem;
-      text-wrap: balance;
-    }
-    .hero__subtitle br {
-      display: none;
-    }
-    .hero__team {
-      width: 135vw;
-      max-width: none;
-      height: auto;
-      bottom: -6%;
-      object-fit: contain;
-      object-position: bottom center;
-    }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -185,17 +155,20 @@ const heroBgUrl = `url(${withBase("/hero-background.webp")})`;
       "(prefers-reduced-motion: reduce)",
     ).matches;
     const supportsHover = !window.matchMedia("(hover: none)").matches;
-    const isMobile = window.matchMedia(
-      "(hover: none), (max-width: 640px)",
-    ).matches;
 
-    const TEAM_BLUR_MAX = isMobile ? 14 : 24;
-    const TEAM_SCALE_MAX = isMobile ? 3.5 : 4.5;
     const BG_SCALE_MAX = 3.0;
     const PARALLAX_MAX_X = 6;
     const PARALLAX_MAX_Y = 3;
-    const MASTHEAD_TOP_START = isMobile ? 44 : 41;
-    const MASTHEAD_TOP_END = isMobile ? 22 : 18;
+
+    // Composition values interpolate smoothly from "small viewport" → "wide
+    // viewport" between 480px and 1100px. Below 480px we lock to the small
+    // end; above 1100px we lock to the wide end.
+    const SMALL_W = 480;
+    const WIDE_W = 1100;
+    let TEAM_BLUR_MAX = 24;
+    let TEAM_SCALE_MAX = 4.5;
+    let MASTHEAD_TOP_START = 41;
+    let MASTHEAD_TOP_END = 18;
 
     let scrollProgress = 0;
     let mouseTargetX = 0;
@@ -216,6 +189,32 @@ const heroBgUrl = `url(${withBase("/hero-background.webp")})`;
     ) => {
       const t = clamp((v - inA) / (inB - inA), 0, 1);
       return outA + (outB - outA) * t;
+    };
+
+    // Range where the team image must shrink because of horizontal edge
+    // constraints (matches the CSS max-width clamp). Inside this range the
+    // image rises slightly so it stays close to the subtitle.
+    const TEAM_SHRINK_WIDE = 700;
+    const TEAM_SHRINK_SMALL = 390;
+
+    const recomputeBreakpointValues = () => {
+      const w = window.innerWidth;
+      // smallFactor: 1 at SMALL_W, 0 at WIDE_W
+      const smallFactor = clamp((WIDE_W - w) / (WIDE_W - SMALL_W), 0, 1);
+      const lerp = (wide: number, small: number) =>
+        wide + (small - wide) * smallFactor;
+      TEAM_BLUR_MAX = lerp(24, 14);
+      TEAM_SCALE_MAX = lerp(4.5, 3.5);
+      MASTHEAD_TOP_START = lerp(41, 44);
+      MASTHEAD_TOP_END = lerp(18, 22);
+
+      const shrinkFactor = clamp(
+        (TEAM_SHRINK_WIDE - w) / (TEAM_SHRINK_WIDE - TEAM_SHRINK_SMALL),
+        0,
+        1,
+      );
+      const teamBottom = -9 + (2 - -9) * shrinkFactor;
+      hero!.style.setProperty("--team-bottom", teamBottom.toFixed(2) + "%");
     };
 
     const readScroll = () => {
@@ -289,6 +288,7 @@ const heroBgUrl = `url(${withBase("/hero-background.webp")})`;
     };
 
     const onResize = () => {
+      recomputeBreakpointValues();
       readScroll();
       needsRender = true;
       schedule();
@@ -316,6 +316,7 @@ const heroBgUrl = `url(${withBase("/hero-background.webp")})`;
       schedule();
     };
 
+    recomputeBreakpointValues();
     readScroll();
     needsRender = true;
     schedule();

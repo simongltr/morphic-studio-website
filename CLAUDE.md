@@ -57,6 +57,8 @@ These live under `tools/`. Run them only when the user asks for a screenshot, an
 - `tools/screenshot-scroll.ts` — five frames at 0 / 25 / 50 / 75 / 100% scroll through the first `.hero-stage` element.
 - `tools/screenshot-header-hover.ts` — hovers each header pill target and captures the top 90px strip.
 - `tools/screenshot-stack-scroll.ts` — frames through the sticky card-stack section.
+- `tools/screenshot-hero.ts` — hero viewport screenshot at 1440×900 (defaults to dev server URL).
+- `tools/screenshot-hero-mobile.ts` — same hero viewport at 390×844 with 2× DPR.
 
 Output PNGs land in `<input-dir>/screenshots/` (gitignored).
 
