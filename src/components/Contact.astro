@@ -30,35 +30,11 @@ const channels = [
   <p class="section__eyebrow">Contact</p>
   <h2 class="section__title">Parlons de votre projet.</h2>
   <p class="section__body">
-    Quelques lignes sur votre besoin suffisent. Écrivez-nous ou réservez un
-    créneau, nous revenons vers vous avec un premier retour clair.
+    Décrivez votre besoin en quelques lignes ci-dessous — nous revenons vers
+    vous sous 24h ouvrées avec un premier retour clair.
   </p>
 
-  <ul class="contact__channels">
-    {
-      channels.map((channel) => (
-        <li class="contact__channel">
-          <span class="contact__channel-icon" aria-hidden="true">
-            <Icon name={channel.icon} />
-          </span>
-          <p class="contact__channel-label">{channel.label}</p>
-          {channel.href ? (
-            <a class="contact__channel-value" href={channel.href}>
-              {channel.value}
-            </a>
-          ) : (
-            <p class="contact__channel-value">{channel.value}</p>
-          )}
-          <p class="contact__channel-hint">{channel.hint}</p>
-        </li>
-      ))
-    }
-  </ul>
-
   <div class="contact__form-wrap">
-    <p class="section__eyebrow contact__form-eyebrow">Ou écrivez-nous ici</p>
-    <h3 class="contact__form-title">Dites-nous en quelques mots ce que vous préparez.</h3>
-
     <form
       class="contact__form"
       id="contact-form"
@@ -131,6 +107,33 @@ const channels = [
       </div>
     </form>
   </div>
+
+  <div class="contact__channels-wrap">
+    <p class="section__eyebrow contact__channels-eyebrow">Autres canaux</p>
+    <h3 class="contact__channels-title">
+      Vous préférez nous joindre autrement ?
+    </h3>
+    <ul class="contact__channels">
+      {
+        channels.map((channel) => (
+          <li class="contact__channel">
+            <span class="contact__channel-icon" aria-hidden="true">
+              <Icon name={channel.icon} />
+            </span>
+            <p class="contact__channel-label">{channel.label}</p>
+            {channel.href ? (
+              <a class="contact__channel-value" href={channel.href}>
+                {channel.value}
+              </a>
+            ) : (
+              <p class="contact__channel-value">{channel.value}</p>
+            )}
+            <p class="contact__channel-hint">{channel.hint}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
 </section>
 
 <style>
@@ -138,9 +141,25 @@ const channels = [
     padding-top: clamp(2rem, 4vh, 4rem);
   }
 
+  .contact__channels-wrap {
+    margin: clamp(3rem, 6vh, 5rem) 0 0;
+  }
+  .contact__channels-eyebrow {
+    margin: 0 0 0.75rem;
+  }
+  .contact__channels-title {
+    font-family: "Space Grotesk", "Inter", sans-serif;
+    font-weight: 500;
+    font-size: clamp(1.25rem, 1.9vw, 1.5rem);
+    line-height: 1.25;
+    letter-spacing: -0.015em;
+    margin: 0 0 2rem;
+    max-width: 36ch;
+    color: rgba(0, 0, 0, 0.92);
+  }
   .contact__channels {
     list-style: none;
-    margin: clamp(2.5rem, 5vh, 4rem) 0 0;
+    margin: 0;
     padding: 0;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -199,24 +218,11 @@ const channels = [
   }
 
   .contact__form-wrap {
-    margin: clamp(3rem, 6vh, 5rem) 0 0;
+    margin: clamp(2.5rem, 5vh, 4rem) 0 0;
     padding: clamp(2rem, 4vw, 3rem);
     background: #ffffff;
     border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: 14px;
-  }
-  .contact__form-eyebrow {
-    margin: 0 0 0.75rem;
-  }
-  .contact__form-title {
-    font-family: "Space Grotesk", "Inter", sans-serif;
-    font-weight: 500;
-    font-size: clamp(1.25rem, 1.9vw, 1.5rem);
-    line-height: 1.25;
-    letter-spacing: -0.015em;
-    margin: 0 0 2rem;
-    max-width: 36ch;
-    color: rgba(0, 0, 0, 0.92);
   }
 
   .contact__form {
