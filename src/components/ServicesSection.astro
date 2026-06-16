@@ -1,0 +1,284 @@
+---
+import { services } from "../data/services";
+---
+
+<section id="services" class="section section--first services-section">
+  <div class="ss-intro">
+    <p class="section__eyebrow">Ce que nous livrons</p>
+    <h2 class="section__title">Choisissez un format, découvrez la valeur.</h2>
+  </div>
+  <div class="ss-layout">
+    <div class="ss-list" role="tablist" aria-label="Catégories d'offres">
+      {
+        services.map((card, i) => (
+          <button
+            class="ss-item"
+            data-idx={i}
+            role="tab"
+            aria-selected={i === 0 ? "true" : "false"}
+            tabindex={i === 0 ? "0" : "-1"}
+          >
+            <span class="ss-thumb" style={`background: ${card.imgColor}`} />
+            <span class="ss-item-title">{card.title}</span>
+          </button>
+        ))
+      }
+    </div>
+    <div class="ss-detail">
+      {
+        services.map((card, i) => (
+          <article
+            class="ss-panel"
+            data-idx={i}
+            hidden={i !== 0}
+            role="tabpanel"
+          >
+            <div class="ss-carousel" data-current="0">
+              {card.gallery.map((g, gi) => (
+                <div
+                  class={`ss-slide${gi === 0 ? " is-active" : ""}`}
+                  style={`background: ${g}`}
+                  data-slide={gi}
+                />
+              ))}
+              <button class="ss-arrow ss-arrow--prev" aria-label="Image précédente">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M15 6l-6 6 6 6" />
+                </svg>
+              </button>
+              <button class="ss-arrow ss-arrow--next" aria-label="Image suivante">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 6l6 6-6 6" />
+                </svg>
+              </button>
+              <span class="ss-counter">
+                <span class="ss-counter__current">1</span>
+                <span class="ss-counter__sep">/</span>
+                <span class="ss-counter__total">{card.gallery.length}</span>
+              </span>
+            </div>
+            <div class="ss-text">
+              <h3 class="ss-title">{card.title}</h3>
+              <p class="ss-body">{card.body}</p>
+              <p class="ss-examples">{card.examples}</p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .ss-intro {
+    max-width: 720px;
+    margin: 0 0 clamp(2rem, 4vw, 3rem);
+  }
+  .ss-layout {
+    display: grid;
+    grid-template-columns: minmax(260px, 32%) 1fr;
+    gap: clamp(1.25rem, 2.5vw, 2rem);
+    align-items: start;
+  }
+  .ss-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .ss-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 12px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: left;
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.95rem;
+    color: rgba(0, 0, 0, 0.7);
+    transition:
+      background 0.2s,
+      border-color 0.2s,
+      color 0.2s;
+  }
+  .ss-item:hover {
+    background: rgba(0, 0, 0, 0.03);
+  }
+  .ss-item[aria-selected="true"] {
+    background: #fff;
+    border-color: rgba(0, 0, 0, 0.08);
+    color: rgba(0, 0, 0, 0.92);
+    box-shadow: 0 6px 18px -10px rgba(0, 0, 0, 0.18);
+  }
+  .ss-thumb {
+    flex: 0 0 auto;
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+  }
+  .ss-item-title {
+    font-weight: 500;
+    line-height: 1.2;
+  }
+  .ss-detail {
+    position: relative;
+  }
+  .ss-panel[hidden] {
+    display: none;
+  }
+  .ss-panel {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .ss-carousel {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #eee;
+  }
+  .ss-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .ss-slide.is-active {
+    opacity: 1;
+  }
+  .ss-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 38px;
+    height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+    transition: background 0.2s;
+  }
+  .ss-arrow:hover {
+    background: rgba(0, 0, 0, 0.6);
+  }
+  .ss-arrow--prev {
+    left: 12px;
+  }
+  .ss-arrow--next {
+    right: 12px;
+  }
+  .ss-counter {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.75rem;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 4px 10px;
+    border-radius: 999px;
+    backdrop-filter: blur(6px);
+    letter-spacing: 0.04em;
+  }
+  .ss-counter__sep {
+    opacity: 0.6;
+    margin: 0 2px;
+  }
+  .ss-title {
+    margin: 0 0 0.5rem;
+    font-family: "Space Grotesk", "Inter", sans-serif;
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: rgba(0, 0, 0, 0.9);
+  }
+  .ss-body {
+    margin: 0 0 0.75rem;
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(0, 0, 0, 0.75);
+    max-width: 56ch;
+  }
+  .ss-examples {
+    margin: 0;
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.85rem;
+    line-height: 1.55;
+    color: rgba(0, 0, 0, 0.5);
+    font-style: italic;
+    max-width: 56ch;
+  }
+
+  @media (max-width: 820px) {
+    .ss-layout {
+      grid-template-columns: 1fr;
+    }
+    .ss-list {
+      flex-direction: row;
+      overflow-x: auto;
+      gap: 8px;
+      padding-bottom: 6px;
+    }
+    .ss-item {
+      flex: 0 0 auto;
+      padding: 8px 10px;
+    }
+    .ss-item-title {
+      font-size: 0.85rem;
+    }
+    .ss-thumb {
+      width: 32px;
+      height: 32px;
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>(".services-section").forEach((root) => {
+    const items = root.querySelectorAll<HTMLButtonElement>(".ss-item");
+    const panels = root.querySelectorAll<HTMLElement>(".ss-panel");
+
+    items.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const idx = btn.dataset.idx;
+        items.forEach((b) => {
+          const active = b.dataset.idx === idx;
+          b.setAttribute("aria-selected", active ? "true" : "false");
+          b.setAttribute("tabindex", active ? "0" : "-1");
+        });
+        panels.forEach((p) => {
+          if (p.dataset.idx === idx) p.removeAttribute("hidden");
+          else p.setAttribute("hidden", "");
+        });
+      });
+    });
+
+    root.querySelectorAll<HTMLElement>(".ss-carousel").forEach((car) => {
+      const slides = car.querySelectorAll<HTMLElement>(".ss-slide");
+      const total = slides.length;
+      const counter = car.querySelector<HTMLElement>(".ss-counter__current");
+      const prev = car.querySelector<HTMLButtonElement>(".ss-arrow--prev");
+      const next = car.querySelector<HTMLButtonElement>(".ss-arrow--next");
+
+      const go = (delta: number) => {
+        const current = Number(car.dataset.current || 0);
+        const target = (current + delta + total) % total;
+        car.dataset.current = String(target);
+        slides.forEach((s, i) => s.classList.toggle("is-active", i === target));
+        if (counter) counter.textContent = String(target + 1);
+      };
+
+      prev?.addEventListener("click", () => go(-1));
+      next?.addEventListener("click", () => go(1));
+    });
+  });
+</script>

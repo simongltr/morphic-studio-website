@@ -1,11 +1,21 @@
-export interface StackCardData {
+export interface Service {
   title: string;
   body: string;
   examples: string;
   imgColor: string;
+  gallery: string[];
 }
 
-export const stackCards: StackCardData[] = [
+function makeGallery(base: string): string[] {
+  return [
+    base,
+    base.replace(/\d+deg/, "210deg"),
+    base.replace(/\d+deg/, "60deg"),
+    base.replace(/\d+deg/, "315deg"),
+  ];
+}
+
+const RAW: Omit<Service, "gallery">[] = [
   {
     title: "Sites & Landing Pages",
     body: "Créez une présence web claire, moderne et crédible avec une page ou un site pensé pour présenter votre activité, rassurer vos visiteurs et générer des contacts.",
@@ -63,3 +73,8 @@ export const stackCards: StackCardData[] = [
     imgColor: "linear-gradient(135deg, #8a96a6 0%, #4d5867 100%)",
   },
 ];
+
+export const services: Service[] = RAW.map((c) => ({
+  ...c,
+  gallery: makeGallery(c.imgColor),
+}));
