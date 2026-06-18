@@ -1,0 +1,227 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Offer {
+  icon: string;
+  title: string;
+  problem: string;
+  intervention: string;
+  deliverables: string[];
+  format: string;
+}
+
+const offers: Offer[] = [
+  {
+    icon: "lucide:workflow",
+    title: "Automatisations & IA",
+    problem:
+      "Vos équipes recopient des infos, relancent à la main, produisent les mêmes documents semaine après semaine.",
+    intervention:
+      "On cartographie les étapes répétitives, on branche vos outils existants entre eux, et on intègre de l'IA uniquement là où elle fait gagner du temps mesurable. Pas de remplacement de stack, pas de nouvel outil à apprendre.",
+    deliverables: [
+      "Audit des process et liste priorisée des automatisations à fort impact",
+      "1 à 3 automatisations livrées et documentées dès le premier mois",
+      "IA encadrée (qualification, résumés, génération) avec garde-fous et traçabilité",
+    ],
+    format: "Sprint de 2 à 4 semaines · à partir de X €",
+  },
+  {
+    icon: "lucide:search-check",
+    title: "Audit & optimisation",
+    problem:
+      "Votre site ou votre app existe mais attire peu de demandes, convertit mal ou ralentit votre équipe au quotidien.",
+    intervention:
+      "On regarde la technique, l'UX, le SEO, l'analytics et les parcours de conversion. On vous livre un plan d'action priorisé par impact / effort, que vous pouvez exécuter avec ou sans nous.",
+    deliverables: [
+      "Audit technique + UX + SEO livré sous 7 jours ouvrés",
+      "Top 10 d'actions priorisées avec estimation de gain",
+      "Tracking et metrics installés pour mesurer les améliorations",
+    ],
+    format: "Audit sur 1 à 2 semaines · à partir de X €",
+  },
+  {
+    icon: "lucide:layers",
+    title: "Modernisation d'outils internes",
+    problem:
+      "Vos équipes jonglent entre fichiers Excel, mails, Notion et un CRM mal foutu. Les infos se perdent, les process tiennent par habitude.",
+    intervention:
+      "On rationalise la stack, on connecte les outils déjà en place, et on remplace ce qui est cassé par ce qui est moderne et adapté à votre taille. Pas d'usine à gaz, juste l'outil juste, bien branché.",
+    deliverables: [
+      "Cartographie de votre stack actuelle et points de friction",
+      "Plan de migration ou d'optimisation, étape par étape",
+      "Mise en place + formation de l'équipe à la nouvelle organisation",
+    ],
+    format: "Sur devis après cadrage · à partir de X €",
+  },
+];
+---
+
+<section id="consulting" class="section consulting-section">
+  <div class="cs-intro">
+    <p class="section__eyebrow">Conseil & optimisation</p>
+    <h2 class="section__title">Ce que nous améliorons chez vous.</h2>
+    <p class="cs-lead">
+      Quand le problème n'est pas un site à construire mais un process à débloquer, un outil à moderniser ou une étape à automatiser, on intervient à l'intérieur de votre entreprise. Pas de grand projet, juste les bons leviers.
+    </p>
+  </div>
+  <ul class="cs-grid">
+    {
+      offers.map((offer) => (
+        <li class="cs-card">
+          <header class="cs-card__head">
+            <span class="cs-card__icon" aria-hidden="true">
+              <Icon name={offer.icon} />
+            </span>
+            <h3 class="cs-card__title">{offer.title}</h3>
+          </header>
+          <p class="cs-card__problem">{offer.problem}</p>
+          <p class="cs-card__intervention">{offer.intervention}</p>
+          <div class="cs-card__deliverables">
+            <p class="cs-card__deliverables-label">Vous repartez avec</p>
+            <ul class="cs-card__list">
+              {offer.deliverables.map((d) => (
+                <li>{d}</li>
+              ))}
+            </ul>
+          </div>
+          <footer class="cs-card__foot">{offer.format}</footer>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  .cs-intro {
+    max-width: 720px;
+    margin: 0 0 clamp(2rem, 4vw, 3rem);
+  }
+  .cs-lead {
+    margin: 0;
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(0, 0, 0, 0.68);
+    max-width: 64ch;
+  }
+  .cs-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+  .cs-card {
+    display: grid;
+    grid-template-rows: auto auto auto 1fr auto;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 14px;
+  }
+  .cs-card__head {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+  .cs-card__icon {
+    width: 42px;
+    height: 42px;
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.06);
+    color: rgba(0, 0, 0, 0.85);
+  }
+  .cs-card__icon [data-icon] {
+    width: 22px;
+    height: 22px;
+  }
+  .cs-card__title {
+    margin: 0;
+    font-family: "Space Grotesk", "Inter", sans-serif;
+    font-weight: 500;
+    font-size: 1.15rem;
+    line-height: 1.2;
+    color: rgba(0, 0, 0, 0.9);
+  }
+  .cs-card__problem {
+    margin: 0;
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: rgba(0, 0, 0, 0.55);
+    font-style: italic;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+  .cs-card__intervention {
+    margin: 0;
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: rgba(0, 0, 0, 0.78);
+  }
+  .cs-card__deliverables {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .cs-card__deliverables-label {
+    margin: 0;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(0, 0, 0, 0.5);
+  }
+  .cs-card__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+  .cs-card__list li {
+    position: relative;
+    padding-left: 1.1rem;
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.45;
+    color: rgba(0, 0, 0, 0.72);
+  }
+  .cs-card__list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.55rem;
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.4);
+  }
+  .cs-card__foot {
+    margin-top: 0.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.78rem;
+    color: rgba(0, 0, 0, 0.6);
+    letter-spacing: 0.01em;
+  }
+
+  @media (max-width: 1024px) {
+    .cs-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    .cs-card {
+      padding: 1.25rem;
+    }
+  }
+</style>

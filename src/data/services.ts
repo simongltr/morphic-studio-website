@@ -1,29 +1,48 @@
+export interface GalleryItem {
+  caption: string;
+  image: string | null;
+}
+
 export interface Service {
   title: string;
   body: string;
   examples: string;
   icon: string;
-  imgColor: string;
-  gallery: string[];
+  gallery: GalleryItem[];
+  proof?: {
+    points: {
+      icon: string;
+      title: string;
+      text: string;
+    }[];
+  };
 }
 
-function makeGallery(base: string): string[] {
-  return [
-    base,
-    base.replace(/\d+deg/, "210deg"),
-    base.replace(/\d+deg/, "60deg"),
-    base.replace(/\d+deg/, "315deg"),
-  ];
-}
-
-const RAW: Omit<Service, "gallery">[] = [
+export const services: Service[] = [
   {
     title: "Sites & Landing Pages",
     body: "Créez une présence web claire, moderne et crédible avec une page ou un site pensé pour présenter votre activité, rassurer vos visiteurs et générer des contacts.",
     examples:
       "Landing page, site vitrine, page de vente, site one-page, portfolio, site pour consultant, site d'artisan, site événementiel, page de capture, site multilingue simple.",
     icon: "lucide:layout",
-    imgColor: "linear-gradient(135deg, #d4bf95 0%, #a88860 100%)",
+    gallery: [
+      {
+        caption: "Landing page d'un atelier de céramique à Lyon",
+        image: "/services/1-1.webp",
+      },
+      {
+        caption: "Site vitrine d'un cabinet d'architecte indépendant",
+        image: "/services/1-2.webp",
+      },
+      {
+        caption: "Page de vente pour un coach professionnel certifié",
+        image: null,
+      },
+      {
+        caption: "Portfolio d'un photographe spécialisé en mariage",
+        image: null,
+      },
+    ],
   },
   {
     title: "E-commerce",
@@ -31,7 +50,24 @@ const RAW: Omit<Service, "gallery">[] = [
     examples:
       "Boutique Shopify, WooCommerce, catalogue produit, fiche produit, tunnel de commande, paiement en ligne, panier, codes promo, click & collect, produits digitaux, abonnements, espace client, suivi de commandes.",
     icon: "lucide:shopping-bag",
-    imgColor: "linear-gradient(135deg, #c79188 0%, #94504a 100%)",
+    gallery: [
+      {
+        caption: "Boutique Shopify d'un torréfacteur artisanal",
+        image: "/services/2-1.webp",
+      },
+      {
+        caption: "Catalogue produit d'une marque de cosmétique bio",
+        image: "/services/2-2.webp",
+      },
+      {
+        caption: "Tunnel de commande d'un éditeur de jeux de société",
+        image: "/services/2-3.webp",
+      },
+      {
+        caption: "Espace client d'une marque de prêt-à-porter responsable",
+        image: null,
+      },
+    ],
   },
   {
     title: "Applications Web",
@@ -39,7 +75,21 @@ const RAW: Omit<Service, "gallery">[] = [
     examples:
       "Application SaaS, MVP, plateforme de réservation, espace membre, portail client, marketplace légère, plateforme de formation, outil collaboratif, système d'inscription, gestion d'utilisateurs, abonnement, paiement intégré.",
     icon: "lucide:app-window",
-    imgColor: "linear-gradient(135deg, #6f8fa8 0%, #3c5d80 100%)",
+    gallery: [
+      {
+        caption: "SaaS de gestion pour studios de yoga indépendants",
+        image: "/services/3-1.webp",
+      },
+      {
+        caption: "MVP d'une plateforme de mise en relation freelances",
+        image: null,
+      },
+      {
+        caption: "Espace membre d'une école de formation en ligne",
+        image: null,
+      },
+      { caption: "Marketplace B2B pour fournisseurs locaux", image: null },
+    ],
   },
   {
     title: "Dashboards & Admin",
@@ -47,7 +97,15 @@ const RAW: Omit<Service, "gallery">[] = [
     examples:
       "Dashboard commercial, panel admin, CRM interne, suivi des ventes, gestion clients, gestion commandes, reporting marketing, statistiques utilisateurs, suivi de leads, gestion de projets, export PDF ou CSV, rôles utilisateurs.",
     icon: "lucide:layout-dashboard",
-    imgColor: "linear-gradient(135deg, #9685b3 0%, #5e4d7c 100%)",
+    gallery: [
+      { caption: "Dashboard commercial d'une agence immobilière", image: null },
+      {
+        caption: "CRM interne sur-mesure pour un cabinet de conseil RH",
+        image: "/services/4-2.webp",
+      },
+      { caption: "Suivi des ventes d'une PME industrielle", image: null },
+      { caption: "Panel admin d'une plateforme de réservation", image: null },
+    ],
   },
   {
     title: "Outils sur mesure",
@@ -55,35 +113,20 @@ const RAW: Omit<Service, "gallery">[] = [
     examples:
       "Calculateur de prix, générateur de devis, configurateur produit, simulateur, formulaire avancé, quiz de qualification, générateur PDF, outil métier interne, import/export de données, workflow personnalisé, outil de réservation spécifique.",
     icon: "lucide:wrench",
-    imgColor: "linear-gradient(135deg, #d6a577 0%, #a36a3c 100%)",
-  },
-  {
-    title: "Automatisations & IA",
-    body: "Gagnez du temps chaque semaine grâce à des automatisations, des connexions entre outils, des relances intelligentes et des assistants IA intégrés à vos process.",
-    examples:
-      "Automatisation Make, Zapier, n8n, connexion formulaire vers CRM, relance automatique, chatbot IA, assistant FAQ, qualification de leads, génération de documents, reporting automatique, synchronisation Notion, Airtable, Google Sheets ou CRM.",
-    icon: "lucide:bot",
-    imgColor: "linear-gradient(135deg, #7fb0a8 0%, #3f7a72 100%)",
-  },
-  {
-    title: "SEO & Conversion",
-    body: "Attirez plus de visiteurs qualifiés, mesurez vos performances et améliorez vos pages pour transformer davantage de trafic en demandes, ventes ou rendez-vous.",
-    examples:
-      "Audit SEO, optimisation Google, SEO local, recherche de mots-clés, tracking conversions, Google Analytics, Google Tag Manager, landing page Ads, optimisation CTA, heatmaps, tunnel de conversion, reporting mensuel, amélioration du taux de conversion.",
-    icon: "lucide:trending-up",
-    imgColor: "linear-gradient(135deg, #87a892 0%, #4e7560 100%)",
-  },
-  {
-    title: "Maintenance & Évolution",
-    body: "Gardez un site rapide, sécurisé et fiable dans le temps avec un accompagnement technique continu, des sauvegardes, des corrections et des améliorations régulières.",
-    examples:
-      "Maintenance WordPress, mises à jour, sauvegardes, sécurité, monitoring, correction de bugs, hébergement, SSL, optimisation vitesse, protection anti-spam, nettoyage malware, support technique, ajout de contenu, évolutions mensuelles.",
-    icon: "lucide:shield-check",
-    imgColor: "linear-gradient(135deg, #8a96a6 0%, #4d5867 100%)",
+    gallery: [
+      {
+        caption: "Configurateur de menuiseries pour un fabricant régional",
+        image: "/services/5-1.webp",
+      },
+      { caption: "Calculateur de devis pour un paysagiste", image: null },
+      {
+        caption: "Générateur de PDF contractuels pour un notaire",
+        image: null,
+      },
+      {
+        caption: "Outil de planification pour une école de musique",
+        image: null,
+      },
+    ],
   },
 ];
-
-export const services: Service[] = RAW.map((c) => ({
-  ...c,
-  gallery: makeGallery(c.imgColor),
-}));
