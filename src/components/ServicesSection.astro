@@ -11,20 +11,27 @@ import { services } from "../data/services";
   <div class="ss-layout">
     <div class="ss-list" role="tablist" aria-label="Catégories d'offres">
       {
-        services.map((card, i) => (
-          <button
-            class="ss-item"
-            data-idx={i}
-            role="tab"
-            aria-selected={i === 0 ? "true" : "false"}
-            tabindex={i === 0 ? "0" : "-1"}
-          >
-            <span class="ss-thumb">
-              <Icon name={card.icon} />
-            </span>
-            <span class="ss-item-title">{card.title}</span>
-          </button>
-        ))
+        services.map((card, i) => {
+          const prevHasProof = i > 0 && !!services[i - 1].proof;
+          const showDivider = !!card.proof && !prevHasProof && i > 0;
+          return (
+            <>
+              {showDivider && <span class="ss-divider" aria-hidden="true" />}
+              <button
+                class="ss-item"
+                data-idx={i}
+                role="tab"
+                aria-selected={i === 0 ? "true" : "false"}
+                tabindex={i === 0 ? "0" : "-1"}
+              >
+                <span class="ss-thumb">
+                  <Icon name={card.icon} />
+                </span>
+                <span class="ss-item-title">{card.title}</span>
+              </button>
+            </>
+          );
+        })
       }
     </div>
     <div class="ss-detail">
@@ -137,6 +144,12 @@ import { services } from "../data/services";
     font-weight: 500;
     line-height: 1.2;
   }
+  .ss-divider {
+    display: block;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.08);
+    margin: 10px 8px;
+  }
   .ss-detail {
     position: relative;
   }
@@ -246,6 +259,13 @@ import { services } from "../data/services";
     .ss-item {
       flex: 0 0 auto;
       padding: 8px 10px;
+    }
+    .ss-divider {
+      flex: 0 0 auto;
+      width: 1px;
+      height: 28px;
+      margin: 0 6px;
+      align-self: center;
     }
     .ss-item-title {
       font-size: 0.85rem;
