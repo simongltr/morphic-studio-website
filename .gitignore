@@ -43,3 +43,4 @@ dist/
 # Plan files (kept local, never committed)
 PLAN-*.md
 
+demos/
