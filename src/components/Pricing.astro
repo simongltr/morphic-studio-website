@@ -5,17 +5,20 @@ import { pricingPlans } from "../data/pricing-plans";
 
 <section id="tarifs" class="section pricing">
   <p class="section__eyebrow">Tarifs</p>
-  <h2 class="section__title">Forfaits transparents.</h2>
+  <h2 class="section__title">Quatre forfaits qui couvrent toutes les catégories.</h2>
   <p class="section__body">
-    Trois formules, prix ferme dès le cadrage. Ce qui est inclus est listé
-    précisément. Ce qui ne l'est pas est dit clairement.
+    À chaque type de projet correspond un palier. Précis quand vous savez déjà
+    ce que vous voulez, sur devis quand on doit cadrer ensemble.
   </p>
 
   <ul class="pricing__grid">
     {
       pricingPlans.map((plan) => (
         <li
-          class:list={["pricing__card", { "pricing__card--popular": plan.popular }]}
+          class:list={[
+            "pricing__card",
+            { "pricing__card--popular": plan.popular },
+          ]}
         >
           {plan.popular && (
             <span class="pricing__badge">
@@ -29,12 +32,32 @@ import { pricingPlans } from "../data/pricing-plans";
             <p class="pricing__tagline">{plan.tagline}</p>
           </header>
 
-          <p class="pricing__price">
-            <span class="pricing__amount">{plan.price}</span>
-            {plan.priceSuffix && (
-              <span class="pricing__suffix">{plan.priceSuffix}</span>
+          <div class="pricing__price-block">
+            <p class="pricing__price">
+              <span class="pricing__amount">{plan.price}</span>
+              {plan.priceSuffix && (
+                <span class="pricing__suffix">{plan.priceSuffix}</span>
+              )}
+            </p>
+            {plan.priceNote && (
+              <p class="pricing__price-note">{plan.priceNote}</p>
             )}
-          </p>
+          </div>
+
+          <div class="pricing__scope">
+            <p class="pricing__scope-label">Idéal pour</p>
+            <ul class="pricing__chips">
+              {plan.categories.map((c) => (
+                <li class="pricing__chip">{c}</li>
+              ))}
+            </ul>
+            {plan.duration && (
+              <p class="pricing__duration">
+                <Icon name="lucide:clock" />
+                <span>{plan.duration}</span>
+              </p>
+            )}
+          </div>
 
           <ul class="pricing__features">
             {plan.features.map((feature) => (
@@ -52,6 +75,27 @@ import { pricingPlans } from "../data/pricing-plans";
       ))
     }
   </ul>
+
+  <aside class="pricing__notes">
+    <p class="pricing__note">
+      <strong>Hébergement</strong> — *Inclus pour les sites statiques.
+      Nom de domaine à votre charge.
+    </p>
+    <p class="pricing__note">
+      <strong>Révisions</strong> — un cycle correspond à un retour groupé du
+      client. Les cycles supplémentaires font l'objet d'un devis.
+    </p>
+    <p class="pricing__note">
+      <strong>Garantie</strong> — les dysfonctionnements sont corrigés pendant
+      30 jours lorsqu'ils concernent ce qui avait été validé. Les ajouts,
+      changements de contenu ou demandes différentes font l'objet d'un devis.
+    </p>
+    <p class="pricing__note">
+      <strong>Maintenance Croissance</strong> — incluse pendant 3 mois pour
+      les mises à jour de sécurité et la correction des dysfonctionnements.
+      Un contrat de maintenance annuel optionnel peut être proposé ensuite.
+    </p>
+  </aside>
 </section>
 
 <style>
@@ -60,8 +104,8 @@ import { pricingPlans } from "../data/pricing-plans";
     margin: clamp(2.5rem, 5vh, 4rem) 0 0;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: clamp(1.25rem, 2.5vw, 1.75rem);
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(1rem, 1.8vw, 1.25rem);
     align-items: stretch;
   }
 
@@ -72,7 +116,7 @@ import { pricingPlans } from "../data/pricing-plans";
     background: #ffffff;
     border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: 14px;
-    padding: clamp(1.75rem, 3vw, 2.25rem);
+    padding: clamp(1.25rem, 2.2vw, 1.75rem);
     transition: border-color 200ms ease, transform 200ms ease;
   }
   .pricing__card:hover {
@@ -82,7 +126,7 @@ import { pricingPlans } from "../data/pricing-plans";
   .pricing__card--popular {
     border-color: rgba(0, 0, 0, 0.92);
     border-width: 2px;
-    padding: calc(clamp(1.75rem, 3vw, 2.25rem) - 1px);
+    padding: calc(clamp(1.25rem, 2.2vw, 1.75rem) - 1px);
   }
   .pricing__card--popular:hover {
     border-color: rgba(0, 0, 0, 0.92);
@@ -132,10 +176,13 @@ import { pricingPlans } from "../data/pricing-plans";
     color: rgba(0, 0, 0, 0.6);
   }
 
-  .pricing__price {
-    margin: 0 0 1.75rem;
-    padding-bottom: 1.75rem;
+  .pricing__price-block {
+    margin: 0 0 1.5rem;
+    padding-bottom: 1.5rem;
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
+  .pricing__price {
+    margin: 0;
     display: flex;
     align-items: baseline;
     gap: 0.5rem;
@@ -144,15 +191,74 @@ import { pricingPlans } from "../data/pricing-plans";
   .pricing__amount {
     font-family: "Space Grotesk", "Inter", sans-serif;
     font-weight: 600;
-    font-size: clamp(1.75rem, 2.6vw, 2.25rem);
-    line-height: 1;
+    font-size: clamp(1.5rem, 2.4vw, 2rem);
+    line-height: 1.1;
     letter-spacing: -0.025em;
     color: rgba(0, 0, 0, 0.92);
   }
   .pricing__suffix {
     font-family: "Inter", system-ui, sans-serif;
-    font-size: 0.875rem;
+    font-size: 0.85rem;
     color: rgba(0, 0, 0, 0.5);
+  }
+  .pricing__price-note {
+    margin: 0.5rem 0 0;
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.78rem;
+    line-height: 1.4;
+    color: rgba(0, 0, 0, 0.55);
+  }
+
+  .pricing__scope {
+    margin: 0 0 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .pricing__scope-label {
+    margin: 0;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(0, 0, 0, 0.5);
+  }
+  .pricing__chips {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .pricing__chip {
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.78rem;
+    line-height: 1;
+    padding: 0.4rem 0.6rem;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.05);
+    color: rgba(0, 0, 0, 0.72);
+    white-space: nowrap;
+  }
+  .pricing__card--popular .pricing__chip {
+    background: rgba(0, 0, 0, 0.07);
+  }
+  .pricing__duration {
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.82rem;
+    color: rgba(0, 0, 0, 0.55);
+  }
+  .pricing__duration :global(svg) {
+    width: 14px;
+    height: 14px;
+    stroke-width: 2;
   }
 
   .pricing__features {
@@ -212,7 +318,37 @@ import { pricingPlans } from "../data/pricing-plans";
     border-color: #000;
   }
 
-  @media (max-width: 900px) {
+  .pricing__notes {
+    margin: clamp(2rem, 4vh, 3rem) 0 0;
+    padding: clamp(1.25rem, 2vw, 1.75rem);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 14px;
+    background: rgba(0, 0, 0, 0.02);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(0.75rem, 1.5vw, 1.25rem);
+  }
+  .pricing__note {
+    margin: 0;
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.85rem;
+    line-height: 1.55;
+    color: rgba(0, 0, 0, 0.62);
+  }
+  .pricing__note strong {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.82);
+  }
+
+  @media (max-width: 960px) {
+    .pricing__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .pricing__notes {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 560px) {
     .pricing__grid {
       grid-template-columns: 1fr;
     }

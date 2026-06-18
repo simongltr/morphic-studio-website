@@ -3,6 +3,9 @@ export interface PricingPlan {
   tagline: string;
   price: string;
   priceSuffix?: string;
+  priceNote?: string;
+  categories: string[];
+  duration?: string;
   features: string[];
   cta: string;
   ctaHref: string;
@@ -11,53 +14,96 @@ export interface PricingPlan {
 
 export const pricingPlans: PricingPlan[] = [
   {
-    name: "Vitrine",
-    tagline: "Pour les indépendants et les petites structures qui veulent une présence en ligne soignée.",
-    price: "1 500 €",
+    name: "Lancement",
+    tagline: "Une page professionnelle en ligne rapidement.",
+    price: "500 €",
     priceSuffix: "/ projet",
+    categories: ["Landing page", "Page de présentation", "Site one-page"],
+    duration: "3 à 5 jours",
     features: [
-      "Site vitrine jusqu'à 3 pages",
-      "Design responsive sur mesure",
-      "Optimisation SEO de base",
+      "1 page responsive",
       "Formulaire de contact",
-      "Hébergement 1 an inclus",
-      "Support email",
+      "Hébergement inclus, sans abonnement*",
+      "Mise en ligne incluse",
+      "1 cycle de révision",
+      "30 jours de correction des dysfonctionnements",
     ],
     cta: "Choisir ce forfait",
     ctaHref: "#contact",
   },
   {
-    name: "Sur mesure",
-    tagline: "Pour les entreprises qui veulent un site de référence, pensé pour durer.",
-    price: "4 900 €",
+    name: "Vitrine",
+    tagline: "Un site simple et crédible pour présenter votre activité.",
+    price: "1 500 €",
     priceSuffix: "/ projet",
+    categories: [
+      "Indépendant",
+      "Petite entreprise",
+      "Artisan",
+      "Consultant",
+      "Portfolio",
+    ],
+    duration: "1 à 3 semaines",
     features: [
-      "Site jusqu'à 10 pages",
-      "Design premium et identité visuelle",
-      "SEO avancé et SEO IA",
-      "Blog intégré",
-      "Analytics et intégrations",
-      "Maintenance 1 an incluse",
+      "Jusqu'à 3 pages",
+      "Design responsive",
+      "Hébergement inclus, sans abonnement*",
+      "SEO de base",
+      "Support email pendant 30 jours",
+      "2 cycles de révision",
+      "30 jours de correction des dysfonctionnements",
+    ],
+    cta: "Choisir ce forfait",
+    ctaHref: "#contact",
+  },
+  {
+    name: "Croissance",
+    tagline: "Un site complet pour vendre, convertir ou automatiser.",
+    price: "À partir de 3 000 €",
+    priceSuffix: "/ projet",
+    priceNote: "Périmètre défini ensemble lors d'un premier échange gratuit.",
+    categories: [
+      "Site avancé",
+      "E-commerce simple",
+      "Dashboard",
+      "Outil interne",
+    ],
+    duration: "3 à 8 semaines",
+    features: [
+      "Jusqu'à 10 pages",
+      "Fonctionnalités avancées",
+      "SEO avancé",
+      "Analytics et suivi",
+      "Maintenance incluse pendant 3 mois",
       "Support prioritaire",
+      "3 cycles de révision",
+      "30 jours de correction des dysfonctionnements",
     ],
     cta: "Choisir ce forfait",
     ctaHref: "#contact",
     popular: true,
   },
   {
-    name: "Application",
-    tagline: "Pour les projets sur mesure : applications web et mobile, e-commerce, dashboards.",
+    name: "Signature",
+    tagline: "Une solution sur mesure pour les projets ambitieux.",
     price: "Sur devis",
-    features: [
-      "Application web ou mobile complète",
+    priceSuffix: "cadrage gratuit",
+    categories: [
+      "Application web",
       "E-commerce avancé",
-      "Intégrations API",
-      "Dashboard personnalisé",
-      "SLA et garanties contractuelles",
-      "Support dédié",
-      "Formation incluse",
+      "Dashboard métier",
+      "Outil sur mesure",
+      "Conseil & accompagnement",
     ],
-    cta: "Demander un devis",
+    duration: "À cadrer ensemble",
+    features: [
+      "Cadrage gratuit",
+      "Devis détaillé",
+      "Développement sur mesure",
+      "Accompagnement dédié",
+      "Solution adaptée aux besoins du projet",
+    ],
+    cta: "Demander un cadrage",
     ctaHref: "#contact",
   },
 ];
