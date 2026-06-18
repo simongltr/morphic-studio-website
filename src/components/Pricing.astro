@@ -39,8 +39,8 @@ const [featured, ...rest] = pricingPlans;
     <ul class="featured-card__features">
       {featured.features.map((feature) => (
         <li class="featured-card__feature">
-          <Icon name="lucide:check" />
-          <span>{feature}</span>
+          <Icon name={feature.icon} />
+          <span>{feature.label}</span>
         </li>
       ))}
     </ul>
@@ -101,8 +101,8 @@ const [featured, ...rest] = pricingPlans;
           <ul class="pricing__features">
             {plan.features.map((feature) => (
               <li class="pricing__feature">
-                <Icon name="lucide:check" />
-                <span>{feature}</span>
+                <Icon name={feature.icon} />
+                <span>{feature.label}</span>
               </li>
             ))}
           </ul>
@@ -117,22 +117,45 @@ const [featured, ...rest] = pricingPlans;
 
   <aside class="pricing__notes">
     <p class="pricing__note">
-      <strong>Hébergement</strong> — *Inclus pour les sites statiques.
-      Nom de domaine à votre charge.
+      <span class="pricing__note-head">
+        <Icon name="lucide:server" />
+        <strong>Hébergement</strong>
+      </span>
+      <span class="pricing__note-body">
+        *Inclus pour les sites statiques. Nom de domaine à votre charge.
+      </span>
     </p>
     <p class="pricing__note">
-      <strong>Révisions</strong> — un cycle correspond à un retour groupé du
-      client. Les cycles supplémentaires font l'objet d'un devis.
+      <span class="pricing__note-head">
+        <Icon name="lucide:repeat" />
+        <strong>Révisions</strong>
+      </span>
+      <span class="pricing__note-body">
+        Un cycle correspond à un retour groupé du client. Les cycles
+        supplémentaires font l'objet d'un devis.
+      </span>
     </p>
     <p class="pricing__note">
-      <strong>Garantie</strong> — les dysfonctionnements sont corrigés pendant
-      30 jours lorsqu'ils concernent ce qui avait été validé. Les ajouts,
-      changements de contenu ou demandes différentes font l'objet d'un devis.
+      <span class="pricing__note-head">
+        <Icon name="lucide:shield-check" />
+        <strong>Garantie</strong>
+      </span>
+      <span class="pricing__note-body">
+        Les dysfonctionnements sont corrigés pendant 30 jours lorsqu'ils
+        concernent ce qui avait été validé. Les ajouts, changements de
+        contenu ou demandes différentes font l'objet d'un devis.
+      </span>
     </p>
     <p class="pricing__note">
-      <strong>Maintenance Croissance</strong> — incluse pendant 3 mois pour
-      les mises à jour de sécurité et la correction des dysfonctionnements.
-      Un contrat de maintenance annuel optionnel peut être proposé ensuite.
+      <span class="pricing__note-head">
+        <Icon name="lucide:wrench" />
+        <strong>Maintenance Croissance</strong>
+      </span>
+      <span class="pricing__note-body">
+        Incluse pendant 3 mois pour les mises à jour de sécurité et la
+        correction des dysfonctionnements. Un contrat de maintenance annuel
+        optionnel peut être proposé ensuite.
+      </span>
     </p>
   </aside>
 </section>
@@ -513,25 +536,40 @@ const [featured, ...rest] = pricingPlans;
 
   /* ---------- Notes ---------- */
   .pricing__notes {
-    margin: clamp(2rem, 4vh, 3rem) 0 0;
-    padding: clamp(1.25rem, 2vw, 1.75rem);
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    border-radius: 14px;
-    background: rgba(0, 0, 0, 0.02);
+    margin: clamp(1.5rem, 3vh, 2.25rem) 0 0;
+    padding: clamp(1rem, 1.6vw, 1.25rem) clamp(1.25rem, 2vw, 1.5rem);
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: clamp(0.75rem, 1.5vw, 1.25rem);
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    column-gap: clamp(1.25rem, 2.5vw, 2rem);
+    row-gap: 0.75rem;
   }
   .pricing__note {
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
     font-family: "Inter", system-ui, sans-serif;
-    font-size: 0.85rem;
-    line-height: 1.55;
-    color: rgba(0, 0, 0, 0.62);
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: rgba(0, 0, 0, 0.55);
   }
-  .pricing__note strong {
-    font-weight: 600;
+  .pricing__note-head {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
     color: rgba(0, 0, 0, 0.82);
+  }
+  .pricing__note-head strong {
+    font-weight: 600;
+    font-size: 0.78rem;
+  }
+  .pricing__note-head :global(svg) {
+    flex: 0 0 auto;
+    width: 13px;
+    height: 13px;
+    stroke-width: 1.8;
+    color: var(--accent);
   }
 
   /* ---------- Responsive ---------- */
@@ -552,9 +590,6 @@ const [featured, ...rest] = pricingPlans;
       grid-template-columns: 1fr;
     }
     .pricing__grid {
-      grid-template-columns: 1fr;
-    }
-    .pricing__notes {
       grid-template-columns: 1fr;
     }
   }

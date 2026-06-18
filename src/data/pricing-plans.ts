@@ -1,3 +1,8 @@
+export interface PricingFeature {
+  label: string;
+  icon: string;
+}
+
 export interface PricingPlan {
   name: string;
   tagline: string;
@@ -6,7 +11,7 @@ export interface PricingPlan {
   priceNote?: string;
   categories: string[];
   duration?: string;
-  features: string[];
+  features: PricingFeature[];
   cta: string;
   ctaHref: string;
   popular?: boolean;
@@ -21,12 +26,18 @@ export const pricingPlans: PricingPlan[] = [
     categories: ["Landing page", "Page de présentation", "Site one-page"],
     duration: "3 à 5 jours",
     features: [
-      "1 page responsive",
-      "Formulaire de contact",
-      "Hébergement inclus, sans abonnement*",
-      "Mise en ligne incluse",
-      "1 cycle de révision",
-      "30 jours de correction des dysfonctionnements",
+      { label: "1 page responsive", icon: "lucide:file" },
+      { label: "Formulaire de contact", icon: "lucide:mail" },
+      {
+        label: "Hébergement inclus, sans abonnement*",
+        icon: "lucide:server",
+      },
+      { label: "Mise en ligne incluse", icon: "lucide:rocket" },
+      { label: "1 cycle de révision", icon: "lucide:repeat" },
+      {
+        label: "30 jours de correction des dysfonctionnements",
+        icon: "lucide:shield-check",
+      },
     ],
     cta: "Choisir ce forfait",
     ctaHref: "#contact",
@@ -45,13 +56,19 @@ export const pricingPlans: PricingPlan[] = [
     ],
     duration: "1 à 3 semaines",
     features: [
-      "Jusqu'à 3 pages",
-      "Design responsive",
-      "Hébergement inclus, sans abonnement*",
-      "SEO de base",
-      "Support email pendant 30 jours",
-      "2 cycles de révision",
-      "30 jours de correction des dysfonctionnements",
+      { label: "Jusqu'à 3 pages", icon: "lucide:files" },
+      { label: "Design responsive", icon: "lucide:smartphone" },
+      {
+        label: "Hébergement inclus, sans abonnement*",
+        icon: "lucide:server",
+      },
+      { label: "SEO de base", icon: "lucide:search" },
+      { label: "Support email pendant 30 jours", icon: "lucide:mail" },
+      { label: "2 cycles de révision", icon: "lucide:repeat" },
+      {
+        label: "30 jours de correction des dysfonctionnements",
+        icon: "lucide:shield-check",
+      },
     ],
     cta: "Choisir ce forfait",
     ctaHref: "#contact",
@@ -70,14 +87,23 @@ export const pricingPlans: PricingPlan[] = [
     ],
     duration: "3 à 8 semaines",
     features: [
-      "Jusqu'à 10 pages",
-      "Fonctionnalités avancées",
-      "SEO avancé",
-      "Analytics et suivi",
-      "Maintenance incluse pendant 3 mois",
-      "Support prioritaire",
-      "3 cycles de révision",
-      "30 jours de correction des dysfonctionnements",
+      { label: "Jusqu'à 10 pages", icon: "lucide:layout-grid" },
+      {
+        label: "Fonctionnalités avancées",
+        icon: "lucide:sliders-horizontal",
+      },
+      { label: "SEO avancé", icon: "lucide:search" },
+      { label: "Analytics et suivi", icon: "lucide:bar-chart-3" },
+      {
+        label: "Maintenance incluse pendant 3 mois",
+        icon: "lucide:wrench",
+      },
+      { label: "Support prioritaire", icon: "lucide:headphones" },
+      { label: "3 cycles de révision", icon: "lucide:repeat" },
+      {
+        label: "30 jours de correction des dysfonctionnements",
+        icon: "lucide:shield-check",
+      },
     ],
     cta: "Choisir ce forfait",
     ctaHref: "#contact",
@@ -97,11 +123,14 @@ export const pricingPlans: PricingPlan[] = [
     ],
     duration: "À cadrer ensemble",
     features: [
-      "Cadrage gratuit",
-      "Devis détaillé",
-      "Développement sur mesure",
-      "Accompagnement dédié",
-      "Solution adaptée aux besoins du projet",
+      { label: "Cadrage gratuit", icon: "lucide:compass" },
+      { label: "Devis détaillé", icon: "lucide:file-text" },
+      { label: "Développement sur mesure", icon: "lucide:code-2" },
+      { label: "Accompagnement dédié", icon: "lucide:hand-heart" },
+      {
+        label: "Solution adaptée aux besoins du projet",
+        icon: "lucide:puzzle",
+      },
     ],
     cta: "Demander un cadrage",
     ctaHref: "#contact",
