@@ -1,6 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 import { services } from "../data/services";
+import { withBase } from "../utils/url";
 ---
 
 <section id="services" class="section section--first services-section">
@@ -11,27 +12,20 @@ import { services } from "../data/services";
   <div class="ss-layout">
     <div class="ss-list" role="tablist" aria-label="Catégories d'offres">
       {
-        services.map((card, i) => {
-          const prevHasProof = i > 0 && !!services[i - 1].proof;
-          const showDivider = !!card.proof && !prevHasProof && i > 0;
-          return (
-            <>
-              {showDivider && <span class="ss-divider" aria-hidden="true" />}
-              <button
-                class="ss-item"
-                data-idx={i}
-                role="tab"
-                aria-selected={i === 0 ? "true" : "false"}
-                tabindex={i === 0 ? "0" : "-1"}
-              >
-                <span class="ss-thumb">
-                  <Icon name={card.icon} />
-                </span>
-                <span class="ss-item-title">{card.title}</span>
-              </button>
-            </>
-          );
-        })
+        services.map((card, i) => (
+          <button
+            class="ss-item"
+            data-idx={i}
+            role="tab"
+            aria-selected={i === 0 ? "true" : "false"}
+            tabindex={i === 0 ? "0" : "-1"}
+          >
+            <span class="ss-thumb">
+              <Icon name={card.icon} />
+            </span>
+            <span class="ss-item-title">{card.title}</span>
+          </button>
+        ))
       }
     </div>
     <div class="ss-detail">
@@ -47,9 +41,23 @@ import { services } from "../data/services";
               {card.gallery.map((g, gi) => (
                 <div
                   class={`ss-slide${gi === 0 ? " is-active" : ""}`}
-                  style={`background: ${g}`}
                   data-slide={gi}
-                />
+                >
+                  {g.image ? (
+                    <img
+                      class="ss-slide-img"
+                      src={withBase(g.image)}
+                      alt={g.caption}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ) : (
+                    <div class="ss-slide-empty" aria-hidden="true">
+                      <Icon name="lucide:image-off" />
+                    </div>
+                  )}
+                  <span class="ss-slide-caption">{g.caption}</span>
+                </div>
               ))}
               <button class="ss-arrow ss-arrow--prev" aria-label="Image précédente">
                 <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -144,12 +152,6 @@ import { services } from "../data/services";
     font-weight: 500;
     line-height: 1.2;
   }
-  .ss-divider {
-    display: block;
-    height: 1px;
-    background: rgba(0, 0, 0, 0.08);
-    margin: 10px 8px;
-  }
   .ss-detail {
     position: relative;
   }
@@ -177,6 +179,41 @@ import { services } from "../data/services";
   }
   .ss-slide.is-active {
     opacity: 1;
+  }
+  .ss-slide-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .ss-slide-empty {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ebe8e0;
+    color: rgba(0, 0, 0, 0.25);
+  }
+  .ss-slide-empty [data-icon] {
+    width: 48px;
+    height: 48px;
+  }
+  .ss-slide-caption {
+    position: absolute;
+    left: 12px;
+    bottom: 12px;
+    max-width: calc(100% - 110px);
+    padding: 8px 14px;
+    background: rgba(0, 0, 0, 0.55);
+    color: #fff;
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.85rem;
+    line-height: 1.35;
+    border-radius: 10px;
+    backdrop-filter: blur(6px);
   }
   .ss-arrow {
     position: absolute;
@@ -259,13 +296,6 @@ import { services } from "../data/services";
     .ss-item {
       flex: 0 0 auto;
       padding: 8px 10px;
-    }
-    .ss-divider {
-      flex: 0 0 auto;
-      width: 1px;
-      height: 28px;
-      margin: 0 6px;
-      align-self: center;
     }
     .ss-item-title {
       font-size: 0.85rem;

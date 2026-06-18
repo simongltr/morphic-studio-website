@@ -9,13 +9,6 @@ export interface Service {
   examples: string;
   icon: string;
   gallery: GalleryItem[];
-  proof?: {
-    points: {
-      icon: string;
-      title: string;
-      text: string;
-    }[];
-  };
 }
 
 export const services: Service[] = [
