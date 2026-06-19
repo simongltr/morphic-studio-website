@@ -27,7 +27,7 @@ body {
 }
 
 .section {
-  padding: clamp(3rem, 7vh, 5.5rem) clamp(1rem, 2vw, 1.75rem);
+  padding: clamp(4rem, 9vh, 7rem) clamp(1rem, 2vw, 1.75rem);
   max-width: 1440px;
   margin: 0 auto;
   scroll-margin-top: clamp(4rem, 8vh, 6rem);
