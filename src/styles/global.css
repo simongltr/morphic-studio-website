@@ -27,8 +27,8 @@ body {
 }
 
 .section {
-  padding: clamp(4rem, 10vh, 8rem) clamp(1.25rem, 3vw, 3rem);
-  max-width: 1320px;
+  padding: clamp(3rem, 7vh, 5.5rem) clamp(1rem, 2vw, 1.75rem);
+  max-width: 1440px;
   margin: 0 auto;
   scroll-margin-top: clamp(4rem, 8vh, 6rem);
 }
@@ -49,19 +49,19 @@ body {
 .section__title {
   font-family: "Space Grotesk", "Inter", sans-serif;
   font-weight: 500;
-  font-size: clamp(1.75rem, 3.6vw, 2.75rem);
+  font-size: clamp(2rem, 4vw, 3.25rem);
   line-height: 1.15;
   letter-spacing: -0.015em;
   margin: 0 0 1.5rem;
-  max-width: 28ch;
+  max-width: 38ch;
   color: rgba(0, 0, 0, 0.88);
 }
 
 .section__body {
   font-family: "Inter", system-ui, sans-serif;
-  font-size: clamp(1rem, 1.2vw, 1.125rem);
+  font-size: clamp(1.05rem, 1.25vw, 1.2rem);
   line-height: 1.65;
-  max-width: 62ch;
+  max-width: 72ch;
   color: rgba(0, 0, 0, 0.72);
 }
 
