@@ -1,6 +1,6 @@
 export interface GalleryItem {
   caption: string;
-  image: string | null;
+  image: string;
 }
 
 export interface Service {
@@ -28,12 +28,12 @@ export const services: Service[] = [
         image: "/services/1-2.webp",
       },
       {
-        caption: "Page de vente pour un coach professionnel certifié",
-        image: null,
+        caption: "Landing page d'un atelier de peinture pour tous niveaux",
+        image: "/services/1-3.webp",
       },
       {
-        caption: "Portfolio d'un photographe spécialisé en mariage",
-        image: null,
+        caption: "Site vitrine d'un coach de tennis privé haute performance",
+        image: "/services/1-4.webp",
       },
     ],
   },
@@ -56,10 +56,6 @@ export const services: Service[] = [
         caption: "Tunnel de commande d'un éditeur de jeux de société",
         image: "/services/2-3.webp",
       },
-      {
-        caption: "Espace client d'une marque de prêt-à-porter responsable",
-        image: null,
-      },
     ],
   },
   {
@@ -73,15 +69,6 @@ export const services: Service[] = [
         caption: "SaaS de gestion pour studios de yoga indépendants",
         image: "/services/3-1.webp",
       },
-      {
-        caption: "MVP d'une plateforme de mise en relation freelances",
-        image: null,
-      },
-      {
-        caption: "Espace membre d'une école de formation en ligne",
-        image: null,
-      },
-      { caption: "Marketplace B2B pour fournisseurs locaux", image: null },
     ],
   },
   {
@@ -91,13 +78,14 @@ export const services: Service[] = [
       "Dashboard commercial, panel admin, CRM interne, suivi des ventes, gestion clients, gestion commandes, reporting marketing, statistiques utilisateurs, suivi de leads, gestion de projets, export PDF ou CSV, rôles utilisateurs.",
     icon: "lucide:layout-dashboard",
     gallery: [
-      { caption: "Dashboard commercial d'une agence immobilière", image: null },
+      {
+        caption: "Dashboard commercial d'une agence immobilière",
+        image: "/services/4-1.webp",
+      },
       {
         caption: "CRM interne sur-mesure pour un cabinet de conseil RH",
         image: "/services/4-2.webp",
       },
-      { caption: "Suivi des ventes d'une PME industrielle", image: null },
-      { caption: "Panel admin d'une plateforme de réservation", image: null },
     ],
   },
   {
@@ -110,15 +98,6 @@ export const services: Service[] = [
       {
         caption: "Configurateur de menuiseries pour un fabricant régional",
         image: "/services/5-1.webp",
-      },
-      { caption: "Calculateur de devis pour un paysagiste", image: null },
-      {
-        caption: "Générateur de PDF contractuels pour un notaire",
-        image: null,
-      },
-      {
-        caption: "Outil de planification pour une école de musique",
-        image: null,
       },
     ],
   },

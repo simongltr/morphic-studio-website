@@ -47,19 +47,13 @@ import { withBase } from "../utils/url";
                   class={`ss-slide${gi === 0 ? " is-active" : ""}`}
                   data-slide={gi}
                 >
-                  {g.image ? (
-                    <img
-                      class="ss-slide-img"
-                      src={withBase(g.image)}
-                      alt={g.caption}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  ) : (
-                    <div class="ss-slide-empty" aria-hidden="true">
-                      <Icon name="lucide:image-off" />
-                    </div>
-                  )}
+                  <img
+                    class="ss-slide-img"
+                    src={withBase(g.image)}
+                    alt={g.caption}
+                    loading="lazy"
+                    decoding="async"
+                  />
                   <span class="ss-slide-caption">{g.caption}</span>
                 </div>
               ))}
@@ -177,7 +171,7 @@ import { withBase } from "../utils/url";
     width: 100%;
     border-radius: 14px;
     overflow: hidden;
-    background: #eee;
+    background: #111;
   }
   .ss-slide {
     position: absolute;
@@ -193,23 +187,10 @@ import { withBase } from "../utils/url";
     inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
   }
-  .ss-slide-empty {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #ebe8e0;
-    color: rgba(0, 0, 0, 0.25);
-  }
-  .ss-slide-empty [data-icon] {
-    width: 48px;
-    height: 48px;
-  }
-  .ss-slide-caption {
+.ss-slide-caption {
     position: absolute;
     left: 12px;
     bottom: 12px;
