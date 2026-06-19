@@ -14,7 +14,7 @@ export interface Service {
 export const services: Service[] = [
   {
     title: "Sites & Landing Pages",
-    body: "Créez une page ou un site qui explique clairement votre offre, rassure vos prospects et transforme les visiteurs interesses en demandes de contact.",
+    body: "Créez une page ou un site qui explique clairement votre offre, rassure vos prospects et transforme les visiteurs intéressés en demandes de contact.",
     examples:
       "Landing page, site vitrine, page de vente, site one-page, portfolio, site pour consultant, site d'artisan, site événementiel, page de capture, site multilingue simple.",
     icon: "lucide:layout",
@@ -39,7 +39,7 @@ export const services: Service[] = [
   },
   {
     title: "E-commerce",
-    body: "Lancez une boutique en ligne professionnelle: catalogue, paiement, tunnel de commande et suivi client adaptes a votre volume et a votre maniere de travailler.",
+    body: "Lancez une boutique en ligne professionnelle : catalogue, paiement, tunnel de commande et suivi client adaptés à votre volume et à votre manière de travailler.",
     examples:
       "Boutique Shopify, WooCommerce, catalogue produit, fiche produit, tunnel de commande, paiement en ligne, panier, codes promo, click & collect, produits digitaux, abonnements, espace client, suivi de commandes.",
     icon: "lucide:shopping-bag",
@@ -86,7 +86,7 @@ export const services: Service[] = [
   },
   {
     title: "Dashboards & Admin",
-    body: "Regroupez vos chiffres, clients, commandes ou leads dans une interface claire pour piloter l'activite sans courir apres les infos.",
+    body: "Regroupez vos chiffres, clients, commandes ou leads dans une interface claire pour piloter l'activité sans courir après les infos.",
     examples:
       "Dashboard commercial, panel admin, CRM interne, suivi des ventes, gestion clients, gestion commandes, reporting marketing, statistiques utilisateurs, suivi de leads, gestion de projets, export PDF ou CSV, rôles utilisateurs.",
     icon: "lucide:layout-dashboard",
