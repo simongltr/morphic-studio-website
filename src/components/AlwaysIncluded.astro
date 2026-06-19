@@ -5,27 +5,32 @@ const standards = [
   {
     icon: "lucide:search",
     title: "SEO de base",
-    text: "Structure sémantique, métadonnées, sitemap et indexation propre dès la mise en ligne.",
+    text: "Un site bien rangé pour Google : pages structurées, plan du site, descriptions soignées. Trouvable dès la mise en ligne.",
   },
   {
     icon: "lucide:sparkles",
     title: "SEO IA",
-    text: "Pages lisibles par ChatGPT, Perplexity et Google AI Overviews, pas seulement par Google.",
+    text: "Vos pages comprises par ChatGPT, Perplexity et les nouveaux moteurs IA, pas seulement par Google.",
   },
   {
     icon: "lucide:gauge",
     title: "Performance",
-    text: "Core Web Vitals dans le vert. Chargement rapide sur mobile comme sur fibre.",
+    text: "Un site qui s'affiche vite, sur mobile en 4G comme sur ordinateur. Vos visiteurs n'attendent pas, Google non plus.",
   },
   {
     icon: "lucide:accessibility",
     title: "Accessibilité",
-    text: "Contrastes, focus clavier, hiérarchie correcte. WCAG AA sur les fondamentaux.",
+    text: "Lisible, navigable au clavier, pensé pour tous vos visiteurs. Y compris ceux qui utilisent une aide technique.",
   },
   {
     icon: "lucide:monitor-smartphone",
     title: "Responsive",
     text: "Testé sur mobile, tablette et desktop. Pas de version dégradée pour personne.",
+  },
+  {
+    icon: "lucide:shield-check",
+    title: "Sécurité",
+    text: "Un site servi en HTTPS, bâti sur des briques techniques récentes, protégé contre les attaques courantes. Sans rien à gérer de votre côté.",
   },
 ];
 ---
@@ -75,8 +80,8 @@ const standards = [
     padding: 0;
     margin: 0;
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 10px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
   }
   .ai-card {
     display: grid;
@@ -118,11 +123,6 @@ const standards = [
     color: rgba(0, 0, 0, 0.6);
   }
 
-  @media (max-width: 1100px) {
-    .ai-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-  }
   @media (max-width: 720px) {
     .ai-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
