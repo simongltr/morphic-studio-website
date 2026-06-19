@@ -20,7 +20,7 @@ export interface PricingPlan {
 export const pricingPlans: PricingPlan[] = [
   {
     name: "Lancement",
-    tagline: "Une page professionnelle en ligne rapidement.",
+    tagline: "Une page professionnelle pour exister sur le web sans attendre.",
     price: "500 €",
     priceSuffix: "/ projet",
     categories: ["Landing page", "Page de présentation", "Site one-page"],
@@ -44,7 +44,7 @@ export const pricingPlans: PricingPlan[] = [
   },
   {
     name: "Vitrine",
-    tagline: "Un site simple et crédible pour présenter votre activité.",
+    tagline: "Un site soigné pour présenter votre activité et déclencher des contacts.",
     price: "1 500 €",
     priceSuffix: "/ projet",
     categories: [
@@ -119,7 +119,9 @@ export const pricingPlans: PricingPlan[] = [
       "E-commerce avancé",
       "Dashboard métier",
       "Outil sur mesure",
-      "Conseil & accompagnement",
+      "Consulting",
+      "Automatisation",
+      "IA",
     ],
     duration: "À cadrer ensemble",
     features: [

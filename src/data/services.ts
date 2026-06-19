@@ -14,7 +14,7 @@ export interface Service {
 export const services: Service[] = [
   {
     title: "Sites & Landing Pages",
-    body: "Créez une présence web claire, moderne et crédible avec une page ou un site pensé pour présenter votre activité, rassurer vos visiteurs et générer des contacts.",
+    body: "Créez une page ou un site qui explique clairement votre offre, rassure vos prospects et transforme les visiteurs interesses en demandes de contact.",
     examples:
       "Landing page, site vitrine, page de vente, site one-page, portfolio, site pour consultant, site d'artisan, site événementiel, page de capture, site multilingue simple.",
     icon: "lucide:layout",
@@ -39,7 +39,7 @@ export const services: Service[] = [
   },
   {
     title: "E-commerce",
-    body: "Lancez une boutique en ligne professionnelle pour présenter vos produits, simplifier l'achat, encaisser les paiements et transformer vos visiteurs en clients.",
+    body: "Lancez une boutique en ligne professionnelle: catalogue, paiement, tunnel de commande et suivi client adaptes a votre volume et a votre maniere de travailler.",
     examples:
       "Boutique Shopify, WooCommerce, catalogue produit, fiche produit, tunnel de commande, paiement en ligne, panier, codes promo, click & collect, produits digitaux, abonnements, espace client, suivi de commandes.",
     icon: "lucide:shopping-bag",
@@ -64,7 +64,7 @@ export const services: Service[] = [
   },
   {
     title: "Applications Web",
-    body: "Transformez une idée, un service ou un besoin métier en plateforme web sur mesure, avec espace connecté, fonctionnalités interactives et parcours utilisateur complet.",
+    body: "Une plateforme web sur mesure pour un service que vous voulez lancer, ou un besoin métier qu'aucun outil du marché ne couvre vraiment.",
     examples:
       "Application SaaS, MVP, plateforme de réservation, espace membre, portail client, marketplace légère, plateforme de formation, outil collaboratif, système d'inscription, gestion d'utilisateurs, abonnement, paiement intégré.",
     icon: "lucide:app-window",
@@ -86,7 +86,7 @@ export const services: Service[] = [
   },
   {
     title: "Dashboards & Admin",
-    body: "Centralisez vos données et pilotez votre activité avec des tableaux de bord, panels admin et interfaces de gestion simples, visuelles et adaptées à votre organisation.",
+    body: "Regroupez vos chiffres, clients, commandes ou leads dans une interface claire pour piloter l'activite sans courir apres les infos.",
     examples:
       "Dashboard commercial, panel admin, CRM interne, suivi des ventes, gestion clients, gestion commandes, reporting marketing, statistiques utilisateurs, suivi de leads, gestion de projets, export PDF ou CSV, rôles utilisateurs.",
     icon: "lucide:layout-dashboard",
@@ -102,7 +102,7 @@ export const services: Service[] = [
   },
   {
     title: "Outils sur mesure",
-    body: "Remplacez les tâches manuelles, fichiers bricolés et process répétitifs par des outils web conçus exactement pour votre façon de travailler.",
+    body: "Un outil web taillé pour votre métier, qui remplace les fichiers bricolés, les copier-coller et les processus répétitifs par une solution simple, fiable et adaptée à votre façon de travailler.",
     examples:
       "Calculateur de prix, générateur de devis, configurateur produit, simulateur, formulaire avancé, quiz de qualification, générateur PDF, outil métier interne, import/export de données, workflow personnalisé, outil de réservation spécifique.",
     icon: "lucide:wrench",

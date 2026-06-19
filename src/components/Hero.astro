@@ -1,4 +1,5 @@
 ---
+import Logo from "./Logo.astro";
 import { withBase } from "../utils/url";
 
 const heroBgUrl = `url(${withBase("/hero-background.webp")})`;
@@ -14,12 +15,19 @@ const heroBgUrl = `url(${withBase("/hero-background.webp")})`;
     />
     <div class="hero__wash"></div>
     <div class="hero__masthead">
+      <div class="hero__brand" aria-label="Morphic Studio">
+        <span class="hero__brand-logo">
+          <Logo />
+        </span>
+        <span class="hero__brand-name">MORPHIC STUDIO</span>
+      </div>
       <h1 class="hero__title">
-        Votre partenaire digital, de l'idée à la mise en ligne
+        Le studio web qui modernise le digital des TPE et PME.
       </h1>
       <p class="hero__subtitle">
-        Branding, sites web, MVP et outils sur mesure pour créer, lancer et
-        optimiser vos projets digitaux.
+        Sites web, boutiques en ligne et outils métier pour lancer un projet,
+        améliorer un process ou remplacer un bricolage interne par une solution
+        fiable.
       </p>
     </div>
   </section>
@@ -46,7 +54,7 @@ const heroBgUrl = `url(${withBase("/hero-background.webp")})`;
     --team-x: 0px;
     --team-y: 0px;
     --wash: 0;
-    --masthead-top: 42%;
+    --masthead-top: 46%;
     --team-bottom: -8%;
   }
 
@@ -72,6 +80,39 @@ const heroBgUrl = `url(${withBase("/hero-background.webp")})`;
     z-index: 2;
   }
 
+  .hero__brand {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    margin: 0 auto clamp(1.75rem, 3vw, 2.75rem);
+    color: rgba(0, 0, 0, 0.82);
+  }
+
+  .hero__brand-logo {
+    display: inline-flex;
+    align-items: center;
+    height: clamp(28px, 3vw, 38px);
+  }
+
+  .hero__brand-logo :global(svg) {
+    height: 100%;
+    width: auto;
+    display: block;
+  }
+
+  .hero__brand-logo :global(svg path) {
+    fill: currentColor;
+  }
+
+  .hero__brand-name {
+    font-family: "Quicksand", system-ui, sans-serif;
+    font-weight: 600;
+    font-size: clamp(1.05rem, 1vw + 0.7rem, 1.3rem);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
   .hero__title {
     margin: 0;
     text-align: center;
@@ -85,7 +126,7 @@ const heroBgUrl = `url(${withBase("/hero-background.webp")})`;
   }
 
   .hero__subtitle {
-    margin: clamp(0.5rem, 0.9vw, 0.875rem) auto 0;
+    margin: clamp(1.25rem, 2.2vw, 1.75rem) auto 0;
     max-width: 40rem;
     text-align: center;
     font-family: "Quicksand", system-ui, sans-serif;
@@ -205,7 +246,7 @@ const heroBgUrl = `url(${withBase("/hero-background.webp")})`;
         wide + (small - wide) * smallFactor;
       TEAM_BLUR_MAX = lerp(24, 14);
       TEAM_SCALE_MAX = lerp(4.5, 3.5);
-      MASTHEAD_TOP_START = lerp(41, 44);
+      MASTHEAD_TOP_START = lerp(45, 48);
       MASTHEAD_TOP_END = lerp(18, 22);
 
       const shrinkFactor = clamp(
