@@ -52,10 +52,6 @@ export const services: Service[] = [
         caption: "Catalogue produit d'une marque de cosmétique bio",
         image: "/services/2-2.webp",
       },
-      {
-        caption: "Tunnel de commande d'un éditeur de jeux de société",
-        image: "/services/2-3.webp",
-      },
     ],
   },
   {
