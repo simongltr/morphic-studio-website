@@ -37,17 +37,18 @@ const steps = [
     cadrage. Pas de dérive silencieuse, pas de surprise à la facture finale.
   </p>
 
-  <ol class="method__steps">
+  <ol class="method__steps method__steps--icons">
     {
-      steps.map((step, index) => (
+      steps.map((step) => (
         <li class="method__step">
-          <span class="method__number">{String(index + 1).padStart(2, "0")}</span>
-          <span class="method__icon" aria-hidden="true">
+          <div class="method__node" aria-hidden="true">
             <Icon name={step.icon} />
-          </span>
-          <h3 class="method__title">{step.title}</h3>
-          <p class="method__body">{step.body}</p>
-          <p class="method__duration">{step.duration}</p>
+          </div>
+          <div class="method__content">
+            <h3 class="method__title">{step.title}</h3>
+            <p class="method__body">{step.body}</p>
+            <p class="method__duration">{step.duration}</p>
+          </div>
         </li>
       ))
     }
@@ -56,25 +57,25 @@ const steps = [
 
 <style>
   .method__steps {
+    /* One single stroke value drives BOTH the line and the circle borders,
+       so they can never read as different weights. */
+    --stroke: 2px;
+    /* Line a touch thinner than the ring border to optically match the
+       curved stroke of the circles */
+    --line-stroke: 1.5px;
+    /* Single ink value for line AND rings so they read identical */
+    --stroke-color: rgba(0, 0, 0, 0.85);
+    --node-size: 48px;
+    --node-half: calc(var(--node-size) / 2);
+    --method-gap: clamp(1.5rem, 3vw, 2.5rem);
+
     list-style: none;
     margin: clamp(2.5rem, 5vh, 4rem) 0 0;
     padding: 0;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: clamp(1.5rem, 3vw, 2.5rem);
+    column-gap: var(--method-gap);
     position: relative;
-  }
-
-  /* Thin connector line behind the numbered chips */
-  .method__steps::before {
-    content: "";
-    position: absolute;
-    top: 0.55rem;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: rgba(0, 0, 0, 0.08);
-    z-index: 0;
   }
 
   .method__step {
@@ -82,35 +83,53 @@ const steps = [
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  /* Connector segment from this node to the next one */
+  .method__step::after {
+    content: "";
+    position: absolute;
+    top: var(--node-half);
+    left: var(--node-half);
+    width: calc(100% + var(--method-gap));
+    height: var(--line-stroke);
+    background: var(--stroke-color);
+    transform: translateY(-50%);
+    z-index: 0;
+  }
+  .method__step:last-child::after {
+    display: none;
+  }
+
+  .method__node {
+    position: relative;
     z-index: 1;
-  }
-  .method__number {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    color: rgba(0, 0, 0, 0.55);
-    background: #fafaf8;
-    padding: 0 0.5rem 0 0;
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
-  }
-  .method__icon {
-    display: inline-flex;
+    flex-shrink: 0;
+    width: var(--node-size);
+    height: var(--node-size);
+    display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    border: 1px solid rgba(0, 0, 0, 0.12);
-    border-radius: 8px;
-    color: rgba(0, 0, 0, 0.75);
-    margin-bottom: 1.25rem;
+    border: var(--stroke) solid var(--stroke-color);
+    border-radius: 50%;
+    background: #fafaf8;
+    margin-bottom: 1.5rem;
   }
-  .method__icon :global(svg) {
+
+  /* Icon living inside the ring (version A) */
+  .method__node :global(svg) {
     width: 20px;
     height: 20px;
     stroke-width: 1.5;
+    color: rgba(0, 0, 0, 0.85);
   }
+
+  .method__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   .method__title {
     font-family: "Space Grotesk", "Inter", sans-serif;
     font-weight: 600;
@@ -137,18 +156,31 @@ const steps = [
     margin: 0;
   }
 
+  /* Vertical timeline — kept continuous on tablet & mobile */
   @media (max-width: 900px) {
     .method__steps {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      row-gap: var(--method-gap);
     }
-    .method__steps::before {
-      display: none;
+    .method__step {
+      flex-direction: row;
+      align-items: flex-start;
+      column-gap: 1.25rem;
     }
-  }
-  @media (max-width: 560px) {
-    .method__steps {
-      grid-template-columns: 1fr;
+    .method__node {
+      margin-bottom: 0;
+    }
+    /* Connector now runs vertically down to the next node */
+    .method__step::after {
+      top: var(--node-half);
+      left: var(--node-half);
+      width: var(--line-stroke);
+      height: calc(100% + var(--method-gap));
+      transform: translateX(-50%);
+    }
+    .method__content {
+      padding-top: 0.1rem;
     }
   }
 </style>
