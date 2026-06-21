@@ -75,12 +75,16 @@ export const services: Service[] = [
     icon: "lucide:layout-dashboard",
     gallery: [
       {
-        caption: "Dashboard commercial d'une agence immobilière",
+        caption: "Dashboard e-commerce de pilotage d'une PME",
         image: "/services/4-1.webp",
       },
       {
-        caption: "CRM interne sur-mesure pour un cabinet de conseil RH",
+        caption: "Dashboard commercial d'une agence immobilière",
         image: "/services/4-2.webp",
+      },
+      {
+        caption: "CRM interne sur-mesure pour un cabinet de conseil RH",
+        image: "/services/4-3.webp",
       },
     ],
   },
