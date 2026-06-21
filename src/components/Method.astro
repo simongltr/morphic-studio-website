@@ -6,25 +6,21 @@ const steps = [
     icon: "lucide:message-circle",
     title: "Cadrage",
     body: "On comprend votre projet, on précise le périmètre, on chiffre. Vous repartez avec un devis ferme et un planning.",
-    duration: "1 à 2 jours",
   },
   {
     icon: "lucide:pen-tool",
     title: "Design",
     body: "On dessine l'architecture, les écrans, les interactions. Vous validez chaque étape avant qu'on touche au code.",
-    duration: "2 à 4 jours",
   },
   {
     icon: "lucide:code-2",
     title: "Développement",
     body: "On construit, on teste, on intègre vos contenus. Une démo accessible à tout moment, mise à jour en continu.",
-    duration: "4 à 8 jours",
   },
   {
     icon: "lucide:rocket",
     title: "Mise en ligne",
     body: "On déploie, on forme votre équipe, on vous remet les clés : code, accès, fichiers. 30 jours de suivi inclus.",
-    duration: "1 jour + suivi",
   },
 ];
 ---
@@ -47,7 +43,6 @@ const steps = [
           <div class="method__content">
             <h3 class="method__title">{step.title}</h3>
             <p class="method__body">{step.body}</p>
-            <p class="method__duration">{step.duration}</p>
           </div>
         </li>
       ))
@@ -143,16 +138,6 @@ const steps = [
     font-size: 0.9375rem;
     line-height: 1.6;
     color: rgba(0, 0, 0, 0.6);
-    margin: 0 0 1rem;
-    flex-grow: 1;
-  }
-  .method__duration {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 0.7rem;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    text-transform: lowercase;
-    color: rgba(0, 0, 0, 0.45);
     margin: 0;
   }
 
