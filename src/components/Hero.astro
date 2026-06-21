@@ -54,7 +54,7 @@ const heroBgUrl = `url(${withBase("/hero-background.webp")})`;
     --team-x: 0px;
     --team-y: 0px;
     --wash: 0;
-    --masthead-top: 46%;
+    --masthead-top: 42%;
     --team-bottom: -8%;
   }
 
@@ -75,6 +75,7 @@ const heroBgUrl = `url(${withBase("/hero-background.webp")})`;
     left: 50%;
     top: var(--masthead-top);
     transform: translate(-50%, -50%);
+    /* Fixed 1100px; only shrinks once the viewport edges reach it. */
     width: min(1100px, 95vw);
     text-align: center;
     z-index: 2;
@@ -85,14 +86,14 @@ const heroBgUrl = `url(${withBase("/hero-background.webp")})`;
     align-items: center;
     justify-content: center;
     gap: 0.65rem;
-    margin: 0 auto clamp(1.75rem, 3vw, 2.75rem);
+    margin: 0 auto clamp(1.75rem, 3.83vw, 2.75rem);
     color: rgba(0, 0, 0, 0.82);
   }
 
   .hero__brand-logo {
     display: inline-flex;
     align-items: center;
-    height: clamp(28px, 3vw, 38px);
+    height: clamp(28px, 3.3vw, 38px);
   }
 
   .hero__brand-logo :global(svg) {
@@ -108,7 +109,7 @@ const heroBgUrl = `url(${withBase("/hero-background.webp")})`;
   .hero__brand-name {
     font-family: "Quicksand", system-ui, sans-serif;
     font-weight: 600;
-    font-size: clamp(1.05rem, 1vw + 0.7rem, 1.3rem);
+    font-size: clamp(1.05rem, 1.81vw, 1.3rem);
     letter-spacing: 0.22em;
     text-transform: uppercase;
   }
@@ -118,7 +119,9 @@ const heroBgUrl = `url(${withBase("/hero-background.webp")})`;
     text-align: center;
     font-family: "Libre Baskerville", Georgia, serif;
     font-weight: 700;
-    font-size: clamp(2.55rem, calc(2rem + 2.5vw), 4.25rem);
+    /* Fixed 4.25rem on desktop; only shrinks below ~1150px where the
+       text starts reaching the viewport edges. */
+    font-size: clamp(2.55rem, 5.9vw, 4.25rem);
     line-height: 1.2;
     letter-spacing: -0.01em;
     color: rgba(0, 0, 0, 0.8);
@@ -126,12 +129,14 @@ const heroBgUrl = `url(${withBase("/hero-background.webp")})`;
   }
 
   .hero__subtitle {
-    margin: clamp(1.25rem, 2.2vw, 1.75rem) auto 0;
-    max-width: 58rem;
+    margin: clamp(1.25rem, 2.43vw, 1.75rem) auto 0;
+    max-width: min(58rem, 90vw);
     text-align: center;
     font-family: "Quicksand", system-ui, sans-serif;
     font-weight: 500;
-    font-size: 1rem;
+    /* Fixed 1rem on desktop, shrinking in step with the title below
+       ~1150px (same crossover so the two stay proportional). */
+    font-size: clamp(0.6rem, 1.39vw, 1rem);
     letter-spacing: 0.18em;
     color: rgba(0, 0, 0, 0.75);
     text-transform: uppercase;
@@ -148,7 +153,10 @@ const heroBgUrl = `url(${withBase("/hero-background.webp")})`;
     transform-origin: 50% 65%;
     width: auto;
     height: auto;
-    max-width: clamp(520px, 133vw, 931px);
+    /* Fixed 931px, held even a bit past the viewport width so the edges
+       lightly crop the image (centered, clipped by the hero's
+       overflow:hidden) before it finally shrinks below ~716px. */
+    max-width: min(931px, 130vw);
     object-fit: contain;
     object-position: bottom center;
     pointer-events: none;
@@ -166,6 +174,14 @@ const heroBgUrl = `url(${withBase("/hero-background.webp")})`;
     opacity: var(--wash);
     pointer-events: none;
     z-index: 1;
+  }
+
+  /* On phones the proportional size would be too small to read; keep a
+     legible minimum (proportions matter less at this width anyway). */
+  @media (max-width: 700px) {
+    .hero__subtitle {
+      font-size: 0.85rem;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -246,7 +262,7 @@ const heroBgUrl = `url(${withBase("/hero-background.webp")})`;
         wide + (small - wide) * smallFactor;
       TEAM_BLUR_MAX = lerp(24, 14);
       TEAM_SCALE_MAX = lerp(4.5, 3.5);
-      MASTHEAD_TOP_START = lerp(45, 48);
+      MASTHEAD_TOP_START = lerp(41, 44);
       MASTHEAD_TOP_END = lerp(18, 22);
 
       const shrinkFactor = clamp(
