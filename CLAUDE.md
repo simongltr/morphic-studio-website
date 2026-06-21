@@ -59,6 +59,8 @@ These live under `tools/`. Run them only when the user asks for a screenshot, an
 - `tools/screenshot-stack-scroll.ts` — frames through the sticky card-stack section.
 - `tools/screenshot-hero.ts` — hero viewport screenshot at 1440×900 (defaults to dev server URL).
 - `tools/screenshot-hero-mobile.ts` — same hero viewport at 390×844 with 2× DPR.
+- `tools/screenshot-hero-sizes.ts` — hero at a single aspect ratio (16:9) across resolutions (1280×720 → 3840×2160), one PNG per size in `dist/screenshots/hero-sizes/`.
+- `tools/screenshot-section-sizes.ts` — a given section (selector arg, default `#services`) captured across the same 16:9 resolutions, one PNG per size in `dist/screenshots/section-sizes/`.
 
 Output PNGs land in `<input-dir>/screenshots/` (gitignored).
 
