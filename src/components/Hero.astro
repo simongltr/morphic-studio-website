@@ -92,7 +92,10 @@ const heroBgUrl = `url(${withBase("/hero-background.webp")})`;
      scroll + parallaxe souris inverse (profondeur). */
   .hero__bg {
     position: absolute;
-    inset: 0;
+    /* Déborde le hero de 8px sur chaque bord (sur-balayage) : la parallaxe
+       déplace le fond de ±2px max, ce débordement garantit donc qu'aucun bord
+       blanc n'apparaît. L'excédent est rogné par overflow:hidden du hero. */
+    inset: -8px;
     background-image: var(--heroBg);
     background-size: cover;
     background-position: center;
@@ -320,10 +323,10 @@ const heroBgUrl = `url(${withBase("/hero-background.webp")})`;
       // La parallaxe s'estompe dès qu'on scrolle (l'effet de scroll prend le relais).
       const par = clamp(1 - p * 2, 0, 1);
       const s = hero!.style;
-      s.setProperty("--team-x", (cx * 8 * par).toFixed(2) + "px");
-      s.setProperty("--team-y", (cy * 5 * par).toFixed(2) + "px");
-      s.setProperty("--bg-x", (-cx * 4 * par).toFixed(2) + "px");
-      s.setProperty("--bg-y", (-cy * 3 * par).toFixed(2) + "px");
+      s.setProperty("--team-x", (cx * 4 * par).toFixed(2) + "px");
+      s.setProperty("--team-y", (cy * 2.5 * par).toFixed(2) + "px");
+      s.setProperty("--bg-x", (-cx * 2 * par).toFixed(2) + "px");
+      s.setProperty("--bg-y", (-cy * 1.5 * par).toFixed(2) + "px");
 
       s.setProperty("--bg-scale", remap(p, 0, 1, 1, 1.8).toFixed(4));
       s.setProperty("--team-scale", remap(p, 0, 0.7, 1, 3.2).toFixed(4));
