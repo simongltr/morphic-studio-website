@@ -18,6 +18,8 @@
     "typescript": "^5"
   },
   "dependencies": {
+    "@astrojs/rss": "^4.0.18",
+    "@astrojs/sitemap": "^3.7.3",
     "@iconify-json/lucide": "^1.2.111",
     "astro-icon": "^1.1.5"
   }

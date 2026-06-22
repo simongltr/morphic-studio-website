@@ -1,0 +1,38 @@
+# Morphic Studio
+
+> Studio web indépendant basé à Angers et intervenant partout en France, sur
+> place ou à distance. Morphic Studio conçoit des sites vitrines, des
+> applications web et accompagne ses clients en conseil, au forfait.
+
+## À propos
+
+- Nom : Morphic Studio
+- Localisation : Angers (Pays de la Loire, France)
+- Zone d'intervention : Angers, Pays de la Loire, France, à distance
+- Email : contact@morphicstudio.fr
+- Téléphone : 06 95 66 07 26
+- Prise de rendez-vous : https://calendly.com/contact-morphicstudio/30min
+
+## Offre
+
+- Sites vitrines, landing pages, sites one-page
+- Applications web, e-commerce, dashboards et outils sur mesure
+- Conseil et cadrage de projet
+- Stack moderne : Astro, Next.js, React, TypeScript, CMS (Strapi, WordPress)
+- Facturation au forfait, prix ferme annoncé au devis
+- Le client est propriétaire du code, des accès et des fichiers à la livraison
+
+## Pages
+
+- [Accueil](https://morphicstudio.fr/) : offre, méthode, tarifs et FAQ
+- [Blog](https://morphicstudio.fr/blog/) : notes et prises de position sur le web et le développement
+- [Flux RSS](https://morphicstudio.fr/rss.xml)
+
+## Articles de blog
+
+- [SEO et IA : comment exister dans les réponses de ChatGPT](https://morphicstudio.fr/blog/seo-pour-les-llms/)
+- [Les 5 questions à poser à une agence web avant de signer](https://morphicstudio.fr/blog/questions-avant-de-signer/)
+- [Pourquoi on travaille au forfait et jamais au TJM](https://morphicstudio.fr/blog/pourquoi-le-forfait/)
+- [Pourquoi on a choisi Astro pour ce site](https://morphicstudio.fr/blog/pourquoi-astro/)
+- [WordPress en 2026 : faut-il encore l'utiliser ?](https://morphicstudio.fr/blog/wordpress-en-2026/)
+- [Bienvenue sur le blog Morphic](https://morphicstudio.fr/blog/bienvenue/)

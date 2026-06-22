@@ -5,6 +5,7 @@ import { Icon } from "astro-icon/components";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Header from "../../components/Header.astro";
 import { withBase } from "../../utils/url";
+import { site, absoluteUrl } from "../../data/site";
 
 export const getStaticPaths = (async () => {
   const posts = await getCollection("blog", ({ data }) => !data.draft);
@@ -22,9 +23,29 @@ const dateFmt = new Intl.DateTimeFormat("fr-FR", {
   month: "long",
   year: "numeric",
 });
+
+const articleLd = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: post.data.title,
+  description: post.data.description,
+  image: absoluteUrl(post.data.heroImage),
+  datePublished: post.data.pubDate.toISOString(),
+  dateModified: (post.data.updatedDate ?? post.data.pubDate).toISOString(),
+  inLanguage: site.lang,
+  mainEntityOfPage: absoluteUrl(`/blog/${post.id}/`),
+  author: { "@type": "Organization", name: site.name, url: site.url },
+  publisher: { "@id": `${site.url}/#organization` },
+};
 ---
 
-<BaseLayout title={`${post.data.title} — Morphic Studio`}>
+<BaseLayout
+  title={`${post.data.title} — Morphic Studio`}
+  description={post.data.description}
+  image={post.data.heroImage}
+  article={true}
+  jsonLd={articleLd}
+>
   <Header />
   <main class="site">
     <article class="article">

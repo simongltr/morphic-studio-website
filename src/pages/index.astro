@@ -10,9 +10,25 @@ import Pricing from "../components/Pricing.astro";
 import BlogPreview from "../components/BlogPreview.astro";
 import Faq from "../components/Faq.astro";
 import Contact from "../components/Contact.astro";
+import { site } from "../data/site";
+import { faqItems } from "../data/faq";
+
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
 ---
 
-<BaseLayout title="Morphic Studio">
+<BaseLayout
+  title={`${site.name} — ${site.tagline}`}
+  description={site.description}
+  jsonLd={faqLd}
+>
   <Header />
   <Hero />
   <main class="site">

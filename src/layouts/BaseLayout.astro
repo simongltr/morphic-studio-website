@@ -2,13 +2,56 @@
 import "../styles/global.css";
 import Footer from "../components/Footer.astro";
 import { withBase } from "../utils/url";
+import { site, absoluteUrl } from "../data/site";
 
 interface Props {
   title?: string;
+  description?: string;
+  /** Site-root-relative path to the share image (e.g. "/blog/foo.webp"). */
+  image?: string;
   lang?: string;
+  /** When true, sets og:type to "article" instead of "website". */
+  article?: boolean;
+  /** Extra JSON-LD object(s) to inject (Article, FAQPage, …). */
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
-const { title = "Morphic Studio", lang = "fr" } = Astro.props;
+const {
+  title = site.name,
+  description = site.description,
+  image = site.defaultImage,
+  lang = site.lang,
+  article = false,
+  jsonLd,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, site.url).href;
+const imageUrl = absoluteUrl(image);
+
+// Sitewide entity definition — strong signal for search engines and LLMs.
+const organizationLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": `${site.url}/#organization`,
+  name: site.name,
+  url: site.url,
+  description: site.description,
+  email: site.email,
+  telephone: site.phone,
+  image: absoluteUrl(site.defaultImage),
+  logo: absoluteUrl("/favicon.svg"),
+  areaServed: site.areaServed,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Angers",
+    addressRegion: "Pays de la Loire",
+    addressCountry: "FR",
+  },
+  ...(site.sameAs.length ? { sameAs: site.sameAs } : {}),
+};
+
+const extraLd = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+const structuredData = [organizationLd, ...extraLd];
 ---
 
 <!doctype html>
@@ -17,15 +60,48 @@ const { title = "Morphic Studio", lang = "fr" } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={article ? "article" : "website"} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:locale" content={site.locale} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+
     <link rel="icon" href={withBase("/favicon.ico")} sizes="32x32" />
     <link rel="icon" href={withBase("/favicon.svg")} type="image/svg+xml" />
     <link rel="apple-touch-icon" href={withBase("/apple-touch-icon.png")} />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={`${site.name} — Blog`}
+      href={withBase("/rss.xml")}
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Quicksand:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap"
       rel="stylesheet"
     />
+
+    {
+      structuredData.map((entry) => (
+        <script
+          type="application/ld+json"
+          set:html={JSON.stringify(entry)}
+        />
+      ))
+    }
   </head>
   <body>
     <slot />
