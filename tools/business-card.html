@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Carte de visite — Morphic Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Quicksand:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        background: #c9c6c0; padding: 48px;
+        display: flex; flex-wrap: wrap; gap: 48px;
+        font-family: "Inter", system-ui, sans-serif;
+      }
+
+      /* 85×55 mm trim + 3 mm bleed = 91×61 mm. Scale: 10 px / mm → 910×610.
+         Trim line sits at 30px inset; safe content area ~70px inset. */
+      .card {
+        width: 910px; height: 610px;
+        position: relative; overflow: hidden;
+        /* content padding = bleed(30) + safe(40) */
+        padding: 70px 74px;
+        display: flex; flex-direction: column; justify-content: space-between;
+      }
+      .card canvas {
+        position: absolute; inset: 0; z-index: 0; pointer-events: none;
+        width: 910px; height: 610px;
+      }
+      .card > * { position: relative; z-index: 2; }
+
+      /* ---------- RECTO (light) ---------- */
+      .recto {
+        background: #fff;
+        color: rgba(0, 0, 0, 0.92);
+        --halo: 11px; --halo-color: #fff;
+      }
+      .brand { display: flex; align-items: center; gap: 16px; }
+      .brand svg { height: 38px; width: auto; display: block; }
+      .brand__name {
+        font-family: "Quicksand", system-ui, sans-serif;
+        font-weight: 600; font-size: 20px; letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+      .recto .headline h1 {
+        font-family: "Libre Baskerville", Georgia, serif;
+        font-weight: 700; font-size: 52px; line-height: 1.16;
+        letter-spacing: -0.01em; max-width: 13ch;
+        text-shadow: 0 0 var(--halo) var(--halo-color), 0 0 var(--halo) var(--halo-color),
+                     0 0 var(--halo) var(--halo-color), 0 0 calc(var(--halo) * 2.2) var(--halo-color);
+      }
+      .recto .headline .accent { font-style: italic; font-weight: 400; }
+      .recto .foot {
+        display: flex; flex-direction: column; align-items: flex-start; gap: 6px;
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 16px; font-weight: 500; color: rgba(0, 0, 0, 0.6);
+      }
+
+      /* ---------- VERSO (dark) ---------- */
+      .verso {
+        background: #0e0e0d;
+        color: rgba(250, 250, 248, 0.92);
+        padding: 0;
+      }
+      .verso .vinner {
+        position: absolute; inset: 100px; z-index: 2;
+        display: flex; flex-direction: column; justify-content: space-between;
+      }
+      .verso .brand svg path { fill: #fff; }
+      .verso .brand__name { color: #fff; }
+      .verso .vrow {
+        display: flex; align-items: flex-end; justify-content: space-between; gap: 28px;
+      }
+      .verso .contact {
+        display: flex; flex-direction: column; gap: 13px;
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 20px; font-weight: 500; color: #fff;
+      }
+      .verso .contact .row { display: flex; align-items: center; gap: 13px; }
+      .verso .contact .k {
+        color: rgba(255, 255, 255, 0.5); font-size: 13px;
+        letter-spacing: 0.08em; text-transform: lowercase; width: 56px;
+      }
+      .verso .qr {
+        flex: none; width: 224px; height: 224px;
+        background: #fff; border-radius: 12px; padding: 7px;
+      }
+      .verso .qr img { width: 100%; height: 100%; display: block; }
+    </style>
+  </head>
+  <body>
+    <!-- ===================== RECTO ===================== -->
+    <div class="card recto" id="recto">
+      <canvas></canvas>
+      <div class="brand">
+        <svg viewBox="0 0 55.139378 60.577862" aria-hidden="true">
+          <g transform="translate(-61.628656,-87.159944)"><g transform="matrix(0.55139349,0,0,-0.55139349,61.628655,147.7378)">
+            <path d="m 54.456193,80.053008 c -1.311365,-1.048401 -1.924234,-2.373925 -1.956228,-3.966767 l 1.7e-5,-19.770276 c 0.08228,-4.190893 4.660656,-6.45651 8.043793,-3.966732 L 98.043789,81.12396 c 1.311397,1.048427 1.924246,2.374012 1.956241,3.966767 l -2e-5,19.770273 c -0.0822,4.18641 -4.654176,6.45832 -8.043796,3.96659 z" />
+            <path d="m 47.5,76.086241 c -0.03237,1.611343 -0.658915,2.929495 -1.95621,3.966767 L 8.0438071,108.82777 c -2.7651664,2.0358 -7.6715903,0.99864 -8.03985997,-3.76813 L 0,85.090727 C 0.03278342,83.445156 0.6860305,82.139419 1.9561929,81.12396 L 39.456193,52.349198 c 3.380894,-2.489106 7.961477,-0.225833 8.043779,3.966731 z" />
+            <path d="m 53.043807,41.594246 c -1.884708,-1.387677 -4.202823,-1.387738 -6.087614,0 L 8.0438071,71.45277 C 4.6644698,73.940724 0.08336455,71.681233 0,67.486003 V 47.715727 C 0.03278342,46.070156 0.6860305,44.764419 1.9561929,43.74896 L 46.956193,9.219246 c 1.884737,-1.3877044 4.202825,-1.3877428 6.087614,0 l 45,34.529714 c 1.311397,1.048427 1.924246,2.374012 1.956243,3.966767 l -3e-5,19.770276 c -0.08228,4.190921 -4.660693,6.4565 -8.043788,3.966731 z" />
+            <path d="M 76.956193,22.567865 C 75.696759,21.560981 75.032946,20.260009 75,18.601098 V 5 c 0.05639,-2.8381818 2.17028,-4.94443139 5,-5 h 15 c 2.833155,0.05563606 4.944285,2.1659054 5,5 v 25.111003 c -0.08228,4.190921 -4.660698,6.4565 -8.043793,3.966731 z" />
+            <path d="M 8.0438071,34.07777 C 4.6644698,36.565724 0.08336455,34.306233 0,30.111003 V 5 C 0.05564821,2.1662249 2.1666028,0.05564079 5,0 h 15 c 2.83438,0.05566012 4.944458,2.167333 5,5 v 13.601098 c -0.03236,1.611281 -0.658889,2.929442 -1.956216,3.966767 z" />
+          </g></g>
+        </svg>
+        <span class="brand__name">Morphic Studio</span>
+      </div>
+      <div class="headline">
+        <h1>Création de sites et d'applications <span class="accent">web</span></h1>
+      </div>
+      <div class="foot">
+        <span>Studio web · Angers &amp; partout en France</span>
+        <span>morphicstudio.fr</span>
+      </div>
+    </div>
+
+    <!-- ===================== VERSO ===================== -->
+    <div class="card verso" id="verso">
+      <canvas></canvas>
+      <div class="vinner">
+      <div class="brand">
+        <svg viewBox="0 0 55.139378 60.577862" aria-hidden="true">
+          <g transform="translate(-61.628656,-87.159944)"><g transform="matrix(0.55139349,0,0,-0.55139349,61.628655,147.7378)">
+            <path d="m 54.456193,80.053008 c -1.311365,-1.048401 -1.924234,-2.373925 -1.956228,-3.966767 l 1.7e-5,-19.770276 c 0.08228,-4.190893 4.660656,-6.45651 8.043793,-3.966732 L 98.043789,81.12396 c 1.311397,1.048427 1.924246,2.374012 1.956241,3.966767 l -2e-5,19.770273 c -0.0822,4.18641 -4.654176,6.45832 -8.043796,3.96659 z" />
+            <path d="m 47.5,76.086241 c -0.03237,1.611343 -0.658915,2.929495 -1.95621,3.966767 L 8.0438071,108.82777 c -2.7651664,2.0358 -7.6715903,0.99864 -8.03985997,-3.76813 L 0,85.090727 C 0.03278342,83.445156 0.6860305,82.139419 1.9561929,81.12396 L 39.456193,52.349198 c 3.380894,-2.489106 7.961477,-0.225833 8.043779,3.966731 z" />
+            <path d="m 53.043807,41.594246 c -1.884708,-1.387677 -4.202823,-1.387738 -6.087614,0 L 8.0438071,71.45277 C 4.6644698,73.940724 0.08336455,71.681233 0,67.486003 V 47.715727 C 0.03278342,46.070156 0.6860305,44.764419 1.9561929,43.74896 L 46.956193,9.219246 c 1.884737,-1.3877044 4.202825,-1.3877428 6.087614,0 l 45,34.529714 c 1.311397,1.048427 1.924246,2.374012 1.956243,3.966767 l -3e-5,19.770276 c -0.08228,4.190921 -4.660693,6.4565 -8.043788,3.966731 z" />
+            <path d="M 76.956193,22.567865 C 75.696759,21.560981 75.032946,20.260009 75,18.601098 V 5 c 0.05639,-2.8381818 2.17028,-4.94443139 5,-5 h 15 c 2.833155,0.05563606 4.944285,2.1659054 5,5 v 25.111003 c -0.08228,4.190921 -4.660698,6.4565 -8.043793,3.966731 z" />
+            <path d="M 8.0438071,34.07777 C 4.6644698,36.565724 0.08336455,34.306233 0,30.111003 V 5 C 0.05564821,2.1662249 2.1666028,0.05564079 5,0 h 15 c 2.83438,0.05566012 4.944458,2.167333 5,5 v 13.601098 c -0.03236,1.611281 -0.658889,2.929442 -1.956216,3.966767 z" />
+          </g></g>
+        </svg>
+        <span class="brand__name">Morphic Studio</span>
+      </div>
+      <div class="vrow">
+        <div class="contact">
+          <div class="row"><span class="k">web</span>morphicstudio.fr</div>
+          <div class="row"><span class="k">mail</span>contact@morphicstudio.fr</div>
+          <div class="row"><span class="k">tél</span>06 95 66 07 26</div>
+        </div>
+        <div class="qr"><img src="qr-morphicstudio.svg" alt="QR code morphicstudio.fr" /></div>
+      </div>
+      </div>
+    </div>
+
+    <script>
+      const W = 910, H = 610, DPR = 3; // 910×610 px @10px/mm, DPR3 ≈ 762 DPI
+
+      function mulberry32(a) {
+        return function () {
+          a |= 0; a = (a + 0x6d2b79f5) | 0;
+          let t = Math.imul(a ^ (a >>> 15), 1 | a);
+          t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+          return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+        };
+      }
+      function makeNoise(seed) {
+        const rng = mulberry32(seed);
+        const perm = new Uint8Array(512);
+        const p = [...Array(256).keys()];
+        for (let i = 255; i > 0; i--) { const j = Math.floor(rng() * (i + 1)); [p[i], p[j]] = [p[j], p[i]]; }
+        for (let i = 0; i < 512; i++) perm[i] = p[i & 255];
+        const fade = (t) => t * t * t * (t * (t * 6 - 15) + 10);
+        const lerp = (a, b, t) => a + (b - a) * t;
+        function noise(x, y) {
+          const xi = Math.floor(x) & 255, yi = Math.floor(y) & 255;
+          const xf = x - Math.floor(x), yf = y - Math.floor(y);
+          const tl = perm[perm[xi] + yi], tr = perm[perm[xi + 1] + yi];
+          const bl = perm[perm[xi] + yi + 1], br = perm[perm[xi + 1] + yi + 1];
+          const u = fade(xf), v = fade(yf);
+          return lerp(lerp(tl, tr, u), lerp(bl, br, u), v) / 255;
+        }
+        function fbm(x, y, oct = 4) {
+          let amp = 0.5, freq = 1, sum = 0, norm = 0;
+          for (let i = 0; i < oct; i++) { sum += amp * noise(x * freq, y * freq); norm += amp; amp *= 0.5; freq *= 2; }
+          return sum / norm;
+        }
+        return { fbm };
+      }
+      function hash2(ix, iy, seed) {
+        let h = (ix * 374761393 + iy * 668265263 + seed * 362437) | 0;
+        h = Math.imul(h ^ (h >>> 13), 1274126177);
+        const a = ((h ^ (h >>> 16)) >>> 0) / 4294967296;
+        let g = (ix * 1274126177 + iy * 374761393 + seed * 668265263) | 0;
+        g = Math.imul(g ^ (g >>> 15), 2246822519);
+        const b = ((g ^ (g >>> 13)) >>> 0) / 4294967296;
+        return [a, b];
+      }
+      function worleyEdge(x, y, scale, seed) {
+        const gx = x / scale, gy = y / scale;
+        const ix = Math.floor(gx), iy = Math.floor(gy);
+        let f1 = 1e9, f2 = 1e9;
+        for (let oy = -1; oy <= 1; oy++) for (let ox = -1; ox <= 1; ox++) {
+          const [jx, jy] = hash2(ix + ox, iy + oy, seed);
+          const dx = ix + ox + jx - gx, dy = iy + oy + jy - gy;
+          const d = Math.sqrt(dx * dx + dy * dy);
+          if (d < f1) { f2 = f1; f1 = d; } else if (d < f2) { f2 = d; }
+        }
+        return f2 - f1;
+      }
+
+      // Render the particle web into a canvas. `rgb` is the ink ("0,0,0" or "255,255,255").
+      function renderField(canvas, P, rgb) {
+        const ctx = canvas.getContext("2d");
+        const WD = W * DPR, HD = H * DPR;
+        canvas.width = WD; canvas.height = HD;
+
+        const r = mulberry32(P.seed ^ 0x9e37);
+        const centres = [];
+        for (let i = 0; i < 5; i++) {
+          const ang = r() * Math.PI * 2, rad = r() * P.size * 0.7;
+          centres.push({ x: P.cx + Math.cos(ang) * rad, y: P.cy + Math.sin(ang) * rad * 0.7, s: P.size * (0.45 + r() * 0.6) });
+        }
+        const noise = makeNoise(P.seed);
+        const GW = 600, GH = 402;
+        const grid = new Float32Array(GW * GH);
+        for (let gy = 0; gy < GH; gy++) for (let gx = 0; gx < GW; gx++) {
+          const x = (gx / (GW - 1)) * W, y = (gy / (GH - 1)) * H;
+          const wx = x + P.warp * (noise.fbm(x * 0.006 + 7.3, y * 0.006) - 0.5);
+          const wy = y + P.warp * (noise.fbm(x * 0.006, y * 0.006 + 3.1) - 0.5);
+          let base;
+          if (P.shape === "frame") {
+            // signed distance to a rectangle outline → band along the perimeter
+            const ccx = (P.fx0 + P.fx1) / 2, ccy = (P.fy0 + P.fy1) / 2;
+            const hx = (P.fx1 - P.fx0) / 2, hy = (P.fy1 - P.fy0) / 2;
+            const qx = Math.abs(wx - ccx) - hx, qy = Math.abs(wy - ccy) - hy;
+            const sd = Math.hypot(Math.max(qx, 0), Math.max(qy, 0)) + Math.min(Math.max(qx, qy), 0);
+            base = Math.max(0, 1 - Math.abs(sd) / P.band);
+          } else {
+            let m = 0;
+            for (const c of centres) { const dx = wx - c.x, dy = wy - c.y; m += Math.exp(-(dx * dx + dy * dy) / (2 * c.s * c.s)); }
+            base = 1 - Math.exp(-m);
+          }
+          const edge = worleyEdge(wx, wy, P.web, P.seed);
+          const fil = Math.max(0, 1 - edge / P.thick);
+          const struct = (1 - P.threads) + P.threads * fil;
+          const cl = 1 - P.clump + P.clump * noise.fbm(wx * 0.02, wy * 0.02, 4);
+          grid[gy * GW + gx] = Math.min(1, base * struct * cl);
+        }
+        const sample = (x, y) => {
+          const fx = (x / W) * (GW - 1), fy = (y / H) * (GH - 1);
+          const x0 = fx | 0, y0 = fy | 0, x1 = Math.min(x0 + 1, GW - 1), y1 = Math.min(y0 + 1, GH - 1);
+          const tx = fx - x0, ty = fy - y0;
+          const a = grid[y0 * GW + x0], b = grid[y0 * GW + x1], c = grid[y1 * GW + x0], d = grid[y1 * GW + x1];
+          return (a * (1 - tx) + b * tx) * (1 - ty) + (c * (1 - tx) + d * tx) * ty;
+        };
+
+        const rng = mulberry32(P.seed ^ 0xabcd);
+        const acc = new Float32Array(WD * HD);
+        const deposit = (px, py, amt) => { const ix = px | 0, iy = py | 0; if (ix >= 0 && iy >= 0 && ix < WD && iy < HD) acc[iy * WD + ix] += amt; };
+        const rDev = P.dot * DPR;
+        for (let i = 0; i < P.count; i++) {
+          const x = rng() * W, y = rng() * H;
+          const d = sample(x, y);
+          if (rng() < Math.pow(d, P.gamma)) {
+            const amt = P.ink * (0.25 + 0.75 * d);
+            const px = x * DPR, py = y * DPR;
+            if (rDev <= 0.9) deposit(px, py, amt);
+            else { const R = Math.ceil(rDev); for (let oy = -R; oy <= R; oy++) for (let ox = -R; ox <= R; ox++) { const w = Math.exp(-(ox * ox + oy * oy) / (2 * rDev * rDev)); if (w > 0.05) deposit(px + ox, py + oy, amt * w); } }
+          }
+        }
+        if (P.grain > 0) { const gN = WD * HD * 0.12; for (let i = 0; i < gN; i++) deposit(rng() * WD, rng() * HD, P.grain * (0.4 + rng() * 0.6)); }
+
+        const img = ctx.createImageData(WD, HD);
+        const data = img.data;
+        const [R0, G0, B0] = rgb.split(",").map(Number);
+        for (let i = 0; i < acc.length; i++) {
+          const a = 1 - Math.exp(-acc[i] * 2.2);
+          const j = i * 4;
+          data[j] = R0; data[j + 1] = G0; data[j + 2] = B0; data[j + 3] = (a * 255) | 0;
+        }
+        ctx.putImageData(img, 0, 0);
+      }
+
+      // Web biased to the right on the recto, to the left on the verso (mirror),
+      // scaled to the smaller card (finer particle, tighter web).
+      const rectoP = { seed: 1337, cx: 770, cy: 300, size: 180, gamma: 2.0, count: 1500000, ink: 0.5, dot: 0.5, warp: 45, clump: 0.4, grain: 0.013, threads: 0.78, thick: 0.14, web: 78 };
+      // Verso: a particle-textured rectangular FRAME around the contact block.
+      const versoP = { seed: 7, shape: "frame", fx0: 52, fy0: 52, fx1: 858, fy1: 558, band: 26, gamma: 1.4, count: 1300000, ink: 0.62, dot: 0.5, warp: 30, clump: 0.35, grain: 0, threads: 0.8, thick: 0.14, web: 70 };
+
+      function renderAll() {
+        renderField(document.querySelector("#recto canvas"), rectoP, "0,0,0");
+        renderField(document.querySelector("#verso canvas"), versoP, "255,255,255");
+        document.documentElement.dataset.rendered = "1";
+      }
+      document.fonts.ready.then(renderAll);
+      renderAll();
+    </script>
+  </body>
+</html>

@@ -64,6 +64,7 @@ These live under `tools/`. Run them only when the user asks for a screenshot, an
 - `tools/screenshot-og.ts` — renders an OG-image HTML mockup (default `tools/og-image.html`) to a 1200×630 PNG at DPR 2 in `dist/screenshots/og-image.png`, waiting for its `data-rendered` flag. Export the final share image with `sips -s format jpeg -s formatOptions 90 -z 630 1200 dist/screenshots/og-image.png --out public/og-image.jpg`.
 - `tools/og-image.html` — production source for the social share image: the OG card + a canvas particle field (organic Worley "web" via a pre-computed density grid + importance sampling) with **frozen, validated parameters**. Re-export after editing.
 - `tools/og-particles.html` — interactive playground for that particle field (live sliders: form position/size, contour γ, particle count/fineness, warp, clumping, thread intensity/fineness, web scale, grain, text halo) with an editable seed. Use it to retune, then port the params into `tools/og-image.html`.
+- `tools/business-card.html` + `tools/screenshot-card.ts` — print-ready business card reusing the particle web: recto (light, brand + tagline) and verso (dark, contact details). 85×55 mm trim + 3 mm bleed, designed at 10 px/mm and captured at DPR 3 (≈762 DPI). Outputs `card-recto.png` / `card-verso.png`; final assets live in `brand/`.
 
 Output PNGs land in `<input-dir>/screenshots/` (gitignored).
 
