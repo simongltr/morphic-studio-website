@@ -34,10 +34,12 @@ body {
 }
 
 .section--first {
-  /* Hero statique : la section commence juste après le Hero. Le
-     chevauchement (ancien -60vh) sera réintroduit avec la transition
-     de scroll si besoin. */
-  margin-top: 0;
+  /* Fait remonter la 1re section pour qu'elle chevauche la fin du stage du
+     Hero : elle entre dans le champ un peu avant la fin de l'animation (par
+     dessus la zone déjà blanchie par la fondue → raccord invisible), ce qui
+     réduit l'écart avec le texte du Hero resté affiché. Plus la valeur est
+     grande (en négatif), plus la section apparaît tôt. */
+  margin-top: -45vh;
 }
 
 .section__eyebrow {

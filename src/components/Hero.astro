@@ -5,46 +5,61 @@ import { withBase } from "../utils/url";
 const heroBgUrl = `url(${withBase("/hero-background.webp")})`;
 ---
 
-<section class="hero" id="hero">
-  <div class="hero__bg"></div>
-  <div class="hero__masthead">
-    <div class="hero__brand" aria-label="Morphic Studio">
-      <span class="hero__brand-logo">
-        <Logo />
-      </span>
-      <span class="hero__brand-name">MORPHIC STUDIO</span>
+<div class="hero-stage" id="hero-stage">
+  <section class="hero" id="hero">
+    <div class="hero__bg"></div>
+    <div class="hero__wash"></div>
+    <div class="hero__masthead">
+      <div class="hero__brand" aria-label="Morphic Studio">
+        <span class="hero__brand-logo">
+          <Logo />
+        </span>
+        <span class="hero__brand-name">MORPHIC STUDIO</span>
+      </div>
+      <h1 class="hero__title">
+        Le studio web qui modernise le digital des TPE et PME.
+      </h1>
+      <p class="hero__subtitle">
+        Sites web, boutiques en ligne et outils métier pour lancer un projet,
+        améliorer un process ou remplacer un outil interne devenu limitant par
+        une solution sur mesure.
+      </p>
     </div>
-    <h1 class="hero__title">
-      Le studio web qui modernise le digital des TPE et PME.
-    </h1>
-    <p class="hero__subtitle">
-      Sites web, boutiques en ligne et outils métier pour lancer un projet,
-      améliorer un process ou remplacer un outil interne devenu limitant par
-      une solution sur mesure.
-    </p>
-  </div>
-  <img
-    class="hero__team"
-    src={withBase("/hero-team.webp")}
-    alt=""
-  />
-</section>
+    <img
+      class="hero__team"
+      src={withBase("/hero-team.webp")}
+      alt=""
+    />
+  </section>
+</div>
 
 <style define:vars={{ heroBg: heroBgUrl }}>
   /* ----------------------------------------------------------------------
-     Hero — base statique (aucune animation pour l'instant).
+     Hero.
 
-     Règle de layout fondamentale : le hero est une colonne flex.
-       [marque → titre → sous-titre]  poussés en haut
-       [image équipe]                 poussée en bas (margin-top: auto)
+     LAYOUT (règle fondamentale) : le hero est une colonne flex.
+       [marque → titre → sous-titre]  centrés (le masthead flex:1 absorbe
+                                       l'espace libre au-dessus de l'image)
+       [image équipe]                 en bas
      L'image suivant le texte dans le flux, elle ne peut JAMAIS remonter
      au-dessus du sous-titre ; au pire elle est rognée par le bas
-     (overflow: hidden). Le chevauchement autorisé = une seule variable.
+     (overflow: hidden).
+
+     ANIMATION : .hero-stage (haut) pilote une progression de scroll p∈[0,1]
+     pendant que .hero reste sticky. Une unique boucle rAF (voir <script>)
+     écrit des variables CSS ; toute la mise en mouvement est ci-dessous.
      ---------------------------------------------------------------------- */
-  .hero {
+  .hero-stage {
     position: relative;
-    /* Hauteur fixée à un écran : la table peut déborder sous la ligne de
-       flottaison, elle est alors rognée par le bas via overflow:hidden. */
+    /* 1 écran épinglé + 0,6 écran de scroll qui joue l'animation : plus le
+       2e nombre est petit, plus la section suivante apparaît tôt. */
+    height: 160vh;
+    background: #fafaf8;
+  }
+
+  .hero {
+    position: sticky;
+    top: 0;
     height: 100svh;
     overflow: hidden;
     background: #fafaf8;
@@ -59,16 +74,45 @@ const heroBgUrl = `url(${withBase("/hero-background.webp")})`;
     /* Chevauchement autorisé entre le haut de l'image et le bas du
        sous-titre (négatif = l'image frôle / mord légèrement le texte). */
     --team-overlap: 0rem;
+
+    /* Variables pilotées par le scroll + la souris (valeurs au repos). */
+    --bg-scale: 1;
+    --bg-x: 0px;
+    --bg-y: 0px;
+    --team-scale: 1;
+    --team-blur: 0px;
+    --team-opacity: 1;
+    --team-x: 0px;
+    --team-y: 0px;
+    --masthead-y: 0px;
+    --wash: 0;
   }
 
-  /* Fond : la salle vide, plein cadre, derrière tout le reste. */
+  /* Fond : la salle vide, plein cadre, derrière tout le reste. Zoom léger au
+     scroll + parallaxe souris inverse (profondeur). */
   .hero__bg {
     position: absolute;
     inset: 0;
     background-image: var(--heroBg);
     background-size: cover;
     background-position: center;
+    transform: translate(var(--bg-x), var(--bg-y)) scale(var(--bg-scale));
+    transform-origin: 50% 45%;
+    will-change: transform;
     z-index: 0;
+  }
+
+  /* Voile blanc : monte en opacité en fin de scroll pour fondre le fond vers
+     la couleur de page avant la section suivante. Il a lieu DERRIÈRE le texte
+     (z-index 1, juste au-dessus du fond) : le nom, le titre et la description
+     restent donc visibles par-dessus la fondue. */
+  .hero__wash {
+    position: absolute;
+    inset: 0;
+    background: #fafaf8;
+    opacity: var(--wash);
+    pointer-events: none;
+    z-index: 1;
   }
 
   /* Bloc texte : centré, largeur proportionnelle plafonnée. */
@@ -85,6 +129,10 @@ const heroBgUrl = `url(${withBase("/hero-background.webp")})`;
     justify-content: center;
     width: min(1100px, 92vw);
     text-align: center;
+    /* Au scroll : léger glissement vers le haut. Le texte ne s'efface PAS — il
+       reste lisible par-dessus la fondue blanche jusqu'au bout. */
+    transform: translateY(var(--masthead-y));
+    will-change: transform;
   }
 
   .hero__brand {
@@ -169,7 +217,9 @@ const heroBgUrl = `url(${withBase("/hero-background.webp")})`;
      le bas (jamais par le haut, le texte restant prioritaire dans le flux). */
   .hero__team {
     position: relative;
-    z-index: 1;
+    /* Au premier plan (z-index 3) : au scroll, l'équipe grossit et passe
+       DEVANT le texte avant de se dissoudre. */
+    z-index: 3;
     /* Plus de margin-top:auto : c'est le masthead (flex:1) qui absorbe
        désormais l'espace libre. L'image reste collée au bas du viewport. */
     margin-bottom: var(--team-overlap);
@@ -184,6 +234,13 @@ const heroBgUrl = `url(${withBase("/hero-background.webp")})`;
     object-position: bottom center;
     pointer-events: none;
     user-select: none;
+    /* Au scroll : l'équipe grossit, se floute et s'efface pour se dissoudre
+       dans la salle vide du fond. + parallaxe souris. */
+    transform: translate(var(--team-x), var(--team-y)) scale(var(--team-scale));
+    transform-origin: 50% 58%;
+    filter: blur(var(--team-blur));
+    opacity: var(--team-opacity);
+    will-change: transform, filter, opacity;
   }
 
   /* En mode mobile, le Header se réduit au logo + nom (même breakpoint que
@@ -198,4 +255,122 @@ const heroBgUrl = `url(${withBase("/hero-background.webp")})`;
       width: min(150vw, 900px);
     }
   }
+
+  /* Mouvement réduit : pas de scroll-télling ni de parallaxe. Le stage se
+     réduit à un écran, le hero redevient statique. */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-stage {
+      height: 100svh;
+    }
+    .hero {
+      position: relative;
+    }
+    .hero__bg {
+      transform: none;
+    }
+    .hero__team {
+      transform: none;
+      filter: none;
+      opacity: 1;
+    }
+    .hero__masthead {
+      transform: none;
+    }
+    .hero__wash {
+      opacity: 0;
+    }
+  }
 </style>
+
+<script>
+  const stage = document.getElementById("hero-stage");
+  const hero = document.getElementById("hero");
+  if (stage && hero) {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const canHover = !window.matchMedia("(hover: none)").matches;
+
+    const clamp = (v: number, lo: number, hi: number) =>
+      v < lo ? lo : v > hi ? hi : v;
+    // Interpole v (∈[a,b]) vers [c,d], borné.
+    const remap = (v: number, a: number, b: number, c: number, d: number) =>
+      c + (d - c) * clamp((v - a) / (b - a), 0, 1);
+
+    let p = 0; // progression de scroll 0 → 1
+    let mx = 0, my = 0; // cible souris (-1 → 1)
+    let cx = 0, cy = 0; // position souris lissée
+    let raf: number | null = null;
+    let dirty = false;
+
+    const schedule = () => {
+      if (raf == null) raf = requestAnimationFrame(render);
+    };
+
+    const readScroll = () => {
+      const total = stage.offsetHeight - window.innerHeight;
+      p = total > 0 ? clamp(-stage.getBoundingClientRect().top / total, 0, 1) : 0;
+    };
+
+    function render() {
+      raf = null;
+      if (canHover) {
+        cx += (mx - cx) * 0.08;
+        cy += (my - cy) * 0.08;
+      }
+
+      // La parallaxe s'estompe dès qu'on scrolle (l'effet de scroll prend le relais).
+      const par = clamp(1 - p * 2, 0, 1);
+      const s = hero!.style;
+      s.setProperty("--team-x", (cx * 8 * par).toFixed(2) + "px");
+      s.setProperty("--team-y", (cy * 5 * par).toFixed(2) + "px");
+      s.setProperty("--bg-x", (-cx * 4 * par).toFixed(2) + "px");
+      s.setProperty("--bg-y", (-cy * 3 * par).toFixed(2) + "px");
+
+      s.setProperty("--bg-scale", remap(p, 0, 1, 1, 1.8).toFixed(4));
+      s.setProperty("--team-scale", remap(p, 0, 0.7, 1, 3.2).toFixed(4));
+      s.setProperty("--team-blur", remap(p, 0.1, 0.6, 0, 22).toFixed(2) + "px");
+      s.setProperty("--team-opacity", remap(p, 0.3, 0.65, 1, 0).toFixed(3));
+      s.setProperty("--masthead-y", remap(p, 0.4, 1, 0, -36).toFixed(1) + "px");
+      s.setProperty("--wash", remap(p, 0.6, 0.95, 0, 1).toFixed(3));
+
+      const settling =
+        canHover && (Math.abs(mx - cx) > 0.001 || Math.abs(my - cy) > 0.001);
+      if (settling || dirty) {
+        dirty = false;
+        schedule();
+      }
+    }
+
+    if (!reduce) {
+      window.addEventListener(
+        "scroll",
+        () => {
+          readScroll();
+          dirty = true;
+          schedule();
+        },
+        { passive: true },
+      );
+      window.addEventListener("resize", () => {
+        readScroll();
+        dirty = true;
+        schedule();
+      });
+      if (canHover) {
+        hero.addEventListener("mousemove", (e: MouseEvent) => {
+          const r = hero!.getBoundingClientRect();
+          mx = clamp(((e.clientX - r.left) / r.width) * 2 - 1, -1, 1);
+          my = clamp(((e.clientY - r.top) / r.height) * 2 - 1, -1, 1);
+          schedule();
+        });
+        hero.addEventListener("mouseleave", () => {
+          mx = 0;
+          my = 0;
+          schedule();
+        });
+      }
+      readScroll();
+      dirty = true;
+      schedule();
+    }
+  }
+</script>
