@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Quicksand:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+
+      html, body { background: #e9e7e2; }
+
+      /* Exact Open Graph canvas. */
+      .og {
+        width: 1200px;
+        height: 630px;
+        position: relative;
+        overflow: hidden;
+        background:
+          radial-gradient(
+            120% 120% at 85% 12%,
+            rgba(0, 0, 0, 0.06) 0%,
+            rgba(0, 0, 0, 0) 55%
+          ),
+          #fafaf8;
+        color: rgba(0, 0, 0, 0.92);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 72px 80px;
+        font-family: "Inter", system-ui, sans-serif;
+      }
+
+      /* Subtle hairline frame, echoing the site's bordered cards. */
+      .og::after {
+        content: "";
+        position: absolute;
+        inset: 28px;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        border-radius: 14px;
+        pointer-events: none;
+      }
+
+      /* ---- Top: wordmark ---- */
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        position: relative;
+        z-index: 1;
+      }
+      .brand svg {
+        height: 40px;
+        width: auto;
+        display: block;
+      }
+      .brand svg path { fill: rgba(0, 0, 0, 0.92); }
+      .brand__name {
+        font-family: "Quicksand", system-ui, sans-serif;
+        font-weight: 600;
+        font-size: 22px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: rgba(0, 0, 0, 0.92);
+      }
+
+      /* ---- Center: headline ---- */
+      .headline {
+        position: relative;
+        z-index: 1;
+        max-width: 980px;
+      }
+      .headline h1 {
+        font-family: "Libre Baskerville", Georgia, serif;
+        font-weight: 700;
+        font-size: 60px;
+        line-height: 1.18;
+        letter-spacing: -0.01em;
+        color: rgba(0, 0, 0, 0.92);
+      }
+      .headline .accent { font-style: italic; font-weight: 400; }
+
+      /* ---- Bottom: meta row ---- */
+      .meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        z-index: 1;
+      }
+      .meta__tag {
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 17px;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        color: rgba(0, 0, 0, 0.62);
+      }
+      .meta__url {
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 17px;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        color: rgba(0, 0, 0, 0.62);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="og">
+      <div class="brand">
+        <svg viewBox="0 0 55.139378 60.577862" aria-hidden="true">
+          <g transform="translate(-61.628656,-87.159944)">
+            <g transform="matrix(0.55139349,0,0,-0.55139349,61.628655,147.7378)">
+              <path d="m 54.456193,80.053008 c -1.311365,-1.048401 -1.924234,-2.373925 -1.956228,-3.966767 l 1.7e-5,-19.770276 c 0.08228,-4.190893 4.660656,-6.45651 8.043793,-3.966732 L 98.043789,81.12396 c 1.311397,1.048427 1.924246,2.374012 1.956241,3.966767 l -2e-5,19.770273 c -0.0822,4.18641 -4.654176,6.45832 -8.043796,3.96659 z" />
+              <path d="m 47.5,76.086241 c -0.03237,1.611343 -0.658915,2.929495 -1.95621,3.966767 L 8.0438071,108.82777 c -2.7651664,2.0358 -7.6715903,0.99864 -8.03985997,-3.76813 L 0,85.090727 C 0.03278342,83.445156 0.6860305,82.139419 1.9561929,81.12396 L 39.456193,52.349198 c 3.380894,-2.489106 7.961477,-0.225833 8.043779,3.966731 z" />
+              <path d="m 53.043807,41.594246 c -1.884708,-1.387677 -4.202823,-1.387738 -6.087614,0 L 8.0438071,71.45277 C 4.6644698,73.940724 0.08336455,71.681233 0,67.486003 V 47.715727 C 0.03278342,46.070156 0.6860305,44.764419 1.9561929,43.74896 L 46.956193,9.219246 c 1.884737,-1.3877044 4.202825,-1.3877428 6.087614,0 l 45,34.529714 c 1.311397,1.048427 1.924246,2.374012 1.956243,3.966767 l -3e-5,19.770276 c -0.08228,4.190921 -4.660693,6.4565 -8.043788,3.966731 z" />
+              <path d="M 76.956193,22.567865 C 75.696759,21.560981 75.032946,20.260009 75,18.601098 V 5 c 0.05639,-2.8381818 2.17028,-4.94443139 5,-5 h 15 c 2.833155,0.05563606 4.944285,2.1659054 5,5 v 25.111003 c -0.08228,4.190921 -4.660698,6.4565 -8.043793,3.966731 z" />
+              <path d="M 8.0438071,34.07777 C 4.6644698,36.565724 0.08336455,34.306233 0,30.111003 V 5 C 0.05564821,2.1662249 2.1666028,0.05564079 5,0 h 15 c 2.83438,0.05566012 4.944458,2.167333 5,5 v 13.601098 c -0.03236,1.611281 -0.658889,2.929442 -1.956216,3.966767 z" />
+            </g>
+          </g>
+        </svg>
+        <span class="brand__name">Morphic Studio</span>
+      </div>
+
+      <div class="headline">
+        <h1>
+          Création de sites et d'applications <span class="accent">web</span>
+        </h1>
+      </div>
+
+      <div class="meta">
+        <span class="meta__tag">Studio web · Angers &amp; partout en France</span>
+        <span class="meta__url">morphicstudio.fr</span>
+      </div>
+    </div>
+  </body>
+</html>

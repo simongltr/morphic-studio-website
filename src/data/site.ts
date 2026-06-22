@@ -4,8 +4,10 @@
 export const site = {
   name: "Morphic Studio",
   url: "https://morphicstudio.fr",
-  // Default social/share image (relative to the site root).
-  defaultImage: "/hero-team.webp",
+  // Default social/share image (relative to the site root). Dedicated 1200×630
+  // JPG so previews render reliably on LinkedIn/Facebook/Twitter (WebP is not
+  // reliably supported by social scrapers).
+  defaultImage: "/og-image.jpg",
   description:
     "Morphic Studio, studio web indépendant basé à Angers et intervenant partout en France, sur place ou à distance. Sites vitrines, applications et conseil au forfait.",
   // Short tagline used as the homepage title suffix.

@@ -61,6 +61,7 @@ These live under `tools/`. Run them only when the user asks for a screenshot, an
 - `tools/screenshot-hero-mobile.ts` — same hero viewport at 390×844 with 2× DPR.
 - `tools/screenshot-hero-sizes.ts` — hero at a single aspect ratio (16:9) across resolutions (1280×720 → 3840×2160), one PNG per size in `dist/screenshots/hero-sizes/`.
 - `tools/screenshot-section-sizes.ts` — a given section (selector arg, default `#services`) captured across the same 16:9 resolutions, one PNG per size in `dist/screenshots/section-sizes/`.
+- `tools/screenshot-og.ts` — renders an OG-image HTML mockup (default `tools/og-image.html`) to a 1200×630 PNG at DPR 2 in `dist/screenshots/og-image.png`. Source mockup for the social share image is `tools/og-image.html`; export to `public/og-image.jpg` with `sips`.
 
 Output PNGs land in `<input-dir>/screenshots/` (gitignored).
 

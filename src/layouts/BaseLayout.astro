@@ -9,6 +9,11 @@ interface Props {
   description?: string;
   /** Site-root-relative path to the share image (e.g. "/blog/foo.webp"). */
   image?: string;
+  /** Alt text for the share image. */
+  imageAlt?: string;
+  /** Pixel dimensions of the share image (helps scrapers render eagerly). */
+  imageWidth?: number;
+  imageHeight?: number;
   lang?: string;
   /** When true, sets og:type to "article" instead of "website". */
   article?: boolean;
@@ -20,10 +25,23 @@ const {
   title = site.name,
   description = site.description,
   image = site.defaultImage,
+  imageAlt = `${site.name} — ${site.tagline}`,
   lang = site.lang,
   article = false,
   jsonLd,
 } = Astro.props;
+
+const isDefaultImage = image === site.defaultImage;
+// The dedicated OG image is a known 1200×630 JPG; for per-page images
+// (blog hero images) only emit dimensions when explicitly provided.
+const imageWidth = Astro.props.imageWidth ?? (isDefaultImage ? 1200 : undefined);
+const imageHeight =
+  Astro.props.imageHeight ?? (isDefaultImage ? 630 : undefined);
+const imageType = image.endsWith(".png")
+  ? "image/png"
+  : image.endsWith(".webp")
+    ? "image/webp"
+    : "image/jpeg";
 
 const canonical = new URL(Astro.url.pathname, site.url).href;
 const imageUrl = absoluteUrl(image);
@@ -70,6 +88,14 @@ const structuredData = [organizationLd, ...extraLd];
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:alt" content={imageAlt} />
+    {imageType && <meta property="og:image:type" content={imageType} />}
+    {imageWidth && <meta property="og:image:width" content={String(imageWidth)} />}
+    {
+      imageHeight && (
+        <meta property="og:image:height" content={String(imageHeight)} />
+      )
+    }
     <meta property="og:locale" content={site.locale} />
 
     <!-- Twitter -->
@@ -77,6 +103,7 @@ const structuredData = [organizationLd, ...extraLd];
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl} />
+    <meta name="twitter:image:alt" content={imageAlt} />
 
     <link rel="icon" href={withBase("/favicon.ico")} sizes="32x32" />
     <link rel="icon" href={withBase("/favicon.svg")} type="image/svg+xml" />
