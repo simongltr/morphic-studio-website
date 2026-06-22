@@ -72,6 +72,7 @@ export const pricingPlans: PricingPlan[] = [
     ],
     cta: "Choisir ce forfait",
     ctaHref: "#contact",
+    popular: true,
   },
   {
     name: "Croissance",
@@ -107,7 +108,6 @@ export const pricingPlans: PricingPlan[] = [
     ],
     cta: "Choisir ce forfait",
     ctaHref: "#contact",
-    popular: true,
   },
   {
     name: "Signature",
