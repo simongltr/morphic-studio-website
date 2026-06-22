@@ -2,7 +2,7 @@
 <html lang="fr">
   <head>
     <meta charset="utf-8" />
-    <title>OG — Morphic Studio</title>
+    <title>OG — particules morphiques</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -11,9 +11,18 @@
     />
     <style>
       * { box-sizing: border-box; margin: 0; padding: 0; }
-      body { background: #d9d6d0; }
+      body {
+        background: #d9d6d0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 28px;
+        padding: 40px;
+        font-family: "Inter", system-ui, sans-serif;
+      }
 
-      /* Exact Open Graph canvas (1200×630). Validated particle field below. */
+      /* ---------- The OG card (1200×630) ---------- */
       .og {
         width: 1200px;
         height: 630px;
@@ -27,6 +36,7 @@
         flex-direction: column;
         justify-content: space-between;
         padding: 72px 80px;
+        flex: none;
         --halo: 12px;
       }
       .og::after {
@@ -40,8 +50,12 @@
         width: 1200px; height: 630px;
       }
 
+      /* Halo of the page colour behind every text/logo element, so the
+         particle pattern never blurs the type when it overlaps. */
       .brand { display: flex; align-items: center; gap: 18px; position: relative; z-index: 2; }
-      .brand svg { height: 40px; width: auto; display: block; }
+      .brand svg {
+        height: 40px; width: auto; display: block;
+      }
       .brand svg path { fill: rgba(0, 0, 0, 0.92); }
       .brand__name {
         font-family: "Quicksand", system-ui, sans-serif;
@@ -49,7 +63,6 @@
         text-transform: uppercase;
       }
       .headline { position: relative; z-index: 2; max-width: 980px; }
-      /* Page-colour halo so the web pattern never blurs the type. */
       .headline h1 {
         font-family: "Libre Baskerville", Georgia, serif;
         font-weight: 700; font-size: 60px; line-height: 1.18;
@@ -69,6 +82,29 @@
                      0 0 var(--halo) #fafaf8, 0 0 var(--halo) #fafaf8,
                      0 0 calc(var(--halo) * 2) #fafaf8;
       }
+
+      /* ---------- Control panel ---------- */
+      .panel {
+        width: 1200px;
+        background: #1b1b1a; color: #e8e6e1;
+        border-radius: 12px; padding: 18px 22px;
+        display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px 28px;
+        font-size: 13px;
+      }
+      .panel h2 {
+        grid-column: 1 / -1; font-size: 13px; font-weight: 600;
+        letter-spacing: 0.04em; text-transform: uppercase; color: #9d9a93;
+        display: flex; justify-content: space-between; align-items: center;
+      }
+      .ctrl { display: flex; flex-direction: column; gap: 5px; }
+      .ctrl label { display: flex; justify-content: space-between; color: #b9b6af; }
+      .ctrl label b { color: #fff; font-variant-numeric: tabular-nums; }
+      .ctrl input[type="range"] { width: 100%; accent-color: #fff; }
+      .panel button {
+        background: #fff; color: #111; border: 0; border-radius: 7px;
+        padding: 7px 12px; font: inherit; font-weight: 600; cursor: pointer;
+      }
+      .panel button.ghost { background: transparent; color: #e8e6e1; border: 1px solid #444; }
     </style>
   </head>
   <body>
@@ -97,14 +133,34 @@
       </div>
     </div>
 
-    <script>
-      // ===== Validated particle-field parameters (do not change without re-export) =====
-      const P = {
-        seed: 1337, cx: 860, cy: 312, size: 210, gamma: 2.0,
-        count: 1200000, ink: 0.5, dot: 0.5, warp: 60, clump: 0.4, grain: 0.015,
-        threads: 0.75, thick: 0.14, web: 110,
-      };
+    <div class="panel">
+      <h2>
+        <span>Champ de particules — réglages</span>
+        <span style="display:flex; align-items:center; gap:10px;">
+          <label style="display:flex; align-items:center; gap:6px; text-transform:none; letter-spacing:0; color:#b9b6af;">
+            seed <input id="seed" type="number" style="width:120px; background:#111; color:#fff; border:1px solid #444; border-radius:6px; padding:5px 8px; font:inherit;">
+          </label>
+          <button id="regen">Nouvelle graine</button>
+          <button class="ghost" id="toggleText">Masquer le texte</button>
+        </span>
+      </h2>
+      <div class="ctrl"><label>Position X de la forme <b id="vCx"></b></label><input id="cx" type="range" min="0" max="1200" step="10"></div>
+      <div class="ctrl"><label>Position Y de la forme <b id="vCy"></b></label><input id="cy" type="range" min="0" max="630" step="10"></div>
+      <div class="ctrl"><label>Taille de la forme <b id="vSize"></b></label><input id="size" type="range" min="40" max="600" step="5"></div>
+      <div class="ctrl"><label>Netteté du contour (γ) <b id="vGamma"></b></label><input id="gamma" type="range" min="0.4" max="10" step="0.1"></div>
+      <div class="ctrl"><label>Densité (nb particules) <b id="vCount"></b></label><input id="count" type="range" min="50000" max="10000000" step="50000"></div>
+      <div class="ctrl"><label>Encre (opacité) <b id="vInk"></b></label><input id="ink" type="range" min="0.05" max="2" step="0.05"></div>
+      <div class="ctrl"><label>Finesse particule (px) <b id="vDot"></b></label><input id="dot" type="range" min="0.3" max="3" step="0.1"></div>
+      <div class="ctrl"><label>Organique (déformation) <b id="vWarp"></b></label><input id="warp" type="range" min="0" max="300" step="5"></div>
+      <div class="ctrl"><label>Agglomération (paquets) <b id="vClump"></b></label><input id="clump" type="range" min="0" max="1" step="0.05"></div>
+      <div class="ctrl"><label>Fils / toile — intensité <b id="vThreads"></b></label><input id="threads" type="range" min="0" max="1" step="0.05"></div>
+      <div class="ctrl"><label>Finesse des fils <b id="vThick"></b></label><input id="thick" type="range" min="0.02" max="0.5" step="0.01"></div>
+      <div class="ctrl"><label>Échelle de la toile (px) <b id="vWeb"></b></label><input id="web" type="range" min="30" max="260" step="5"></div>
+      <div class="ctrl"><label>Grain de fond (film) <b id="vGrain"></b></label><input id="grain" type="range" min="0" max="0.15" step="0.005"></div>
+      <div class="ctrl"><label>Halo texte (ombre fond) <b id="vHalo"></b></label><input id="halo" type="range" min="0" max="40" step="1"></div>
+    </div>
 
+    <script>
       // ---------- seeded RNG (mulberry32) ----------
       function mulberry32(a) {
         return function () {
@@ -134,7 +190,7 @@
           const bl = perm[perm[xi] + yi + 1], br = perm[perm[xi + 1] + yi + 1];
           const u = fade(xf), v = fade(yf);
           const top = lerp(tl, tr, u), bot = lerp(bl, br, u);
-          return lerp(top, bot, v) / 255;
+          return lerp(top, bot, v) / 255; // 0..1
         }
         function fbm(x, y, oct = 4) {
           let amp = 0.5, freq = 1, sum = 0, norm = 0;
@@ -142,10 +198,17 @@
             sum += amp * noise(x * freq, y * freq);
             norm += amp; amp *= 0.5; freq *= 2;
           }
-          return sum / norm;
+          return sum / norm; // 0..1
         }
         return { fbm };
       }
+
+      // ---------- state ----------
+      const P = {
+        seed: 1337, cx: 860, cy: 312, size: 210, gamma: 2.0,
+        count: 1200000, ink: 0.5, dot: 0.45, warp: 60, clump: 0.4, grain: 0.015,
+        threads: 0.75, thick: 0.14, web: 110, halo: 12,
+      };
 
       const canvas = document.getElementById("field");
       const ctx = canvas.getContext("2d");
@@ -156,8 +219,9 @@
       // Organic blob = several gaussian centres around (cx,cy), domain-warped.
       function buildCentres() {
         const r = mulberry32(P.seed ^ 0x9e37);
+        const n = 5;
         const c = [];
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < n; i++) {
           const ang = r() * Math.PI * 2;
           const rad = r() * P.size * 0.7;
           c.push({
@@ -169,7 +233,9 @@
         return c;
       }
 
-      // Worley cellular noise → F2 − F1 (~0 along cell boundaries → web lines).
+      // Worley / cellular noise → returns F2 − F1, which is ~0 along the
+      // boundaries between cells. Those zero-lines form a connected network of
+      // filaments (a web). Seeded, deterministic integer hash for the germs.
       function hash2(ix, iy, seed) {
         let h = (ix * 374761393 + iy * 668265263 + seed * 362437) | 0;
         h = Math.imul(h ^ (h >>> 13), 1274126177);
@@ -190,10 +256,12 @@
             const d = Math.sqrt(dx * dx + dy * dy);
             if (d < f1) { f2 = f1; f1 = d; } else if (d < f2) { f2 = d; }
           }
-        return f2 - f1;
+        return f2 - f1; // 0 on the web lines, larger inside cells
       }
 
-      // Density field pre-computed on a grid; particles bilinear-sample it.
+      // Pre-compute the density field on a grid (CSS-px space); particles read
+      // it via bilinear interpolation — keeps noise calls ~constant no matter
+      // how many particles we splat. Fine grid so thin filaments survive.
       const GW = 640, GH = 336;
       const grid = new Float32Array(GW * GH);
       function buildGrid() {
@@ -203,17 +271,22 @@
           for (let gx = 0; gx < GW; gx++) {
             const x = (gx / (GW - 1)) * W;
             const y = (gy / (GH - 1)) * H;
+            // organic domain warp (shared by form + web → coherent motion)
             const wx = x + P.warp * (noise.fbm(x * 0.004 + 7.3, y * 0.004) - 0.5);
             const wy = y + P.warp * (noise.fbm(x * 0.004, y * 0.004 + 3.1) - 0.5);
+            // organic silhouette (where the mass lives)
             let m = 0;
             for (const c of centres) {
               const dx = wx - c.x, dy = wy - c.y;
               m += Math.exp(-(dx * dx + dy * dy) / (2 * c.s * c.s));
             }
             m = 1 - Math.exp(-m);
+            // web of filaments (ridges along Worley cell boundaries)
             const edge = worleyEdge(wx, wy, P.web, P.seed);
-            const fil = Math.max(0, 1 - edge / P.thick);
+            const fil = Math.max(0, 1 - edge / P.thick); // 1 on lines → 0 off
+            // blend solid blob ↔ filament network
             const struct = (1 - P.threads) + P.threads * fil;
+            // internal clumping
             const cl = 1 - P.clump + P.clump * noise.fbm(wx * 0.014, wy * 0.014, 4);
             grid[gy * GW + gx] = Math.min(1, m * struct * cl);
           }
@@ -232,13 +305,17 @@
       function render() {
         buildGrid();
         const rng = mulberry32(P.seed ^ 0xabcd);
+        // Accumulation buffer (ink deposited per device pixel).
         const acc = new Float32Array(WD * HD);
+
         const deposit = (px, py, amt) => {
           const ix = px | 0, iy = py | 0;
           if (ix < 0 || iy < 0 || ix >= WD || iy >= HD) return;
           acc[iy * WD + ix] += amt;
         };
-        const rDev = P.dot * DPR;
+
+        // Importance sampling: dense in the form, sparse drift outside.
+        const rDev = P.dot * DPR; // particle footprint in device px
         for (let i = 0; i < P.count; i++) {
           const x = rng() * W, y = rng() * H;
           const d = sampleDensity(x, y);
@@ -246,8 +323,9 @@
             const amt = P.ink * (0.25 + 0.75 * d);
             const px = x * DPR, py = y * DPR;
             if (rDev <= 0.8) {
-              deposit(px, py, amt);
+              deposit(px, py, amt); // single fine pixel
             } else {
+              // tiny gaussian splat for larger particle sizes
               const R = Math.ceil(rDev);
               for (let oy = -R; oy <= R; oy++)
                 for (let ox = -R; ox <= R; ox++) {
@@ -257,22 +335,86 @@
             }
           }
         }
+
+        // Film grain: faint uniform speckle across the whole card.
         if (P.grain > 0) {
           const gN = (WD * HD) * 0.12;
           for (let i = 0; i < gN; i++) {
             deposit(rng() * WD, rng() * HD, P.grain * (0.4 + rng() * 0.6));
           }
         }
+
+        // Composite accumulation → black pixels with saturating alpha.
         const img = ctx.createImageData(WD, HD);
         const data = img.data;
         for (let i = 0; i < acc.length; i++) {
-          const a = 1 - Math.exp(-acc[i] * 2.2);
+          const a = 1 - Math.exp(-acc[i] * 2.2); // saturate, avoid clipping
           const j = i * 4;
+          data[j] = 0; data[j + 1] = 0; data[j + 2] = 0;
           data[j + 3] = (a * 255) | 0;
         }
         ctx.putImageData(img, 0, 0);
-        document.documentElement.dataset.rendered = "1";
       }
+
+      // ---------- wire up controls ----------
+      const bind = (id, key, fmt = (v) => v) => {
+        const el = document.getElementById(id);
+        const out = document.getElementById("v" + id[0].toUpperCase() + id.slice(1));
+        el.value = P[key];
+        if (out) out.textContent = fmt(P[key]);
+        el.addEventListener("input", () => {
+          P[key] = parseFloat(el.value);
+          if (out) out.textContent = fmt(P[key]);
+          render();
+        });
+      };
+      bind("cx", "cx", Math.round);
+      bind("cy", "cy", Math.round);
+      bind("size", "size", Math.round);
+      bind("gamma", "gamma", (v) => v.toFixed(1));
+      bind("count", "count", (v) => v >= 1e6 ? (v / 1e6).toFixed(2) + "M" : (v / 1000).toFixed(0) + "k");
+      bind("ink", "ink", (v) => v.toFixed(2));
+      bind("dot", "dot", (v) => v.toFixed(1));
+      bind("warp", "warp", Math.round);
+      bind("clump", "clump", (v) => v.toFixed(2));
+      bind("threads", "threads", (v) => v.toFixed(2));
+      bind("thick", "thick", (v) => v.toFixed(2));
+      bind("web", "web", Math.round);
+      bind("grain", "grain", (v) => v.toFixed(3));
+
+      // Halo only touches a CSS variable → no field recompute needed.
+      const card = document.getElementById("card");
+      const haloEl = document.getElementById("halo");
+      const haloOut = document.getElementById("vHalo");
+      const setHalo = () => {
+        card.style.setProperty("--halo", P.halo + "px");
+        haloOut.textContent = P.halo + "px";
+      };
+      haloEl.value = P.halo;
+      haloEl.addEventListener("input", () => {
+        P.halo = parseFloat(haloEl.value);
+        setHalo();
+      });
+      setHalo();
+
+      const seedInput = document.getElementById("seed");
+      seedInput.value = P.seed;
+      seedInput.addEventListener("input", () => {
+        P.seed = parseInt(seedInput.value || "0", 10) | 0;
+        render();
+      });
+      document.getElementById("regen").addEventListener("click", () => {
+        P.seed = (Math.random() * 1e9) | 0;
+        seedInput.value = P.seed;
+        render();
+      });
+      document.getElementById("toggleText").addEventListener("click", (e) => {
+        const card = document.getElementById("card");
+        const hidden = card.classList.toggle("text-hidden");
+        for (const el of card.querySelectorAll(".brand, .headline, .meta"))
+          el.style.visibility = hidden ? "hidden" : "visible";
+        e.target.textContent = hidden ? "Afficher le texte" : "Masquer le texte";
+      });
 
       document.fonts.ready.then(render);
       render();

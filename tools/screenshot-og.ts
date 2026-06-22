@@ -18,6 +18,12 @@ const page = await ctx.newPage();
 await page.goto(fileUrl);
 await page.waitForLoadState("networkidle");
 await page.evaluate(() => document.fonts.ready);
+// Wait until the particle field has finished rendering (set by og-image.html).
+await page
+  .waitForFunction(() => document.documentElement.dataset.rendered === "1", {
+    timeout: 5000,
+  })
+  .catch(() => {});
 const el = await page.$(".og");
 const out = resolve(outDir, "og-image.png");
 await (el ?? page).screenshot({ path: out });

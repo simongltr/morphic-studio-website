@@ -61,7 +61,9 @@ These live under `tools/`. Run them only when the user asks for a screenshot, an
 - `tools/screenshot-hero-mobile.ts` — same hero viewport at 390×844 with 2× DPR.
 - `tools/screenshot-hero-sizes.ts` — hero at a single aspect ratio (16:9) across resolutions (1280×720 → 3840×2160), one PNG per size in `dist/screenshots/hero-sizes/`.
 - `tools/screenshot-section-sizes.ts` — a given section (selector arg, default `#services`) captured across the same 16:9 resolutions, one PNG per size in `dist/screenshots/section-sizes/`.
-- `tools/screenshot-og.ts` — renders an OG-image HTML mockup (default `tools/og-image.html`) to a 1200×630 PNG at DPR 2 in `dist/screenshots/og-image.png`. Source mockup for the social share image is `tools/og-image.html`; export to `public/og-image.jpg` with `sips`.
+- `tools/screenshot-og.ts` — renders an OG-image HTML mockup (default `tools/og-image.html`) to a 1200×630 PNG at DPR 2 in `dist/screenshots/og-image.png`, waiting for its `data-rendered` flag. Export the final share image with `sips -s format jpeg -s formatOptions 90 -z 630 1200 dist/screenshots/og-image.png --out public/og-image.jpg`.
+- `tools/og-image.html` — production source for the social share image: the OG card + a canvas particle field (organic Worley "web" via a pre-computed density grid + importance sampling) with **frozen, validated parameters**. Re-export after editing.
+- `tools/og-particles.html` — interactive playground for that particle field (live sliders: form position/size, contour γ, particle count/fineness, warp, clumping, thread intensity/fineness, web scale, grain, text halo) with an editable seed. Use it to retune, then port the params into `tools/og-image.html`.
 
 Output PNGs land in `<input-dir>/screenshots/` (gitignored).
 
