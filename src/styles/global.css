@@ -34,7 +34,10 @@ body {
 }
 
 .section--first {
-  margin-top: -60vh;
+  /* Hero statique : la section commence juste après le Hero. Le
+     chevauchement (ancien -60vh) sera réintroduit avec la transition
+     de scroll si besoin. */
+  margin-top: 0;
 }
 
 .section__eyebrow {

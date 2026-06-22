@@ -5,80 +5,86 @@ import { withBase } from "../utils/url";
 const heroBgUrl = `url(${withBase("/hero-background.webp")})`;
 ---
 
-<div class="hero-stage" id="hero-stage">
-  <section class="hero" id="hero">
-    <div class="hero__bg"></div>
-    <img
-      class="hero__team"
-      src={withBase("/hero-team.webp")}
-      alt=""
-    />
-    <div class="hero__wash"></div>
-    <div class="hero__masthead">
-      <div class="hero__brand" aria-label="Morphic Studio">
-        <span class="hero__brand-logo">
-          <Logo />
-        </span>
-        <span class="hero__brand-name">MORPHIC STUDIO</span>
-      </div>
-      <h1 class="hero__title">
-        Le studio web qui modernise le digital des TPE et PME.
-      </h1>
-      <p class="hero__subtitle">
-        Sites web, boutiques en ligne et outils métier pour lancer un projet,
-        améliorer un process ou remplacer un outil interne devenu limitant par
-        une solution sur mesure.
-      </p>
+<section class="hero" id="hero">
+  <div class="hero__bg"></div>
+  <div class="hero__masthead">
+    <div class="hero__brand" aria-label="Morphic Studio">
+      <span class="hero__brand-logo">
+        <Logo />
+      </span>
+      <span class="hero__brand-name">MORPHIC STUDIO</span>
     </div>
-  </section>
-</div>
+    <h1 class="hero__title">
+      Le studio web qui modernise le digital des TPE et PME.
+    </h1>
+    <p class="hero__subtitle">
+      Sites web, boutiques en ligne et outils métier pour lancer un projet,
+      améliorer un process ou remplacer un outil interne devenu limitant par
+      une solution sur mesure.
+    </p>
+  </div>
+  <img
+    class="hero__team"
+    src={withBase("/hero-team.webp")}
+    alt=""
+  />
+</section>
 
 <style define:vars={{ heroBg: heroBgUrl }}>
-  .hero-stage {
-    position: relative;
-    height: 240vh;
-    background: #fafaf8;
-  }
+  /* ----------------------------------------------------------------------
+     Hero — base statique (aucune animation pour l'instant).
 
+     Règle de layout fondamentale : le hero est une colonne flex.
+       [marque → titre → sous-titre]  poussés en haut
+       [image équipe]                 poussée en bas (margin-top: auto)
+     L'image suivant le texte dans le flux, elle ne peut JAMAIS remonter
+     au-dessus du sous-titre ; au pire elle est rognée par le bas
+     (overflow: hidden). Le chevauchement autorisé = une seule variable.
+     ---------------------------------------------------------------------- */
   .hero {
-    position: sticky;
-    top: 0;
-    width: 100%;
-    height: 100vh;
-    min-height: 640px;
+    position: relative;
+    /* Hauteur fixée à un écran : la table peut déborder sous la ligne de
+       flottaison, elle est alors rognée par le bas via overflow:hidden. */
+    height: 100svh;
     overflow: hidden;
-    --bg-scale: 1;
-    --team-scale: 1;
-    --team-blur: 0px;
-    --team-opacity: 1;
-    --team-x: 0px;
-    --team-y: 0px;
-    --wash: 0;
-    --masthead-top: 42%;
-    --team-bottom: -8%;
+    background: #fafaf8;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* Dégage le header fixe en haut. */
+    padding-top: clamp(5.5rem, 11vh, 9rem);
+
+    /* Chevauchement autorisé entre le haut de l'image et le bas du
+       sous-titre (négatif = l'image frôle / mord légèrement le texte). */
+    --team-overlap: 0rem;
   }
 
+  /* Fond : la salle vide, plein cadre, derrière tout le reste. */
   .hero__bg {
     position: absolute;
     inset: 0;
     background-image: var(--heroBg);
     background-size: cover;
     background-position: center;
-    transform: scale(var(--bg-scale));
-    transform-origin: 50% 45%;
-    will-change: transform;
     z-index: 0;
   }
 
+  /* Bloc texte : centré, largeur proportionnelle plafonnée. */
   .hero__masthead {
-    position: absolute;
-    left: 50%;
-    top: var(--masthead-top);
-    transform: translate(-50%, -50%);
-    /* Fixed 1100px; only shrinks once the viewport edges reach it. */
-    width: min(1100px, 95vw);
-    text-align: center;
+    position: relative;
     z-index: 2;
+    /* Occupe tout l'espace libre au-dessus de l'image (grow), sans jamais se
+       compresser (shrink: 0 → texte ni écrasé ni rogné), et y centre le texte
+       verticalement : le texte reste donc centré entre le header et le haut
+       de l'image, quel que soit l'espace disponible. */
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: min(1100px, 92vw);
+    text-align: center;
   }
 
   .hero__brand {
@@ -86,14 +92,19 @@ const heroBgUrl = `url(${withBase("/hero-background.webp")})`;
     align-items: center;
     justify-content: center;
     gap: 0.65rem;
-    margin: 0 auto clamp(1.75rem, 3.83vw, 2.75rem);
+    margin: 0 auto clamp(1.5rem, 3vw, 2.5rem);
     color: rgba(0, 0, 0, 0.82);
+    /* Même voile blanc que le titre — drop-shadow pour couvrir à la fois le
+       logo (SVG) et le nom (texte). */
+    filter:
+      drop-shadow(0 0 10px rgba(250, 250, 248, 0.6))
+      drop-shadow(0 0 22px rgba(250, 250, 248, 0.45));
   }
 
   .hero__brand-logo {
     display: inline-flex;
     align-items: center;
-    height: clamp(28px, 3.3vw, 38px);
+    height: clamp(26px, 2.4vw, 40px);
   }
 
   .hero__brand-logo :global(svg) {
@@ -109,280 +120,82 @@ const heroBgUrl = `url(${withBase("/hero-background.webp")})`;
   .hero__brand-name {
     font-family: "Quicksand", system-ui, sans-serif;
     font-weight: 600;
-    font-size: clamp(1.05rem, 1.81vw, 1.3rem);
+    font-size: clamp(1rem, 1.2vw, 1.4rem);
     letter-spacing: 0.22em;
     text-transform: uppercase;
   }
 
+  /* Titre — l'élément le plus important : la plus grosse échelle, et il
+     continue de grandir sur les très grands écrans. */
   .hero__title {
     margin: 0;
-    text-align: center;
     font-family: "Libre Baskerville", Georgia, serif;
     font-weight: 700;
-    /* Fixed 4.25rem on desktop; only shrinks below ~1150px where the
-       text starts reaching the viewport edges. */
-    font-size: clamp(2.55rem, 5.9vw, 4.25rem);
-    line-height: 1.2;
+    font-size: clamp(2.1rem, 4vw, 4.5rem);
+    line-height: 1.18;
     letter-spacing: -0.01em;
-    color: rgba(0, 0, 0, 0.8);
+    color: rgba(0, 0, 0, 0.82);
     text-wrap: balance;
+    /* Voile blanc diffus derrière le texte : invisible sur les zones claires
+       de l'image, il rétablit le contraste quand le titre noir passe sur une
+       zone sombre du fond. */
+    text-shadow:
+      0 0 14px rgba(250, 250, 248, 0.65),
+      0 0 32px rgba(250, 250, 248, 0.5),
+      0 0 64px rgba(250, 250, 248, 0.4);
   }
 
   .hero__subtitle {
-    margin: clamp(1.25rem, 2.43vw, 1.75rem) auto 0;
-    max-width: min(58rem, 90vw);
-    text-align: center;
+    margin: clamp(1.1rem, 2vw, 1.75rem) auto 0;
+    max-width: min(54rem, 90vw);
     font-family: "Quicksand", system-ui, sans-serif;
     font-weight: 500;
-    /* Fixed 1rem on desktop, shrinking in step with the title below
-       ~1150px (same crossover so the two stay proportional). */
-    font-size: clamp(0.6rem, 1.39vw, 1rem);
-    letter-spacing: 0.18em;
+    /* Plancher lisible (≈14px), grandit proportionnellement. */
+    font-size: clamp(0.875rem, 1vw, 1.25rem);
+    letter-spacing: 0.16em;
+    line-height: 1.5;
     color: rgba(0, 0, 0, 0.75);
     text-transform: uppercase;
-    line-height: 1.5;
     text-wrap: balance;
+    /* Même voile blanc, plus léger (texte plus petit). */
+    text-shadow:
+      0 0 10px rgba(250, 250, 248, 0.6),
+      0 0 24px rgba(250, 250, 248, 0.45);
   }
 
+  /* Image équipe — en bas du viewport, largeur proportionnelle. Le masthead
+     (flex:1) absorbe l'espace libre au-dessus ; l'image ne remonte sur le
+     texte que si l'écran est trop court, et dans ce cas elle est rognée par
+     le bas (jamais par le haut, le texte restant prioritaire dans le flux). */
   .hero__team {
-    position: absolute;
-    left: 50%;
-    bottom: var(--team-bottom);
-    transform: translate(calc(-50% + var(--team-x)), var(--team-y))
-      scale(var(--team-scale));
-    transform-origin: 50% 65%;
-    width: auto;
+    position: relative;
+    z-index: 1;
+    /* Plus de margin-top:auto : c'est le masthead (flex:1) qui absorbe
+       désormais l'espace libre. L'image reste collée au bas du viewport. */
+    margin-bottom: var(--team-overlap);
+    /* La table déborde volontairement le viewport (~135% de large) : les
+       bords sont rognés (~13 % par côté) par overflow:hidden, ce qui maximise
+       la taille de la table tant qu'on n'a pas atteint le plafond. Plafond à
+       900px : au-delà la table garde cette largeur et cesse de grandir. */
+    width: min(135vw, 900px);
     height: auto;
-    /* Fixed 931px, held even a bit past the viewport width so the edges
-       lightly crop the image (centered, clipped by the hero's
-       overflow:hidden) before it finally shrinks below ~716px. */
-    max-width: min(931px, 130vw);
+    flex-shrink: 0; /* ne pas écraser l'image quand la hauteur manque */
     object-fit: contain;
     object-position: bottom center;
     pointer-events: none;
     user-select: none;
-    filter: blur(var(--team-blur));
-    opacity: var(--team-opacity);
-    will-change: transform, filter, opacity;
-    z-index: 3;
   }
 
-  .hero__wash {
-    position: absolute;
-    inset: 0;
-    background: #fafaf8;
-    opacity: var(--wash);
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  /* On phones the proportional size would be too small to read; keep a
-     legible minimum (proportions matter less at this width anyway). */
-  @media (max-width: 700px) {
-    .hero__subtitle {
-      font-size: 0.85rem;
+  /* En mode mobile, le Header se réduit au logo + nom (même breakpoint que
+     son passage en burger) : la marque du Hero ferait doublon, on la masque. */
+  @media (max-width: 900px) {
+    .hero__brand {
+      display: none;
     }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .hero-stage {
-      height: 100vh;
-    }
-    .hero {
-      position: relative;
-    }
-    .hero__bg {
-      transform: none;
-    }
+    /* Sur mobile, on rogne encore ~10 % de plus sur les côtés (débordement
+       porté à 150vw) pour agrandir d'autant la table. */
     .hero__team {
-      filter: none;
-      opacity: 1;
-    }
-    .hero__wash {
-      opacity: 0;
+      width: min(150vw, 900px);
     }
   }
 </style>
-
-<script>
-  const stage = document.getElementById("hero-stage");
-  const hero = document.getElementById("hero");
-  if (stage && hero) {
-    const reducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    const supportsHover = !window.matchMedia("(hover: none)").matches;
-
-    const BG_SCALE_MAX = 3.0;
-    const PARALLAX_MAX_X = 6;
-    const PARALLAX_MAX_Y = 3;
-
-    // Composition values interpolate smoothly from "small viewport" → "wide
-    // viewport" between 480px and 1100px. Below 480px we lock to the small
-    // end; above 1100px we lock to the wide end.
-    const SMALL_W = 480;
-    const WIDE_W = 1100;
-    let TEAM_BLUR_MAX = 24;
-    let TEAM_SCALE_MAX = 4.5;
-    let MASTHEAD_TOP_START = 41;
-    let MASTHEAD_TOP_END = 18;
-
-    let scrollProgress = 0;
-    let mouseTargetX = 0;
-    let mouseTargetY = 0;
-    let mouseCurrentX = 0;
-    let mouseCurrentY = 0;
-    let raf: number | null = null;
-    let needsRender = false;
-
-    const clamp = (v: number, lo: number, hi: number) =>
-      v < lo ? lo : v > hi ? hi : v;
-    const remap = (
-      v: number,
-      inA: number,
-      inB: number,
-      outA: number,
-      outB: number,
-    ) => {
-      const t = clamp((v - inA) / (inB - inA), 0, 1);
-      return outA + (outB - outA) * t;
-    };
-
-    // Range where the team image must shrink because of horizontal edge
-    // constraints (matches the CSS max-width clamp). Inside this range the
-    // image rises slightly so it stays close to the subtitle.
-    const TEAM_SHRINK_WIDE = 700;
-    const TEAM_SHRINK_SMALL = 390;
-
-    const recomputeBreakpointValues = () => {
-      const w = window.innerWidth;
-      // smallFactor: 1 at SMALL_W, 0 at WIDE_W
-      const smallFactor = clamp((WIDE_W - w) / (WIDE_W - SMALL_W), 0, 1);
-      const lerp = (wide: number, small: number) =>
-        wide + (small - wide) * smallFactor;
-      TEAM_BLUR_MAX = lerp(24, 14);
-      TEAM_SCALE_MAX = lerp(4.5, 3.5);
-      MASTHEAD_TOP_START = lerp(41, 44);
-      MASTHEAD_TOP_END = lerp(18, 22);
-
-      const shrinkFactor = clamp(
-        (TEAM_SHRINK_WIDE - w) / (TEAM_SHRINK_WIDE - TEAM_SHRINK_SMALL),
-        0,
-        1,
-      );
-      const teamBottom = -9 + (2 - -9) * shrinkFactor;
-      hero!.style.setProperty("--team-bottom", teamBottom.toFixed(2) + "%");
-    };
-
-    const readScroll = () => {
-      if (reducedMotion) {
-        scrollProgress = 0;
-        return;
-      }
-      const rect = stage.getBoundingClientRect();
-      const total = stage.offsetHeight - window.innerHeight;
-      if (total <= 0) {
-        scrollProgress = 0;
-        return;
-      }
-      scrollProgress = clamp(-rect.top / total, 0, 1);
-    };
-
-    const schedule = () => {
-      if (raf == null) raf = requestAnimationFrame(tick);
-    };
-
-    function tick() {
-      raf = null;
-      if (supportsHover && !reducedMotion) {
-        mouseCurrentX += (mouseTargetX - mouseCurrentX) * 0.08;
-        mouseCurrentY += (mouseTargetY - mouseCurrentY) * 0.08;
-      }
-
-      const p = scrollProgress;
-      const parallaxFade = clamp(1 - p * 2, 0, 1);
-      const teamX = mouseCurrentX * PARALLAX_MAX_X * parallaxFade;
-      const teamY = mouseCurrentY * PARALLAX_MAX_Y * parallaxFade;
-      const bgScale = remap(p, 0, 1, 1, BG_SCALE_MAX);
-      const teamScale = remap(p, 0, 0.7, 1, TEAM_SCALE_MAX);
-      const teamBlur = remap(p, 0.10, 0.6, 0, TEAM_BLUR_MAX);
-      const teamOpacity = remap(p, 0.35, 0.7, 1, 0);
-      const wash = remap(p, 0.7, 0.9, 0, 1);
-      const mastheadTop = remap(
-        p,
-        0.85,
-        1.0,
-        MASTHEAD_TOP_START,
-        MASTHEAD_TOP_END,
-      );
-
-      hero!.style.setProperty(
-        "--masthead-top",
-        mastheadTop.toFixed(2) + "%",
-      );
-      hero!.style.setProperty("--bg-scale", bgScale.toFixed(4));
-      hero!.style.setProperty("--team-scale", teamScale.toFixed(4));
-      hero!.style.setProperty("--team-blur", teamBlur.toFixed(2) + "px");
-      hero!.style.setProperty("--team-opacity", teamOpacity.toFixed(3));
-      hero!.style.setProperty("--team-x", teamX.toFixed(2) + "px");
-      hero!.style.setProperty("--team-y", teamY.toFixed(2) + "px");
-      hero!.style.setProperty("--wash", wash.toFixed(3));
-
-      const mouseSettling =
-        supportsHover &&
-        (Math.abs(mouseTargetX - mouseCurrentX) > 0.001 ||
-          Math.abs(mouseTargetY - mouseCurrentY) > 0.001);
-      if (mouseSettling || needsRender) {
-        needsRender = false;
-        schedule();
-      }
-    }
-
-    const onScroll = () => {
-      readScroll();
-      needsRender = true;
-      schedule();
-    };
-
-    const onResize = () => {
-      recomputeBreakpointValues();
-      readScroll();
-      needsRender = true;
-      schedule();
-    };
-
-    const onMove = (e: MouseEvent) => {
-      if (!supportsHover || reducedMotion) return;
-      const rect = hero.getBoundingClientRect();
-      mouseTargetX = clamp(
-        ((e.clientX - rect.left) / rect.width) * 2 - 1,
-        -1,
-        1,
-      );
-      mouseTargetY = clamp(
-        ((e.clientY - rect.top) / rect.height) * 2 - 1,
-        -1,
-        1,
-      );
-      schedule();
-    };
-
-    const onLeave = () => {
-      mouseTargetX = 0;
-      mouseTargetY = 0;
-      schedule();
-    };
-
-    recomputeBreakpointValues();
-    readScroll();
-    needsRender = true;
-    schedule();
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onResize);
-    if (supportsHover && !reducedMotion) {
-      hero.addEventListener("mousemove", onMove);
-      hero.addEventListener("mouseleave", onLeave);
-    }
-  }
-</script>
